@@ -62,6 +62,8 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 }
 ```
 
+**Which parts the themes restyle:** buttons, fields (input, text area, select, combobox, checkbox, radio, switch, slider, calendar, keypad, counter), menus (dropdown, command menu, context menu, bloom menu, overflow actions), cards, tabs, accordion, dialogs, drawers, popovers, bottom sheet, sidebar, stepper, stat card, date range, banner, progress, empty states, and the AI chat and composer parts. Charts, glance cards, pictures and the rest keep their own look in every theme; all of them take your colour and dark mode.
+
 **Dark mode:** load `glass-dark.css` after the theme and add `data-glass-mode="dark"` to `<html>`.
 
 **Sound (optional):** add `glass-sound.jsx` and put `<GlassSounds />` once near the root. Every part plays soft sounds made on the fly; there are no audio files, and nothing plays until the person's first tap.
