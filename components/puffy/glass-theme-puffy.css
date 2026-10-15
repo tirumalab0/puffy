@@ -20,6 +20,11 @@
   --pf-wash: #f4eeff; /* paper with a hint of the tint */
   --pf-deep: #7856e2; /* the shade inside a bubble */
   --pf-ink: #4a3596;  /* text on a wash */
+  /* Deeper versions for filled buttons, so white text reads on them */
+  --pf-d1: #c45ac8;
+  --pf-d2: #5a72e8;
+  --pf-d3: #7a54e0;
+  --pf-dbase: #7656e0;
 }
 @supports (color: oklch(from red l c h)) {
   [data-glass-theme="puffy"] {
@@ -31,6 +36,10 @@
     --pf-wash: oklch(from var(--glass-tint) 0.965 calc(c * 0.12) h);
     --pf-deep: oklch(from var(--glass-tint) 0.55 c h);
     --pf-ink: oklch(from var(--glass-tint) 0.38 calc(c * 0.8) h);
+    --pf-d1: oklch(from var(--glass-tint) 0.64 calc(c * 0.95) calc(h + 38));
+    --pf-d2: oklch(from var(--glass-tint) 0.62 calc(c * 0.9) calc(h - 48));
+    --pf-d3: oklch(from var(--glass-tint) 0.58 c calc(h + 8));
+    --pf-dbase: oklch(from var(--glass-tint) 0.55 calc(c * 0.95) h);
   }
 }
 [data-glass-theme="puffy"] {
@@ -44,12 +53,12 @@
   --pf-glow: color-mix(in srgb, var(--glass-tint) 50%, transparent);
   /* Liquid: a glint, a sheen, then three blobs of colour that swim */
   --pf-liquid:
-    radial-gradient(16% 30% at 16% 26%, rgb(255 255 255 / 0.95), transparent 72%),
-    radial-gradient(70% 80% at 30% -10%, rgb(255 255 255 / 0.75), transparent 62%),
-    radial-gradient(closest-side, var(--pf-c1), transparent),
-    radial-gradient(closest-side, var(--pf-c2), transparent),
-    radial-gradient(closest-side, var(--pf-c3), transparent),
-    var(--pf-base);
+    radial-gradient(12% 24% at 14% 26%, rgb(255 255 255 / 0.7), transparent 72%),
+    radial-gradient(70% 70% at 30% -14%, rgb(255 255 255 / 0.32), transparent 62%),
+    radial-gradient(closest-side, var(--pf-d1), transparent),
+    radial-gradient(closest-side, var(--pf-d2), transparent),
+    radial-gradient(closest-side, var(--pf-d3), transparent),
+    var(--pf-dbase);
   /* Clear bubble: mostly see-through, with colour pooling at the bottom */
   --pf-clear:
     radial-gradient(14% 26% at 14% 24%, rgb(255 255 255 / 0.95), transparent 72%),
@@ -64,12 +73,12 @@
     linear-gradient(180deg, #ffffff, var(--pf-wash));
   /* Liquid you can see through */
   --pf-liquid-glass:
-    radial-gradient(16% 30% at 16% 26%, rgb(255 255 255 / 0.95), transparent 72%),
-    radial-gradient(70% 80% at 30% -10%, rgb(255 255 255 / 0.55), transparent 62%),
-    radial-gradient(closest-side, color-mix(in srgb, var(--pf-c1) 62%, transparent), transparent),
-    radial-gradient(closest-side, color-mix(in srgb, var(--pf-c2) 62%, transparent), transparent),
-    radial-gradient(closest-side, color-mix(in srgb, var(--pf-c3) 62%, transparent), transparent),
-    color-mix(in srgb, var(--pf-base) 28%, transparent);
+    radial-gradient(12% 24% at 14% 26%, rgb(255 255 255 / 0.7), transparent 72%),
+    radial-gradient(70% 70% at 30% -14%, rgb(255 255 255 / 0.25), transparent 62%),
+    radial-gradient(closest-side, color-mix(in srgb, var(--pf-d1) 78%, transparent), transparent),
+    radial-gradient(closest-side, color-mix(in srgb, var(--pf-d2) 78%, transparent), transparent),
+    radial-gradient(closest-side, color-mix(in srgb, var(--pf-d3) 78%, transparent), transparent),
+    color-mix(in srgb, var(--pf-dbase) 72%, transparent);
   --pf-gloss: inset 0 0 0 1px rgb(255 255 255 / 0.8), inset 0 9px 10px -5px #fff, inset 0 -13px 16px -7px color-mix(in srgb, var(--pf-deep) 50%, transparent);
   --pf-skin:
     inset 0 0 0 1px rgb(255 255 255 / 0.75),
@@ -122,6 +131,8 @@
 }
 /* Primary: liquid colour inside the bubble */
 [data-glass-theme="puffy"] .gb[data-variant="primary"][data-effect] {
+  --gb-fg: #fff;
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--pf-deep) 60%, transparent);
   --gb-inset:
     inset 0 0 0 1px rgb(255 255 255 / 0.6),
     inset 0 5px 8px -4px rgb(255 255 255 / 0.9),

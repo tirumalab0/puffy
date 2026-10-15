@@ -96,10 +96,11 @@
 /* Badges on a dark picture in dark mode: a soft see-through chip, light text */
 [data-glass-mode="dark"] [data-glass-on="dark"] .gbd:is([data-tone="neutral"], [data-tone="accent"]):not([data-effect="glass"]):not([data-effect="bubble"]) { --gbd-bg: rgb(255 255 255 / 0.16); }
 
-/* Puffy's pastel surfaces (main button, active card) stay light in every mode,
-   so they keep dark ink even in dark mode or on a dark picture */
+/* Puffy's main button is filled with deep liquid colour, so it keeps white
+   ink in every mode and on any picture */
 [data-glass-theme="puffy"] .gb.gb.gb.gb.gb[data-variant="primary"]:not([data-effect="flat"]),
-[data-glass-theme="puffy"] .gb.gb.gb.gb.gb[data-variant="primary"][data-effect="flat"] { --gb-fg: #241c3a; color: #241c3a; }
+[data-glass-theme="puffy"] .gb.gb.gb.gb.gb[data-variant="primary"][data-effect="flat"] { --gb-fg: #fff; color: #fff; }
+/* The active card stays a light pastel, so it keeps dark ink */
 [data-glass-theme="puffy"] .gc.gc.gc.gc[data-effect][data-active] { --glass-fg: #1f1a2e; --glass-shadow: 31 26 46; color: #1f1a2e; }
 /* …but dark secondary buttons inside those cards keep light ink */
 :is([data-glass-mode="dark"], [data-glass-on="dark"]) [data-glass-theme="puffy"] .gc[data-active] .gb.gb.gb.gb.gb[data-variant="secondary"] { --glass-fg: #f2f2f5; --gb-fg: #f2f2f5; color: #f2f2f5; }

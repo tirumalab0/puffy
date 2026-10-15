@@ -97,7 +97,6 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 | `menu` | The menu used by Select, Combobox and Dropdown |
 | `motion` | Rolling number, Word reveal, Art |
 | `overlay` | Command menu, Drawer, Toast, Empty, Skeleton, Date range, Stepper |
-| `prism` | Prism mark |
 | `scene` | Picture backdrop for glass finishes |
 | `select` | Select |
 | `sound` | Optional sounds for every part |
