@@ -9,7 +9,7 @@
   color: var(--glass-fg);
 }
 :root[data-glass-mode="dark"] :is(.gbr, .gbb, .grd, .grr, .gfl) { --gc-line: rgb(255 255 255 / 0.12); --gc-mute: rgb(255 255 255 / 0.55); --gc-off: rgb(255 255 255 / 0.08); }
-[data-glass-tint="frost"] :is(.gbr, .gbb, .grd, .grr, .gfl) { --gc: #5b6cf0; }
+[data-glass-tint="frost"] :is(.gbr, .gbb, .grd, .grr, .gfl) { --gc: var(--frost-accent, #4b5565); }
 [data-glass-tint="ink"] :is(.gbr, .gbb, .grd, .grr, .gfl) { --gc2: #ff7a45; --gc3: #23b5a5; }
 :root[data-glass-mode="dark"] [data-glass-tint="ink"] :is(.gbr, .gbb, .grd, .grr, .gfl) { --gc: #ededf0; }
 

@@ -332,6 +332,22 @@ button.gf { cursor: pointer; }
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.4), inset 0 0 0 0.5px rgb(255 255 255 / 0.18);
 }
 
+/* Buttons and fields take the surrounding font (browsers default them to
+   their own). :where() keeps this at zero weight, so any style beats it. */
+:where(button, input, textarea, select) { font-family: inherit; }
+
+/* Frost is Mist's colourless tint. Every family uses the same neutral slate
+   for its accent, and every main button gets the same frosted look as the
+   core button, so one screen never mixes grey and indigo. */
+:root { --frost-accent: #4b5565; --frost-on: #ffffff; }
+:root[data-glass-mode="dark"] { --frost-accent: #d3d9e3; --frost-on: #1b2030; }
+/* Under Frost, "the theme colour" is that slate too, so anything that falls back to it matches */
+[data-glass-tint="frost"] { --glass-tint: var(--frost-accent); --glass-on-tint: var(--frost-on); }
+[data-glass-tint="frost"] :is(.gn-btn-main, .gn-send, .gn-aw-fab, .gam-solid, .gam-men-send, .gam-ap-play, .gam-hist-new, .gkc-send:not([data-stop]), .gx-btn-main, .gxb-main, .gxo-btn, .gxa-main, .gap-run, .gmf-go) {
+  color: #262d3a; background: linear-gradient(180deg, #f6f8fb, #dfe4ec); box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgb(70 82 104 / 0.25), 0 6px 14px -8px rgb(30 40 60 / 0.45); text-shadow: none; }
+:root[data-glass-mode="dark"] [data-glass-tint="frost"] :is(.gn-btn-main, .gn-send, .gn-aw-fab, .gam-solid, .gam-men-send, .gam-ap-play, .gam-hist-new, .gkc-send:not([data-stop]), .gx-btn-main, .gxb-main, .gxo-btn, .gxa-main, .gap-run, .gmf-go) {
+  color: #eef1f6; background: linear-gradient(180deg, #4a505c, #363b45); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), 0 0 0 1px rgb(0 0 0 / 0.5), 0 6px 14px -8px rgb(0 0 0 / 0.8); }
+
 /* ---------- Mist for every part ----------
    Mist is the starting look, so it needs no theme file. These rules give the
    newer families (extras, tactile, glance, kit and the AI parts) the same

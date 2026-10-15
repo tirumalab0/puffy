@@ -1,6 +1,7 @@
 /* AI beyond the chat box. Colours come from the theme's --glass-tint. */
 .gvo, .ggi, .grw, .gapl, .gis, .gin, .gmf, .gvr, .gsm, .gfb { --gx-spring: cubic-bezier(0.3, 1.45, 0.5, 1); --gx-out: cubic-bezier(0.2, 0.8, 0.2, 1); --gx-c: var(--glass-tint, #9b7bff); }
-[data-glass-tint="ink"] :is(.gvo, .gis, .gin, .gapl) , [data-glass-tint="frost"] :is(.gvo, .gin, .gapl) { --gx-c: #7c6cf2; }
+[data-glass-tint="ink"] :is(.gvo, .gis, .gin, .gapl) , [data-glass-tint="frost"] .gvo { --gx-c: #7c6cf2; }
+[data-glass-tint="frost"] :is(.gin, .gapl) { --gx-c: var(--frost-accent, #4b5565); }
 
 /* ---------- Voice orb ---------- */
 .gvo { position: relative; display: grid; place-items: center; width: var(--gvo-size); height: var(--gvo-size); padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -189,13 +190,14 @@
 .gmf-paste-icon { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 9px; color: #fff; background: linear-gradient(135deg, color-mix(in srgb, var(--gx-c) 70%, #ff8ac8), var(--gx-c)); }
 .gmf-paste textarea { flex: 1; min-width: 0; min-height: 44px; padding: 4px 0; border: 0; outline: 0; resize: none; font: 14px/1.45 var(--font, inherit); color: var(--glass-fg); background: none; }
 .gmf-paste textarea::placeholder { color: rgb(var(--glass-shadow) / 0.45); }
-.gmf-go { display: inline-flex; align-items: center; gap: 6px; flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 99px; font: 600 13px var(--font, inherit); color: var(--glass-on-tint, #fff); background: var(--glass-tint); cursor: pointer; transition: scale 0.35s var(--gx-spring), opacity 0.2s; }
+.gmf-go { display: inline-flex; align-items: center; gap: 6px; flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 99px; font: 500 13px var(--font, inherit); color: var(--glass-on-tint, #fff); background: var(--glass-tint); cursor: pointer; transition: scale 0.35s var(--gx-spring), opacity 0.2s; }
 .gmf-go:active:not(:disabled) { scale: 0.94; }
 .gmf-go:disabled { opacity: 0.45; cursor: default; }
 .gmf-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .gmf-field .gfield-label { display: flex; align-items: center; gap: 8px; }
 .gmf-tag { display: inline-flex; align-items: center; gap: 4px; padding: 1px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; color: var(--gx-c); background: color-mix(in srgb, var(--gx-c) 12%, transparent); animation: gx-pop 0.4s var(--gx-spring); }
-[data-glass-tint="ink"] .gmf-tag, [data-glass-tint="frost"] .gmf-tag { color: #6d5ce8; }
+[data-glass-tint="ink"] .gmf-tag { color: #6d5ce8; }
+[data-glass-tint="frost"] .gmf-tag { color: var(--frost-accent, #4b5565); }
 .gmf-field[data-filled] .gf { --gf-ring: color-mix(in srgb, var(--gx-c) 55%, transparent); animation: gmf-flash 0.9s var(--gx-out); }
 @keyframes gmf-flash { from { --gf-halo: color-mix(in srgb, var(--gx-c) 30%, transparent); background-color: color-mix(in srgb, var(--gx-c) 12%, var(--gf-fill, #fff)); } }
 .gmf-field[data-filled] .gf-input { animation: grw-in 0.5s var(--gx-out); }
@@ -206,7 +208,7 @@
 .gvr { display: grid; grid-template-columns: repeat(var(--gvr-cols, 4), minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 560px) { .gvr { --gvr-cols: 2; } }
 .gvr-cell { position: relative; }
-.gvr-pick { position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; overflow: hidden; border: 0; border-radius: 16px; background: rgb(var(--glass-shadow) / 0.06); cursor: pointer; transition: transform 0.45s var(--gx-spring), box-shadow 0.25s; }
+.gvr-pick { font-family: inherit; position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; overflow: hidden; border: 0; border-radius: 16px; background: rgb(var(--glass-shadow) / 0.06); cursor: pointer; transition: transform 0.45s var(--gx-spring), box-shadow 0.25s; }
 .gvr-pick:disabled { cursor: progress; }
 .gvr-cell[data-ready] .gvr-pick:hover { transform: translateY(-3px); }
 .gvr-cell[data-on] .gvr-pick { box-shadow: 0 0 0 2.5px var(--glass-tint), 0 14px 28px -16px var(--glass-tint); }

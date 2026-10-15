@@ -7,7 +7,7 @@
 .gx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* Wheel picker: seven rows on a drum, the middle one under a raised lens */
-.gxw { --gxw-row: 36px; position: relative; display: flex; justify-content: center; align-items: center; width: 100%; max-width: 280px; padding: 4px 12px; border-radius: 26px; color: var(--gx-fg);
+.gxw { --gxw-row: 36px; position: relative; display: flex; justify-content: center; align-items: center; width: 100%; max-width: 280px; padding: 4px 12px; border-radius: 24px; color: var(--gx-fg);
   background: linear-gradient(180deg, color-mix(in srgb, var(--gx-card) 100%, #fff), color-mix(in srgb, var(--gx-card) 97%, #000));
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8), 0 0 0 0.5px var(--gx-line), 0 1px 2px rgb(0 0 0 / 0.04), 0 24px 44px -28px rgb(0 0 0 / 0.45); }
 :root[data-glass-mode="dark"] .gxw { background: linear-gradient(180deg, #202026, #19191e); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 0 0.5px rgb(255 255 255 / 0.09), 0 24px 44px -24px rgb(0 0 0 / 0.9); }
@@ -75,11 +75,11 @@
 .gxc-menu button[data-danger][data-act] { color: #fff; background: #e5484d; }
 .gxc-ic { display: inline-flex; opacity: 0.8; }
 .gxc-l { flex: 1; }
-.gxc-menu kbd { font: 12px/1 ui-monospace, "SF Mono", Menlo, monospace; opacity: 0.6; }
+.gxc-menu kbd { font: 12px/1 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; opacity: 0.6; }
 @media (pointer: coarse) { .gxc-menu button { min-height: 44px; } }
 
 /* Morphing modal */
-.gxo-btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border: 0; border-radius: var(--glass-radius, 14px); font: inherit; font-size: 15px; font-weight: 600; color: var(--glass-on-tint, #fff); background: var(--glass-tint, #17171a); cursor: pointer; transition: transform 0.2s; }
+.gxo-btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border: 0; border-radius: var(--glass-radius, 14px); font: inherit; font-size: 14px; font-weight: 500; color: var(--glass-on-tint, #fff); background: var(--glass-tint, #17171a); cursor: pointer; transition: transform 0.2s; }
 .gxo-btn:active { transform: scale(0.97); }
 .gxo-bi { display: inline-flex; }
 .gxo-wrap { position: fixed; inset: 0; z-index: 900; display: grid; place-items: center; padding: 16px; }
@@ -101,7 +101,7 @@
 
 /* Expandable tabs */
 .gxt { display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 5px; border-radius: 99px; color: var(--gx-fg); background: var(--gx-card); box-shadow: 0 0 0 0.5px var(--gx-line), 0 10px 24px -16px rgb(0 0 0 / 0.35); }
-.gxt button { display: inline-flex; align-items: center; height: 40px; min-width: 40px; padding: 0 11px; border: 0; border-radius: 99px; font: inherit; font-size: 14px; font-weight: 600; color: var(--gx-muted); background: none; cursor: pointer; transition: background 0.35s, color 0.25s, padding 0.45s cubic-bezier(0.3, 1.2, 0.4, 1); }
+.gxt button { display: inline-flex; align-items: center; height: 40px; min-width: 40px; padding: 0 11px; border: 0; border-radius: 99px; font: inherit; font-size: 14px; font-weight: 500; color: var(--gx-muted); background: none; cursor: pointer; transition: background 0.35s, color 0.25s, padding 0.45s cubic-bezier(0.3, 1.2, 0.4, 1); }
 .gxt button:hover { color: var(--gx-fg); }
 .gxt button[data-on] { padding-right: 15px; color: var(--gx-on); background: var(--gx-accent); }
 .gxt-ic { display: inline-flex; flex: none; }
@@ -119,7 +119,7 @@
 .gxb-ring li { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; transform: translate(0, 0) scale(0.3); opacity: 0; pointer-events: none;
   transition: transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1) var(--d), opacity 0.2s var(--d); }
 .gxb[data-open] .gxb-ring li { transform: translate(var(--x), var(--y)) scale(1); opacity: 1; pointer-events: auto; }
-.gxb-ring button { position: relative; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; color: var(--glass-fg, #17171a); background: var(--gx-card, #fff); box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.08), 0 10px 20px -10px rgb(0 0 0 / 0.4); cursor: pointer; transition: transform 0.2s; }
+.gxb-ring button { font-family: inherit; position: relative; display: grid; place-items: center; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; color: var(--glass-fg, #17171a); background: var(--gx-card, #fff); box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.08), 0 10px 20px -10px rgb(0 0 0 / 0.4); cursor: pointer; transition: transform 0.2s; }
 :root[data-glass-mode="dark"] .gxb-ring button { color: #f3f3f6; background: #26262c; }
 .gxb-ring button:hover, .gxb-ring button:focus-visible { transform: scale(1.12); outline: none; }
 .gxb-tip { position: absolute; bottom: calc(100% + 6px); left: 50%; padding: 3px 8px; border-radius: 7px; font-size: 11.5px; font-weight: 600; white-space: nowrap; color: #fff; background: rgb(20 20 25 / 0.88); transform: translate(-50%, 4px); opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.2s; }
@@ -128,15 +128,15 @@
 /* File diff */
 .gxd { width: 100%; overflow: hidden; border-radius: var(--gx-r); color: var(--gx-fg); background: var(--gx-card); box-shadow: 0 0 0 0.5px var(--gx-line), 0 10px 24px -18px rgb(0 0 0 / 0.35); font-size: 13px; }
 .gxd-head { display: flex; align-items: center; gap: 8px; width: 100%; min-height: 42px; padding: 0 12px; border: 0; font: inherit; color: inherit; background: none; cursor: pointer; text-align: left; }
-.gxd-file { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 12.5px/1 ui-monospace, "SF Mono", Menlo, monospace; }
-.gxd-n { display: inline-flex; gap: 6px; font: 600 12px/1 ui-monospace, "SF Mono", Menlo, monospace; font-variant-numeric: tabular-nums; }
+.gxd-file { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 500 12.5px/1 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; }
+.gxd-n { display: inline-flex; gap: 6px; font: 600 12px/1 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; font-variant-numeric: tabular-nums; }
 .gxd-add { color: #1f9d55; } .gxd-del { color: #e5484d; }
 .gxd-bars { display: inline-flex; gap: 2px; } .gxd-bars i { width: 7px; height: 7px; border-radius: 2px; background: #e5484d; } .gxd-bars i[data-k="add"] { background: #1f9d55; }
 .gxd-chev { display: inline-flex; color: var(--gx-muted); transition: transform 0.25s; } .gxd[data-open] .gxd-chev { transform: rotate(180deg); }
 .gxd-live { display: inline-flex; gap: 3px; } .gxd-live i { width: 4px; height: 4px; border-radius: 50%; background: var(--gx-muted); animation: gx-dot 1s infinite; } .gxd-live i:nth-child(2) { animation-delay: 0.15s; } .gxd-live i:nth-child(3) { animation-delay: 0.3s; }
 @keyframes gx-dot { 50% { opacity: 0.2; } }
 .gxd-body { max-height: 320px; overflow: auto; border-top: 1px solid var(--gx-line); }
-.gxd table { width: 100%; border-collapse: collapse; font: 12.5px/1.6 ui-monospace, "SF Mono", Menlo, monospace; }
+.gxd table { width: 100%; border-collapse: collapse; font: 12.5px/1.6 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; }
 .gxd tr { animation: gx-row 0.25s ease-out; }
 @keyframes gx-row { from { opacity: 0; transform: translateY(2px); } }
 .gxd tr[data-t="add"] { background: rgb(31 157 85 / 0.1); } .gxd tr[data-t="del"] { background: rgb(229 72 77 / 0.1); }
@@ -151,13 +151,13 @@ tr[data-t="add"] .gxd-sign { color: #1f9d55; } tr[data-t="del"] .gxd-sign { colo
 .gxa-top { display: flex; gap: 10px; }
 .gxa-ic { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 10px; color: var(--gx-accent); background: color-mix(in srgb, var(--gx-accent) 12%, transparent); }
 .gxa-txt { line-height: 1.45; } .gxa-txt span { color: var(--gx-muted); }
-.gxa-target { display: block; width: fit-content; max-width: 100%; margin-top: 6px; padding: 4px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 7px; font: 12.5px/1.4 ui-monospace, "SF Mono", Menlo, monospace; background: var(--gx-faint); box-sizing: border-box; }
+.gxa-target { display: block; width: fit-content; max-width: 100%; margin-top: 6px; padding: 4px 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 7px; font: 12.5px/1.4 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; background: var(--gx-faint); box-sizing: border-box; }
 .gxa-risk { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; font-size: 12.5px; color: #b25a00; }
 .gxa-more { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 0; border: 0; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--gx-accent); background: none; cursor: pointer; }
 .gxa-more[aria-expanded="true"] svg { transform: rotate(180deg); }
-.gxa-pre { margin: 8px 0 0; padding: 10px 12px; max-height: 160px; overflow: auto; border-radius: 10px; font: 12px/1.55 ui-monospace, "SF Mono", Menlo, monospace; background: var(--gx-faint); white-space: pre-wrap; animation: gx-drop 0.2s; }
+.gxa-pre { margin: 8px 0 0; padding: 10px 12px; max-height: 160px; overflow: auto; border-radius: 10px; font: 12px/1.55 "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; background: var(--gx-faint); white-space: pre-wrap; animation: gx-drop 0.2s; }
 .gxa-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.gxa-b { flex: 1 1 auto; height: 38px; padding: 0 14px; border: 0; border-radius: calc(var(--gx-r) - 2px); font: inherit; font-size: 13.5px; font-weight: 600; color: var(--gx-fg); background: var(--gx-faint); cursor: pointer; transition: transform 0.15s; }
+.gxa-b { flex: 1 1 auto; height: 38px; padding: 0 14px; border: 0; border-radius: calc(var(--gx-r) - 2px); font: inherit; font-size: 13.5px; font-weight: 500; color: var(--gx-fg); background: var(--gx-faint); cursor: pointer; transition: transform 0.15s; }
 .gxa-b:active { transform: scale(0.97); }
 .gxa-main { color: var(--gx-on); background: var(--gx-accent); }
 .gxa-deny { flex: 0 0 auto; color: #e5484d; }

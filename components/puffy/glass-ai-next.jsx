@@ -1000,7 +1000,7 @@ export function GlassLiveCaptions({ lines = [], langs = [], speaker = { name: "S
   return (
     <div className={"gn gn-lc " + className}>
       <div className="gn-lc-who">
-        <span className="gn-lc-av">{speaker.initials}</span>
+        <span className="gn-lc-av" style={{ "--h": [...(speaker.name || "")].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7) }}>{speaker.initials}</span>
         <span className="gn-lc-name"><b>{speaker.name}</b><em>Speaking English</em></span>
         <span className="gn-lc-wave">{lv.map((v, k) => <i key={k} style={{ transform: `scaleY(${v})` }} />)}</span>
       </div>

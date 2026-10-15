@@ -10,7 +10,7 @@
   --gk-out: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 :root[data-glass-mode="dark"] :is(.gmp, .gsta, .gct, .gma, .gig, .grs, .gkc) { --gk-s: #1c1c20; }
-[data-glass-tint="frost"] :is(.gmp, .gsta, .gct, .gma, .gig, .grs, .gkc) { --gk-c: #5b6cf0; }
+[data-glass-tint="frost"] :is(.gmp, .gsta, .gct, .gma, .gig, .grs, .gkc) { --gk-c: var(--frost-accent, #4b5565); }
 @keyframes gk-rise { from { opacity: 0; transform: translateY(8px); filter: blur(4px); } }
 @keyframes gk-pop { from { scale: 0.6; opacity: 0; } }
 @keyframes gk-spin { to { transform: rotate(360deg); } }

@@ -29,7 +29,7 @@
 .gavg .gav + .gav { margin-left: calc(var(--s) * -0.16); }
 .gavg:hover .gav + .gav { margin-left: calc(var(--s) * 0.06); }
 .gavg .gav:hover { transform: translateY(-3px); z-index: 1; }
-[data-glass-mode="dark"] .gav { --gav-ring: #1c1c20; color: hsl(var(--h, 220) 80% 86%); background: radial-gradient(120% 100% at 30% 15%, hsl(var(--h, 220) 35% 34%), hsl(var(--h, 220) 35% 22%)); box-shadow: inset 0 0 0 1px hsl(var(--h, 220) 60% 70% / 0.18), 0 0 0 2.5px var(--gav-ring); }
+[data-glass-mode="dark"] .gav { --gav-ring: #1c1c20; color: hsl(var(--h, 220) 85% 82%); background: radial-gradient(120% 100% at 30% 15%, hsl(var(--h, 220) 60% 62% / 0.22), hsl(var(--h, 220) 60% 50% / 0.1)), #26262b; box-shadow: inset 0 0 0 1px hsl(var(--h, 220) 70% 72% / 0.2), 0 0 0 2.5px var(--gav-ring, #1c1c20); }
 [data-glass-mode="dark"] .gav-more { color: rgb(255 255 255 / 0.7); background: rgb(255 255 255 / 0.08); }
 
 /* ---------- Breadcrumbs ---------- */

@@ -192,5 +192,5 @@
 /* The theme colour, with fallbacks: Mist's white frost tint isn't a colour you
    can fill with, and Puffy's pastel tints are deepened so white text reads. */
 .ggl { --gg-accent: var(--glass-tint, #2f7cf6); }
-[data-glass-tint="frost"] .ggl, .ggl[data-glass-tint="frost"] { --gg-accent: #4f5ff0; }
+[data-glass-tint="frost"] .ggl, .ggl[data-glass-tint="frost"] { --gg-accent: var(--frost-accent, #4b5565); }
 [data-glass-theme="puffy"] .ggl { --gg-accent: var(--pf-dbase, #7656e0); }

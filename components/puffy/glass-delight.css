@@ -19,7 +19,7 @@
   --x-top: #232328; --x-bot: #19191d; --x-ring: rgb(255 255 255 / 0.07); --x-hi: rgb(255 255 255 / 0.08); --x-soft: rgb(255 255 255 / 0.06); --x-mute: rgb(255 255 255 / 0.55);
   --x-lit: inset 0 1px 0 var(--x-hi), 0 0 0 1px var(--x-ring), 0 14px 32px -16px rgb(0 0 0 / 0.8);
 }
-[data-glass-tint="frost"] :is(.gx-confirm, .gx-cal, .gx-pop, .gx-hc, .gx-hold, .gx-swipe, .gx-pw, .gx-rate, .gx-undo, .gx-ts, .gx-bell, .gx-tick, .gx-fl, .gx-rs, .gx-ring, .gx-edge, .gx-efield, .gx-ebtn, .gx-etoast, .gx-ealert) { --x-c: #4f5ff0; --x-on: #fff; }
+[data-glass-tint="frost"] :is(.gx-confirm, .gx-cal, .gx-pop, .gx-hc, .gx-hold, .gx-swipe, .gx-pw, .gx-rate, .gx-undo, .gx-ts, .gx-bell, .gx-tick, .gx-fl, .gx-rs, .gx-ring, .gx-edge, .gx-efield, .gx-ebtn, .gx-etoast, .gx-ealert) { --x-c: var(--frost-accent, #4b5565); --x-on: var(--frost-on, #fff); }
 @keyframes gx-pop { from { opacity: 0; transform: translateY(6px) scale(0.97); } }
 .gx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 16px; border: 0; border-radius: min(var(--glass-radius, 12px), 12px); font: inherit; font-size: 14px; font-weight: 500; color: var(--glass-fg); background: var(--x-surface); box-shadow: var(--x-lit); cursor: pointer; transition: transform 0.25s var(--x-spring), opacity 0.2s; }
 .gx-btn:active:not(:disabled) { transform: scale(0.96); }
@@ -36,7 +36,7 @@
 .gx-confirm h2 { margin: 4px 0 0; font-size: 18px; letter-spacing: -0.02em; }
 .gx-confirm p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--x-mute); }
 .gx-confirm-type { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; font-size: 13px; color: var(--x-mute); }
-.gx-confirm-type b { color: var(--glass-fg); font-family: var(--font-mono, ui-monospace, monospace); }
+.gx-confirm-type b { color: var(--glass-fg); font-family: var(--font-mono, "Geist Mono", ui-monospace, monospace); }
 .gx-confirm-type input { height: 38px; padding: 0 12px; border: 0; border-radius: 10px; font: inherit; font-size: 14px; color: var(--glass-fg); background: var(--x-soft); box-shadow: inset 0 0 0 1px var(--x-ring); outline: none; }
 .gx-confirm-type input:focus { box-shadow: inset 0 0 0 2px var(--x-c); }
 .gx-confirm-acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
@@ -80,10 +80,14 @@
 .gx-hold[data-done] { --p: 1 !important; animation: gx-pop 0.35s var(--x-spring); }
 
 /* Swipe to delete */
-.gx-swipe { position: relative; overflow: hidden; border-radius: 16px; background: linear-gradient(90deg, transparent, #e5484d 60%); transition: max-height 0.3s, opacity 0.3s, margin 0.3s; max-height: 120px; }
+/* The red delete layer only shows while the row is pulled aside, so nothing
+   bleeds round the rounded corners at rest; the row keeps its full shadow. */
+.gx-swipe { position: relative; border-radius: 16px; clip-path: inset(-14px -1px -14px -1px round 16px); transition: max-height 0.3s, opacity 0.3s, margin 0.3s; max-height: 120px; }
+.gx-swipe::before { content: ""; position: absolute; inset: 1px; border-radius: inherit; background: linear-gradient(90deg, #f26b6f, #e5484d); opacity: 0; transition: opacity 0.2s; pointer-events: none; }
+.gx-swipe[data-open]::before { opacity: 1; }
 .gx-swipe[data-gone] { max-height: 0; opacity: 0; }
-.gx-swipe-del { position: absolute; right: 0; top: 0; bottom: 0; display: flex; align-items: center; gap: 6px; padding: 0 22px; border: 0; font: inherit; font-size: 13.5px; font-weight: 600; color: #fff; background: none; cursor: pointer; transform: scale(calc(0.8 + var(--r) * 0.2)); opacity: min(1, var(--r)); }
-.gx-swipe-row { position: relative; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--x-surface); box-shadow: var(--x-lit); touch-action: pan-y; cursor: grab; transition: transform 0.4s var(--x-spring); outline: none; }
+.gx-swipe-del { z-index: 1; position: absolute; right: 0; top: 0; bottom: 0; display: flex; align-items: center; gap: 6px; padding: 0 22px; border: 0; font: inherit; font-size: 13.5px; font-weight: 600; color: #fff; background: none; cursor: pointer; transform: scale(calc(0.8 + var(--r) * 0.2)); opacity: min(1, var(--r)); }
+.gx-swipe-row { position: relative; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: var(--x-surface); box-shadow: var(--x-lit); touch-action: pan-y; cursor: grab; transition: transform 0.4s var(--x-spring); outline: none; }
 .gx-swipe-row:focus-visible { box-shadow: 0 0 0 2px var(--x-c); }
 
 /* Password strength */
@@ -136,7 +140,7 @@
 
 /* Bell */
 .gx-bell { position: relative; display: inline-flex; }
-.gx-bell-btn { position: relative; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; color: var(--glass-fg); background: var(--x-surface); box-shadow: var(--x-lit); cursor: pointer; }
+.gx-bell-btn { font-family: inherit; position: relative; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; color: var(--glass-fg); background: var(--x-surface); box-shadow: var(--x-lit); cursor: pointer; }
 .gx-bell-ic { display: grid; transform-origin: 50% 10%; }
 .gx-bell-ic[data-ring] { animation: gx-ring 0.9s ease-in-out; }
 @keyframes gx-ring { 10%, 50% { transform: rotate(16deg); } 30%, 70% { transform: rotate(-14deg); } 85% { transform: rotate(5deg); } }
@@ -215,7 +219,7 @@
 
 .gx-edge, .gx-etoast, .gx-ealert { position: relative; padding: 4px; background: linear-gradient(180deg, var(--x-shell-top), var(--x-shell-bot)); box-shadow: 0 0 0 1px var(--x-ring), 0 1px 2px rgb(0 0 0 / 0.04), 0 24px 48px -26px rgb(0 0 0 / 0.38); }
 :root[data-glass-mode="dark"] :is(.gx-edge, .gx-etoast, .gx-ealert) { box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 0 0 1px var(--x-ring), 0 24px 48px -22px rgb(0 0 0 / 0.9); }
-.gx-edge { width: min(380px, 100%); border-radius: 26px; }
+.gx-edge { width: min(380px, 100%); border-radius: 24px; }
 .gx-edge-in { display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 22px; background: var(--x-surface); box-shadow: inset 0 1px 0 var(--x-hi), 0 0 0 1px var(--x-ring), 0 2px 4px -1px rgb(0 0 0 / 0.06); }
 .gx-edge-title { margin: 0; font-size: 22px; font-weight: 600; line-height: 1.15; letter-spacing: -0.045em; }
 .gx-edge-text { margin: -6px 0 2px; font-size: 14px; line-height: 1.5; color: var(--x-mute); }

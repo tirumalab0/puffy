@@ -16,7 +16,7 @@
 .gcp-row { display: flex; align-items: center; gap: 8px; }
 .gcp-now { flex: none; width: 36px; height: 36px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.1); }
 .gcp-hex { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; height: 36px; padding: 0 10px; border-radius: 10px; background: var(--x-faint); font-size: 12px; color: var(--x-muted); }
-.gcp-hex input { flex: 1; min-width: 0; border: 0; outline: none; font: 500 14px ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; color: var(--x-fg); background: none; }
+.gcp-hex input { flex: 1; min-width: 0; border: 0; outline: none; font: 500 14px "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; text-transform: uppercase; color: var(--x-fg); background: none; }
 .gcp-drop { display: grid; place-items: center; flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 10px; color: var(--x-fg); background: var(--x-faint); cursor: pointer; }
 .gcp-sw { display: flex; flex-wrap: wrap; gap: 7px; }
 .gcp-sw button { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12); transition: transform 0.2s cubic-bezier(0.3, 1.6, 0.5, 1); }
@@ -56,7 +56,7 @@
 .gft li[aria-selected="true"] .gft-chev, .gft li[aria-selected="true"] .gft-ic { color: inherit !important; }
 .gft-ic { display: inline-flex; flex: none; color: var(--x-muted); }
 .gft-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.gft-badge { font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; color: #c27c00; }
+.gft-badge { font: 600 11px "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; color: #c27c00; }
 .gft-badge[data-tone="new"] { color: #1f9d55; }
 
 /* Marquee */
@@ -75,7 +75,7 @@
 .gtlt[data-on="1"] .gtlt-glare { opacity: 1; }
 
 /* Pull to refresh */
-.gptr { position: relative; width: 100%; max-width: 340px; overflow: hidden; border-radius: 26px; color: var(--x-fg); background: var(--x-card); box-shadow: 0 0 0 0.5px var(--x-line), 0 20px 40px -26px rgb(0 0 0 / 0.45); }
+.gptr { position: relative; width: 100%; max-width: 340px; overflow: hidden; border-radius: 24px; color: var(--x-fg); background: var(--x-card); box-shadow: 0 0 0 0.5px var(--x-line), 0 20px 40px -26px rgb(0 0 0 / 0.45); }
 .gptr-ind { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: center; justify-content: center; gap: 8px; overflow: hidden; font-size: 12.5px; color: var(--x-muted); }
 .gptr-spin { display: inline-flex; color: var(--x-accent); }
 .gptr-spin[data-busy] { animation: gptr-spin 0.8s linear infinite; }
@@ -126,7 +126,7 @@
 .gms-bar input { flex: 1; min-width: 0; height: 100%; border: 0; outline: none; font: inherit; font-size: 15px; color: inherit; background: none; opacity: 0; transition: opacity 0.2s; }
 .gms[data-open] .gms-bar input { opacity: 1; transition-delay: 0.15s; }
 .gms-x { display: grid; place-items: center; flex: none; width: 32px; height: 32px; margin-right: 7px; padding: 0; border: 0; border-radius: 50%; color: var(--x-muted); background: var(--x-faint); cursor: pointer; }
-.gms-k { position: absolute; right: -26px; top: 13px; padding: 2px 6px; border-radius: 6px; font: 600 11px ui-monospace, "SF Mono", Menlo, monospace; color: var(--x-muted); box-shadow: inset 0 0 0 1px var(--x-line); }
+.gms-k { position: absolute; right: -26px; top: 13px; padding: 2px 6px; border-radius: 6px; font: 600 11px "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; color: var(--x-muted); box-shadow: inset 0 0 0 1px var(--x-line); }
 .gms-list { position: absolute; z-index: 30; left: 0; width: var(--w); top: calc(100% + 8px); margin: 0; padding: 6px; list-style: none; border-radius: 16px; color: var(--x-fg); background: var(--x-card); box-shadow: 0 0 0 0.5px var(--x-line), 0 18px 40px -16px rgb(0 0 0 / 0.4); box-sizing: border-box; }
 .gms-list li { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 40px; padding: 0 12px; border-radius: 10px; font-size: 14px; cursor: pointer; animation: gms-in 0.3s cubic-bezier(0.3, 1.2, 0.4, 1) calc(var(--i) * 30ms) backwards; }
 @keyframes gms-in { from { opacity: 0; transform: translateY(-4px); } }
@@ -147,7 +147,7 @@
 :root[data-glass-mode="dark"] .goa { --x-card: #1d1d22; --x-fg: #f3f3f6; --x-faint: rgb(255 255 255 / 0.08); }
 
 /* Card folder */
-.gcf { --fc: #6d8cff; position: relative; display: block; width: 200px; height: 150px; padding: 0; border: 0; background: none; cursor: pointer; perspective: 600px; }
+.gcf { font-family: inherit; --fc: #6d8cff; position: relative; display: block; width: 200px; height: 150px; padding: 0; border: 0; background: none; cursor: pointer; perspective: 600px; }
 .gcf-back { position: absolute; inset: 14px 0 0; border-radius: 6px 16px 16px 16px; background: color-mix(in srgb, var(--fc) 75%, #000); }
 .gcf-back::before { content: ""; position: absolute; left: 0; top: -12px; width: 76px; height: 20px; border-radius: 8px 10px 0 0; background: inherit; }
 .gcf-card { position: absolute; left: 50%; top: 24px; width: 120px; height: 84px; margin-left: -60px; overflow: hidden; border-radius: 10px; background: #fff; box-shadow: 0 6px 16px -6px rgb(0 0 0 / 0.35); transform: translateY(14px) rotate(calc(var(--k) * 3deg)); transition: transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1); z-index: var(--z); }
@@ -190,7 +190,7 @@
 .gwc-top b { font-size: 17px; letter-spacing: -0.01em; }
 .gwc-bal { display: grid; text-align: right; font-size: 17px; font-weight: 650; } .gwc-bal em, .gwc-bot em, .gwc-cvv em { display: block; font-style: normal; font-size: 10px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.7; }
 .gwc-chip { width: 40px; height: 30px; margin-top: 14px; border-radius: 7px; background: linear-gradient(135deg, #f3d98b, #b89341); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.15); }
-.gwc-num { margin-top: auto; font: 500 clamp(15px, 4.6vw, 19px) ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0.08em; }
+.gwc-num { margin-top: auto; font: 500 clamp(15px, 4.6vw, 19px) "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: 0.08em; }
 .gwc-bot { display: flex; align-items: flex-end; gap: 22px; margin-top: 12px; font-size: 13px; font-weight: 600; }
 .gwc-net { margin-left: auto; font-size: 19px; font-style: italic; letter-spacing: 0.02em; }
 .gwc-backside { transform: rotateY(180deg); padding: 22px 0 0; }

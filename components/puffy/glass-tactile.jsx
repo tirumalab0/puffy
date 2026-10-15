@@ -403,7 +403,14 @@ export function GlassArcDial({ label = "Temperature", value, onChange, min = 16,
     const t = a < A0 || a > A0 + SW ? (last.current - min < (max - min) / 2 ? 0 : 1) : (a - A0) / SW; // in the gap: stay at the nearer end
     set(min + clamp(t, 0, 1) * (max - min));
   };
-  const down = (e) => { if (sound) knobWake(); e.currentTarget.setPointerCapture(e.pointerId); setHeld(true); fromPointer(e); };
+  // A press in the open gap at the bottom (where the buttons sit) does nothing; only the arc responds
+  const inGap = (e) => {
+    const r = svg.current.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 240 - C, y = ((e.clientY - r.top) / r.height) * 240 - C;
+    const a = (Math.atan2(x, -y) * 180) / Math.PI;
+    return a < A0 || a > A0 + SW || Math.hypot(x, y) < R - 34;
+  };
+  const down = (e) => { if (inGap(e)) return; if (sound) knobWake(); e.currentTarget.setPointerCapture(e.pointerId); setHeld(true); fromPointer(e); };
   const move = (e) => { if (held) fromPointer(e); };
   const up = () => setHeld(false);
   const key = (e) => {

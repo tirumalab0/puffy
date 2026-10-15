@@ -152,9 +152,9 @@ export function GlassSwipeRow({ children, onDelete, label = "Delete", className 
     else setDx(dx < max / 2 ? max : 0);
   };
   return (
-    <div className={"gx-swipe " + className} data-gone={gone ? "" : undefined}>
+    <div className={"gx-swipe " + className} data-gone={gone ? "" : undefined} data-open={dx < -2 || gone ? "" : undefined}>
       <button type="button" className="gx-swipe-del" tabIndex={dx ? 0 : -1} style={{ "--r": clamp(-dx / 96, 0, 1.6) }} onClick={() => { setGone(true); gsnd("delete"); setTimeout(() => onDelete && onDelete(), 300); }}><I d={P.trash} size={17} />{label}</button>
-      <div className="gx-swipe-row" style={{ transform: `translateX(${gone ? -400 : dx}px)`, transition: drag.current ? "none" : undefined }}
+      <div className="gx-swipe-row" style={{ transform: `translateX(${gone ? -400 : dx}px)`, opacity: gone ? 0 : 1, transition: drag.current ? "none" : undefined }}
         onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerCancel={up}
         onKeyDown={(e) => { if (e.key === "Delete" || e.key === "Backspace") { setGone(true); gsnd("delete"); setTimeout(() => onDelete && onDelete(), 300); } if (e.key === "ArrowLeft") setDx(max); if (e.key === "ArrowRight") setDx(0); }} tabIndex={0}>
         {children}

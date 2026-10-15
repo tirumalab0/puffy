@@ -13,7 +13,7 @@
   color: var(--glass-fg);
 }
 :root[data-glass-mode="dark"] :is(.gam-br, .gam-fu, .gam-sel, .gam-err, .gam-hist, .gam-men, .gam-art, .gam-diff, .gam-wave, .gam-tr, .gam-vp, .gam-ap) { --am-s: #1d1d22; --am-soft: rgb(255 255 255 / 0.05); --am-line: rgb(255 255 255 / 0.1); --am-mute: rgb(255 255 255 / 0.56); }
-[data-glass-tint="frost"] :is(.gam-br, .gam-fu, .gam-sel, .gam-err, .gam-hist, .gam-men, .gam-art, .gam-diff, .gam-wave, .gam-tr, .gam-vp, .gam-ap) { --am-c: #4f5ff0; --am-on: #fff; }
+[data-glass-tint="frost"] :is(.gam-br, .gam-fu, .gam-sel, .gam-err, .gam-hist, .gam-men, .gam-art, .gam-diff, .gam-wave, .gam-tr, .gam-vp, .gam-ap) { --am-c: var(--frost-accent, #4b5565); --am-on: var(--frost-on, #fff); }
 @keyframes gam-rise { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } }
 @keyframes gam-pop { from { opacity: 0; transform: scale(0.92) translateY(4px); } }
 .gam-ghost, .gam-solid { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border: 0; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: transform 0.25s var(--am-spring), background 0.2s; }
@@ -75,7 +75,7 @@
 .gam-hist-bar { display: flex; align-items: center; gap: 7px; padding: 0 4px 0 8px; }
 .gam-hist-bar b { font-size: 15px; letter-spacing: -0.02em; }
 .gam-hist-count { min-width: 20px; padding: 1px 6px; border-radius: 99px; font-size: 11px; font-weight: 600; text-align: center; color: var(--am-mute); background: var(--am-soft); font-variant-numeric: tabular-nums; }
-.gam-hist-new { display: inline-flex; align-items: center; gap: 4px; height: 30px; margin-left: auto; padding: 0 11px 0 9px; border: 0; border-radius: 99px; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--am-on); background: linear-gradient(180deg, color-mix(in srgb, var(--am-c) 78%, #fff), var(--am-c)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 0 0 1px color-mix(in srgb, var(--am-c) 80%, #000), 0 4px 10px -5px var(--am-c); cursor: pointer; transition: transform 0.25s var(--am-spring); }
+.gam-hist-new { display: inline-flex; align-items: center; gap: 4px; height: 30px; margin-left: auto; padding: 0 11px 0 9px; border: 0; border-radius: 99px; font: inherit; font-size: 12.5px; font-weight: 500; color: var(--am-on); background: linear-gradient(180deg, color-mix(in srgb, var(--am-c) 78%, #fff), var(--am-c)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.3), 0 0 0 1px color-mix(in srgb, var(--am-c) 80%, #000), 0 4px 10px -5px var(--am-c); cursor: pointer; transition: transform 0.25s var(--am-spring); }
 .gam-hist-new:active { transform: scale(0.94); }
 .gam-hist-new svg { transition: transform 0.35s var(--am-spring); }
 .gam-hist-new:hover svg { transform: rotate(90deg); }
@@ -150,7 +150,7 @@
 .gam-art-acts button { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; border-radius: 8px; color: var(--am-mute); background: none; cursor: pointer; }
 .gam-art-acts button:hover { color: var(--glass-fg); background: var(--am-soft); }
 .gam-art-body { flex: 1; min-height: 0; overflow: auto; padding: 16px 18px; animation: gam-rise 0.35s var(--am-out); }
-.gam-art-body pre { margin: 0; font: 12.5px/1.6 var(--font-mono, ui-monospace, monospace); white-space: pre-wrap; }
+.gam-art-body pre { margin: 0; font: 12.5px/1.6 var(--font-mono, "Geist Mono", ui-monospace, monospace); white-space: pre-wrap; }
 .gam-art-doc { font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
 
 /* ---------- Suggested edits ---------- */
