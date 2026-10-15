@@ -1,6 +1,6 @@
 /* Tactile controls: knob, one-time code, counter, drop zone, reactions,
    card deck and morphing tray. Colours come from the theme tokens. */
-.gkn, .gotp, .gct, .gdz, .grx, .gdk, .gtr, .gad, .grl {
+.gkn, .gotp, .gcnt, .gdz, .grx, .gdk, .gtr, .gad, .grl {
   --gt-c: var(--glass-tint, #6b5cff);
   --gt-on: var(--glass-on-tint, #fff);
   --gt-s: #fff;
@@ -11,9 +11,9 @@
   --gt-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   color: var(--glass-fg);
 }
-:root[data-glass-mode="dark"] :is(.gkn, .gotp, .gct, .gdz, .grx, .gdk, .gtr, .gad, .grl) { --gt-s: #1f1f24; --gt-well: rgb(255 255 255 / 0.06); --gt-line: rgb(255 255 255 / 0.12); --gt-mute: rgb(255 255 255 / 0.55); }
-[data-glass-tint="frost"] :is(.gkn, .gotp, .gct, .gdz, .grx, .gdk, .gtr, .gad, .grl) { --gt-c: #4f5ff0; --gt-on: #fff; }
-[data-glass-tint="ink"] :is(.gkn, .gotp, .gct, .gdz, .grx, .gdk, .gtr) { --gt-c: var(--glass-tint); }
+:root[data-glass-mode="dark"] :is(.gkn, .gotp, .gcnt, .gdz, .grx, .gdk, .gtr, .gad, .grl) { --gt-s: #1f1f24; --gt-well: rgb(255 255 255 / 0.06); --gt-line: rgb(255 255 255 / 0.12); --gt-mute: rgb(255 255 255 / 0.55); }
+[data-glass-tint="frost"] :is(.gkn, .gotp, .gcnt, .gdz, .grx, .gdk, .gtr, .gad, .grl) { --gt-c: #4f5ff0; --gt-on: #fff; }
+[data-glass-tint="ink"] :is(.gkn, .gotp, .gcnt, .gdz, .grx, .gdk, .gtr) { --gt-c: var(--glass-tint); }
 
 /* ---------- Knob ---------- */
 .gkn { display: inline-flex; flex-direction: column; align-items: center; gap: 10px; user-select: none; -webkit-user-select: none; }
@@ -57,7 +57,7 @@
 @keyframes gt-hop { 0% { transform: none; } 40% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
 
 /* ---------- Counter ---------- */
-.gct { display: inline-flex; flex-direction: column; gap: 6px; }
+.gcnt { display: inline-flex; flex-direction: column; gap: 6px; }
 .gct-label { font-size: 13px; color: var(--gt-mute); }
 .gct-body { display: inline-flex; align-items: center; gap: 4px; padding: 4px; border-radius: var(--glass-radius, 999px); background: var(--gt-well); box-shadow: inset 0 1px 2px rgb(var(--glass-shadow) / 0.08); }
 .gct-btn { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border: 0; border-radius: var(--glass-radius, 999px); color: var(--glass-fg); background: var(--gt-s); cursor: pointer; touch-action: manipulation;
@@ -71,8 +71,8 @@
 .gct-col { display: inline-block; height: 1.2em; overflow: hidden; }
 .gct-col > span { display: flex; flex-direction: column; transition: transform 0.45s var(--gt-spring); }
 .gct-col i { font-style: normal; height: 1.2em; }
-.gct[data-bump="max"] .gct-val { animation: gt-nudge-r 0.38s; }
-.gct[data-bump="min"] .gct-val { animation: gt-nudge-l 0.38s; }
+.gcnt[data-bump="max"] .gct-val { animation: gt-nudge-r 0.38s; }
+.gcnt[data-bump="min"] .gct-val { animation: gt-nudge-l 0.38s; }
 @keyframes gt-nudge-r { 40% { transform: translateX(4px); } }
 @keyframes gt-nudge-l { 40% { transform: translateX(-4px); } }
 

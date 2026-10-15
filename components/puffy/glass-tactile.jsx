@@ -186,7 +186,7 @@ export function GlassCounter({ label, value, onChange, min = 0, max = 99, step =
     </button>
   );
   return (
-    <div className={"gct " + className} role="group" aria-label={label} data-bump={bump || undefined}>
+    <div className={"gcnt " + className} role="group" aria-label={label} data-bump={bump || undefined}>
       {label && <span className="gct-label">{label}</span>}
       <div className="gct-body">
         {btn(-step, P.minus, "Less", value <= min)}

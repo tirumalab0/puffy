@@ -8,8 +8,12 @@
 .ggl[data-size="l"] { max-width: 400px; }
 :root[data-glass-mode="dark"] .ggl { --gg-card: #1c1c21; --gg-fg: #f3f3f6; --gg-muted: rgb(255 255 255 / 0.55); --gg-faint: rgb(255 255 255 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08), 0 14px 30px -18px rgb(0 0 0 / 0.7); }
 /* Filled with colour: white type, translucent white for the quiet parts */
-.ggl[data-fill] { --gg-card: var(--gg-bg); --gg-fg: #fff; --gg-muted: rgb(255 255 255 / 0.72); --gg-faint: rgb(255 255 255 / 0.18); --gg-tone-on: #fff;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.1), rgb(0 0 0 / 0.08)), var(--gg-bg); box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.16), 0 14px 30px -16px color-mix(in srgb, var(--gg-bg) 60%, transparent); }
+/* The fill is kept deep enough for white text: a light colour (like Quiet's
+   ink, which turns near-white in dark mode) is darkened to a readable shade. */
+.ggl[data-fill] { --gg-fill: var(--gg-bg); }
+@supports (color: oklch(from red l c h)) { .ggl[data-fill] { --gg-fill: oklch(from var(--gg-bg) min(l, 0.5) min(c, 0.2) h); } }
+.ggl[data-fill] { --gg-card: var(--gg-fill); --gg-fg: #fff; --gg-muted: rgb(255 255 255 / 0.72); --gg-faint: rgb(255 255 255 / 0.18); --gg-tone-on: #fff;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.1), rgb(0 0 0 / 0.08)), var(--gg-fill); box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.16), 0 14px 30px -16px color-mix(in srgb, var(--gg-fill) 60%, transparent); }
 .ggl-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 22px; }
 .ggl-title { display: inline-flex; align-items: center; gap: 6px; min-width: 0; font-size: 14.5px; font-weight: 650; color: var(--gg-tone-on, var(--gg-tone)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ggl-ic { display: inline-flex; flex: none; }
@@ -118,7 +122,7 @@
 .ggc-sec button { display: flex; align-items: flex-start; gap: 9px; width: 100%; min-height: 30px; padding: 4px 0; border: 0; font: inherit; font-size: 14px; text-align: left; color: inherit; background: none; cursor: pointer; }
 .ggc-box { display: grid; place-items: center; flex: none; width: 17px; height: 17px; margin-top: 1px; border-radius: 50%; color: #fff; box-shadow: inset 0 0 0 1.6px var(--gg-tone-on, var(--gg-tone)); transition: background 0.2s, box-shadow 0.2s, transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1); }
 .ggc-sec button[aria-checked="true"] .ggc-box { background: var(--gg-muted); box-shadow: none; transform: scale(1.05); }
-.ggl[data-fill] .ggc-sec button[aria-checked="true"] .ggc-box { color: var(--gg-bg); background: #fff; }
+.ggl[data-fill] .ggc-sec button[aria-checked="true"] .ggc-box { color: var(--gg-fill); background: #fff; }
 .ggc-sec button:active .ggc-box { transform: scale(0.85); }
 .ggc-txt { display: grid; }
 .ggc-txt span { transition: color 0.2s; background: linear-gradient(currentColor, currentColor) 0 55% / 0 1.5px no-repeat; }

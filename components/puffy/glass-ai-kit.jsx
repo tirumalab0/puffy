@@ -113,7 +113,7 @@ export function GlassModelPicker({ models = [], value, onChange, label = "Model"
 export function GlassStarters({ greeting = "What can I help with?", sub, items = [], onPick, mark }) {
   const words = greeting.split(" ");
   return (
-    <div className="gst">
+    <div className="gsta">
       {mark && <span className="gst-mark" aria-hidden="true">{mark}</span>}
       <h2 className="gst-hello" aria-label={greeting}>
         {words.map((w, i) => <span key={i} aria-hidden="true">{i > 0 && " "}<span style={{ "--i": i }}>{w}</span></span>)}

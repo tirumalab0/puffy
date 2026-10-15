@@ -121,7 +121,7 @@
 .gn-code[data-wrap] code { min-width: 0; white-space: pre-wrap; word-break: break-word; }
 .gn-code-ln { display: flex; padding-right: 16px; }
 .gn-code-ln:hover { background: rgb(255 255 255 / 0.03); }
-.gn-code-ln em { position: sticky; left: 0; flex: none; width: 44px; padding-right: 14px; font-style: normal; text-align: right; color: rgb(255 255 255 / 0.25); background: #16161a; user-select: none; }
+.gn-code-ln em { position: sticky; left: 0; flex: none; width: 44px; padding-right: 14px; font-style: normal; text-align: right; color: rgb(255 255 255 / 0.4); background: #16161a; user-select: none; }
 .gn-code-ln > span { flex: 1; white-space: pre; }
 .gn-code[data-wrap] .gn-code-ln > span { white-space: pre-wrap; }
 .gn-tk { color: #c792ea; } .gn-ts { color: #a5e3a0; } .gn-tn { color: #f9b16e; } .gn-tc { color: rgb(255 255 255 / 0.38); font-style: italic; } .gn-tf { color: #82aaff; }

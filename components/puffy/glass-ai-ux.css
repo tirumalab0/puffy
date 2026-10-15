@@ -1,6 +1,6 @@
 /* AI beyond the chat box. Colours come from the theme's --glass-tint. */
-.gvo, .ggi, .grw, .gap, .gis, .gin, .gmf, .gvr, .gsm, .gfb { --gx-spring: cubic-bezier(0.3, 1.45, 0.5, 1); --gx-out: cubic-bezier(0.2, 0.8, 0.2, 1); --gx-c: var(--glass-tint, #9b7bff); }
-[data-glass-tint="ink"] :is(.gvo, .gis, .gin, .gap) , [data-glass-tint="frost"] :is(.gvo, .gin, .gap) { --gx-c: #7c6cf2; }
+.gvo, .ggi, .grw, .gapl, .gis, .gin, .gmf, .gvr, .gsm, .gfb { --gx-spring: cubic-bezier(0.3, 1.45, 0.5, 1); --gx-out: cubic-bezier(0.2, 0.8, 0.2, 1); --gx-c: var(--glass-tint, #9b7bff); }
+[data-glass-tint="ink"] :is(.gvo, .gis, .gin, .gapl) , [data-glass-tint="frost"] :is(.gvo, .gin, .gapl) { --gx-c: #7c6cf2; }
 
 /* ---------- Voice orb ---------- */
 .gvo { position: relative; display: grid; place-items: center; width: var(--gvo-size); height: var(--gvo-size); padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
@@ -97,13 +97,13 @@
 @keyframes gx-sheen { to { background-position: 100% 0; } }
 
 /* ---------- Agent plan ---------- */
-.gap { display: flex; flex-direction: column; min-width: 0; border-radius: 18px; color: var(--glass-fg); background: var(--q-surface, #fff); box-shadow: 0 0 0 1px rgb(var(--glass-shadow) / 0.09), 0 10px 30px -22px rgb(var(--glass-shadow) / 0.4); }
-:root[data-glass-mode="dark"] .gap { background: rgb(255 255 255 / 0.04); }
+.gapl { display: flex; flex-direction: column; min-width: 0; border-radius: 18px; color: var(--glass-fg); background: var(--q-surface, #fff); box-shadow: 0 0 0 1px rgb(var(--glass-shadow) / 0.09), 0 10px 30px -22px rgb(var(--glass-shadow) / 0.4); }
+:root[data-glass-mode="dark"] .gapl { background: rgb(255 255 255 / 0.04); }
 .gap-head { display: flex; align-items: center; gap: 12px; padding: 14px 14px 12px 16px; border-bottom: 1px solid rgb(var(--glass-shadow) / 0.07); }
 .gap-ring { --p: 0; display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; font-size: 12.5px; color: var(--glass-fg); background: radial-gradient(closest-side, var(--q-surface, #fff) 78%, transparent 80%), conic-gradient(var(--gx-c) calc(var(--p) * 360deg), rgb(var(--glass-shadow) / 0.1) 0); transition: background 0.4s; }
 :root[data-glass-mode="dark"] .gap-ring { background: radial-gradient(closest-side, #1a1a1d 78%, transparent 80%), conic-gradient(var(--gx-c) calc(var(--p) * 360deg), rgb(255 255 255 / 0.12) 0); }
-.gap-title { display: flex; flex-direction: column; flex: 1; min-width: 0; font-size: 12.5px; color: rgb(var(--glass-shadow) / 0.58); }
-.gap-title strong { font-size: 14.5px; font-weight: 600; color: var(--glass-fg); }
+.gapl .gap-title { display: flex; flex-direction: column; flex: 1; min-width: 0; font-size: 12.5px; color: rgb(var(--glass-shadow) / 0.58); }
+.gapl .gap-title strong { font-size: 14.5px; font-weight: 600; color: var(--glass-fg); }
 .gap-btn { display: inline-flex; align-items: center; gap: 6px; flex: none; height: 30px; padding: 0 12px; border: 0; border-radius: 99px; font: 500 13px var(--font, inherit); color: var(--glass-fg); background: rgb(var(--glass-shadow) / 0.06); cursor: pointer; transition: background-color 0.2s, scale 0.35s var(--gx-spring); }
 .gap-btn:hover { background: rgb(var(--glass-shadow) / 0.1); }
 .gap-btn:active { scale: 0.94; }
@@ -125,7 +125,7 @@
 .gap-step[data-s="error"] .gap-dot { color: #fff; background: var(--glass-danger, #e5484d); box-shadow: none; animation: gx-pop 0.4s var(--gx-spring); }
 @keyframes gx-pop { from { scale: 0.5; } }
 .gap-spin { width: 14px; height: 14px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--gx-c) 25%, transparent); border-top-color: var(--gx-c); animation: gx-spin 0.75s linear infinite; }
-.gap-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; padding-top: 1px; }
+.gapl .gap-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; padding-top: 1px; }
 .gap-label { font-weight: 500; }
 .gap-detail { font-size: 12.5px; color: rgb(var(--glass-shadow) / 0.55); }
 .gap-result { align-self: flex-start; margin-top: 4px; padding: 4px 10px; border-radius: 8px; font-size: 12.5px; color: rgb(var(--glass-shadow) / 0.75); background: rgb(var(--glass-shadow) / 0.05); animation: gx-rise 0.4s var(--gx-out) backwards; }

@@ -182,7 +182,7 @@ export function GlassAgentPlan({ title = "Plan", steps = [], running = false, on
   const finished = steps.length > 0 && done === steps.length;
   const p = steps.length ? done / steps.length : 0;
   return (
-    <section className="gap" data-running={running ? "" : undefined} aria-label={title}>
+    <section className="gapl" data-running={running ? "" : undefined} aria-label={title}>
       <header className="gap-head">
         <span className="gap-ring" style={{ "--p": p }} aria-hidden="true">{finished ? <Svg d={CHECK} size={14} w={2.4} /> : <b>{done}</b>}</span>
         <span className="gap-title"><strong>{title}</strong><span>{finished ? `Done${elapsed ? " in " + elapsed : ""}` : running ? `Working · step ${Math.min(done + 1, steps.length)} of ${steps.length}` : started ? `Paused · ${done} of ${steps.length} done` : `${steps.length} steps. Check them, then run.`}</span></span>
