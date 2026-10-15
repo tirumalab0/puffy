@@ -5,7 +5,8 @@
   "description": "Dropdown",
   "registryDependencies": [
     "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
-    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json"
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
   ],
   "files": [
     {

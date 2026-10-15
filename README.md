@@ -47,7 +47,7 @@ export function InviteForm() {
 
 | Theme | What it feels like | How to turn it on |
 | --- | --- | --- |
-| Mist | Soft frosted glass with a bright edge | The default. Nothing to load. |
+| Mist | Soft frosted glass with a bright edge | The default. Comes with `glass-surface.css`, nothing else to load. |
 | Quiet | Calm and exact: flat white, hairline edges | Load `glass-theme-quiet.css` last, then add `data-glass-theme="quiet"` to `<html>` |
 | Puffy | Round, squishy and colourful | Load `glass-theme-puffy.css` last, then add `data-glass-theme="puffy"` to `<html>` |
 

@@ -8,6 +8,8 @@ import "./glass-glance.css";
    then each row in turn while the card grows to fit. Any of them can be
    filled with a colour instead of white. */
 
+/* Glance cards take the theme colour unless you pass a tone */
+const ACCENT = "var(--gg-accent)";
 const reduce = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const gsnd = (n, o) => { const g = typeof window !== "undefined" && window.glassSound; return g ? g.play(n, o) : false; };
 const I = ({ d, size = 16, w = 1.8, fill = "none" }) => (
@@ -51,7 +53,7 @@ function useReveal(on) {
  * size           "s" | "m" | "l" — width of the card
  * children       each child is one row and arrives in turn
  */
-export function GlassGlance({ icon, title, meta, tone = "#2f7cf6", fill = false, reveal = true, size = "m", label, className = "", children, ...rest }) {
+export function GlassGlance({ icon, title, meta, tone = ACCENT, fill = false, reveal = true, size = "m", label, className = "", children, ...rest }) {
   const [box, shown] = useReveal(reveal);
   const body = useRef(null);
   const [h, setH] = useState(null);
@@ -86,7 +88,7 @@ export function GlassGlance({ icon, title, meta, tone = "#2f7cf6", fill = false,
 
 /* ---------- Weather: now, and the chance of rain for the next hours ---------- */
 /** hours [{ label, chance }] (chance 0..1); rain draws falling streaks behind */
-export function GlassWeatherGlance({ place = "Lisbon", time, temp = 18, unit = "°C", sky = "Light rain", hours = [], rain, tone = "#5865c8", fill = "#3b4365", ...rest }) {
+export function GlassWeatherGlance({ place = "Lisbon", time, temp = 18, unit = "°C", sky = "Light rain", hours = [], rain, tone = ACCENT, fill = false, ...rest }) {
   const wet = rain != null ? rain : /rain|drizzle|shower|storm/i.test(sky);
   const streaks = useMemo(() => Array.from({ length: 18 }, (_, i) => ({ x: (i * 37) % 100, d: (i * 0.23) % 1.4, s: 0.9 + ((i * 7) % 5) * 0.12 })), []);
   return (
@@ -153,7 +155,7 @@ export function useLiveWeather({ unit = "celsius", hours = 6 } = {}) {
 
 /* ---------- Today's temperature: the range, where it is now, and the day's curve ---------- */
 /** points [number] from first hour to last; hours [label]; low/high for the bar */
-export function GlassTempGlance({ place = "Oslo", time, temp = 12, unit = "°", sky = "Foggy", feels, low, high, points = [], hours = [], sunrise, sunset, humidity, wind, tone = "#13b5c8", fill = false, ...rest }) {
+export function GlassTempGlance({ place = "Oslo", time, temp = 12, unit = "°", sky = "Foggy", feels, low, high, points = [], hours = [], sunrise, sunset, humidity, wind, tone = ACCENT, fill = false, ...rest }) {
   const lo = low != null ? low : Math.min(...points), hi = high != null ? high : Math.max(...points);
   const p = Math.max(0, Math.min(1, (temp - lo) / (hi - lo || 1)));
   const W = 300, H = 92, pad = 4;
@@ -192,7 +194,7 @@ export function GlassTempGlance({ place = "Oslo", time, temp = 12, unit = "°", 
 }
 
 /* ---------- Flight: when it leaves, where to, and how it's doing ---------- */
-export function GlassFlightGlance({ departs = "10:40", from = "BLR", to = "SIN", gate, status = "On time", note, progress = 0, tone = "#2f7cf6", fill = false, ...rest }) {
+export function GlassFlightGlance({ departs = "10:40", from = "BLR", to = "SIN", gate, status = "On time", note, progress = 0, tone = ACCENT, fill = false, ...rest }) {
   const late = /late|delay/i.test(status), gone = /board|depart|air/i.test(status);
   return (
     <GlassGlance tone={tone} fill={fill} className="ggl-flight" label={`Flight ${from} to ${to}, departs ${departs}, ${status}`}
@@ -213,7 +215,7 @@ export function GlassFlightGlance({ departs = "10:40", from = "BLR", to = "SIN",
 const STAGES = ["Awake", "REM", "Core", "Deep"];
 const STAGE_TONE = { Awake: "#ff9b3d", REM: "#2fd0e0", Core: "#2f8af6", Deep: "#6d5ef0" };
 /** stages [{ stage: "Awake"|"REM"|"Core"|"Deep", from, to }] in hours from bedtime; ticks [{ at, label }] */
-export function GlassSleepGlance({ date, score = 80, hours = 7, mins = 0, window: win, awake, stages = [], ticks = [], bedtime, usual, tone = "#6d5ef0", fill = false, ...rest }) {
+export function GlassSleepGlance({ date, score = 80, hours = 7, mins = 0, window: win, awake, stages = [], ticks = [], bedtime, usual, tone = ACCENT, fill = false, ...rest }) {
   const end = stages.length ? stages[stages.length - 1].to : 8;
   const W = 300, rowH = 22, H = rowH * STAGES.length;
   const y = (s) => STAGES.indexOf(s) * rowH + rowH / 2;
@@ -245,7 +247,7 @@ export function GlassSleepGlance({ date, score = 80, hours = 7, mins = 0, window
 
 /* ---------- Checklist: a short list in sections; tap to tick ---------- */
 /** sections [{ name, items: [{ id, text, note, done }] }]; onToggle(id, done) */
-export function GlassChecklistGlance({ title = "Groceries", icon = "cart", sections = [], onToggle, tone = "#1fb85a", fill = false, ...rest }) {
+export function GlassChecklistGlance({ title = "Groceries", icon = "cart", sections = [], onToggle, tone = ACCENT, fill = false, ...rest }) {
   const [done, setDone] = useState(() => new Set(sections.flatMap((s) => s.items.filter((i) => i.done).map((i) => i.id))));
   const total = sections.reduce((n, s) => n + s.items.length, 0);
   const flip = (id) => setDone((d) => { const n = new Set(d); const on = !n.has(id); on ? n.add(id) : n.delete(id); gsnd(on ? "toggleOn" : "toggleOff"); onToggle && onToggle(id, on); return n; });
@@ -275,7 +277,7 @@ export function GlassChecklistGlance({ title = "Groceries", icon = "cart", secti
 
 /* ---------- Movers: today's change, as bars either side of zero ---------- */
 /** rows [{ name, change }] in %; lead is the name shown big; spark [numbers] for the lead's day */
-export function GlassMoversGlance({ lead, leadName, rows = [], date, price, spark = [], tone = "#1fb85a", fill = false, ...rest }) {
+export function GlassMoversGlance({ lead, leadName, rows = [], date, price, spark = [], tone = ACCENT, fill = false, ...rest }) {
   const top = rows.find((r) => r.name === lead) || rows[0] || { name: "", change: 0 };
   const max = Math.max(1, ...rows.map((r) => Math.abs(r.change)));
   const W = 140, H = 44;
@@ -309,7 +311,7 @@ export function GlassMoversGlance({ lead, leadName, rows = [], date, price, spar
 
 /* ---------- Paycheck: what came in, and where it's going ---------- */
 /** income number; parts [{ name, amount }]; currency symbol */
-export function GlassPaycheckGlance({ title = "Paycheck", income = 0, parts = [], currency = "$", tone = "#1fb85a", fill = false, ...rest }) {
+export function GlassPaycheckGlance({ title = "Paycheck", income = 0, parts = [], currency = "$", tone = ACCENT, fill = false, ...rest }) {
   const fmt = (n) => currency + n.toLocaleString("en-US");
   const left = income - parts.reduce((n, p) => n + p.amount, 0);
   return (
@@ -328,7 +330,7 @@ export function GlassPaycheckGlance({ title = "Paycheck", income = 0, parts = []
 
 /* ---------- Range today: a number between its usual low and high ---------- */
 /** value, low, high; segments draws the bar as ticks; caption under it */
-export function GlassRangeGlance({ title = "Climbed today", icon = "flame", value = 0, unit = "", low = 0, high = 100, segments = 22, caption, tone = "#ff7a1a", fill = false, ...rest }) {
+export function GlassRangeGlance({ title = "Climbed today", icon = "flame", value = 0, unit = "", low = 0, high = 100, segments = 22, caption, tone = ACCENT, fill = false, ...rest }) {
   const p = Math.max(0, Math.min(1, (value - low) / (high - low || 1)));
   return (
     <GlassGlance icon={icon} title={<span className="ggr-title"><b>{value}{unit}</b> {title}</span>} tone={tone} fill={fill} className="ggl-range" label={`${value}${unit} ${title}`} {...rest}>

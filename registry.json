@@ -52,7 +52,9 @@
       "type": "registry:ui",
       "title": "Ai More",
       "description": "Reply versions, Follow-ups, Ask about a selection, Error states, Chat history, Mentions, Artifact panel, Suggested edits, Live waveform, Live transcript, Voice picker, Audio player",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-ai-more.jsx",
@@ -71,7 +73,9 @@
       "type": "registry:ui",
       "title": "Ai Next",
       "description": "Answer cards, Code block, Edit and resend, Jump to latest, Read aloud, Memory, Attachments, Modes and tools, Stop and steer, Slash commands, Background tasks, Live browser, Helpers, Checkpoints, Check the answer, Compare answers, Limits and plans, Hold to talk, Camera mode, Live captions, Image edit, Floating assistant, Live preview, Autonomy, Action receipts, Budget and time, Shimmer text, Share a chat, Handoff",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-ai-next.jsx",
@@ -133,7 +137,9 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Button with solid, glass and bubble finishes",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-button.jsx",
@@ -178,7 +184,9 @@
       "type": "registry:ui",
       "title": "Charts",
       "description": "Block bars, Radial rings, Radar, Flow, Brush",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-charts.jsx",
@@ -198,7 +206,8 @@
       "title": "Combobox",
       "description": "Combobox",
       "registryDependencies": [
-        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json"
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
       ],
       "files": [
         {
@@ -249,7 +258,8 @@
       "title": "Data",
       "description": "Stat strip, Meter, Square grid, Forecast bar, Timeline, Tag list",
       "registryDependencies": [
-        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json"
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
       ],
       "files": [
         {
@@ -269,7 +279,9 @@
       "type": "registry:ui",
       "title": "Delight",
       "description": "Confirm, Calendar, Popover, Hover card, Hold to confirm, Swipe to delete, Password strength, Star rating, Undo pill, Toast stack, Notification bell, Number ticker, Floating label, Range slider, Animated form, Edge-lit style",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-delight.jsx",
@@ -311,7 +323,8 @@
       "description": "Dropdown",
       "registryDependencies": [
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
-        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json"
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
       ],
       "files": [
         {
@@ -326,7 +339,9 @@
       "type": "registry:ui",
       "title": "Extras",
       "description": "Wheel picker, Sortable list, Multi select, Context menu, Morphing modal, Expandable tabs, Bloom menu, File diff, Tool approval, Thinking phrases",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-extras.jsx",
@@ -345,7 +360,9 @@
       "type": "registry:ui",
       "title": "Extras2",
       "description": "Colour picker, Image viewer, File tree, Marquee, Tilt card, Pull to refresh, Cylinder carousel, Theme toggle, Hover highlight, Morphing search, Overflow actions, Card folder, Availability, Masonry, Wallet card, Not found",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-extras2.jsx",
@@ -364,7 +381,9 @@
       "type": "registry:ui",
       "title": "Fur",
       "description": "Fluffy Puffy",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-fur.jsx",
@@ -383,7 +402,9 @@
       "type": "registry:ui",
       "title": "Glance",
       "description": "Glance card, Weather, Temperature, Flight, Sleep, Checklist, Movers, Paycheck, Range today",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-glance.jsx",
@@ -402,7 +423,9 @@
       "type": "registry:ui",
       "title": "Grain",
       "description": "Grain backgrounds",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-grain.jsx",
@@ -422,7 +445,8 @@
       "title": "Icon",
       "description": "Icons",
       "registryDependencies": [
-        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json"
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
       ],
       "files": [
         {
@@ -491,7 +515,9 @@
       "type": "registry:ui",
       "title": "Motion",
       "description": "Rolling number, Word reveal, Art",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-motion.jsx",
@@ -527,7 +553,9 @@
       "type": "registry:ui",
       "title": "Scene",
       "description": "Picture backdrop for glass finishes",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-scene.jsx",
@@ -547,7 +575,8 @@
       "title": "Select",
       "description": "Select",
       "registryDependencies": [
-        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json"
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
       ],
       "files": [
         {
@@ -590,7 +619,9 @@
       "type": "registry:ui",
       "title": "Tactile",
       "description": "Knob, Arc dial, Ruler picker, Code input, Counter, Drop zone, Reactions, Card deck, Morphing tray",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-tactile.jsx",
@@ -637,7 +668,9 @@
       "type": "registry:ui",
       "title": "Widget",
       "description": "Widget card, Line chart, Breakdown, Heatmap",
-      "registryDependencies": [],
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
       "files": [
         {
           "path": "components/puffy/glass-widget.jsx",

@@ -3,7 +3,9 @@
   "type": "registry:ui",
   "title": "Ai More",
   "description": "Reply versions, Follow-ups, Ask about a selection, Error states, Chat history, Mentions, Artifact panel, Suggested edits, Live waveform, Live transcript, Voice picker, Audio player",
-  "registryDependencies": [],
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+  ],
   "files": [
     {
       "path": "components/puffy/glass-ai-more.jsx",

@@ -3,7 +3,9 @@
   "type": "registry:ui",
   "title": "Extras2",
   "description": "Colour picker, Image viewer, File tree, Marquee, Tilt card, Pull to refresh, Cylinder carousel, Theme toggle, Hover highlight, Morphing search, Overflow actions, Card folder, Availability, Masonry, Wallet card, Not found",
-  "registryDependencies": [],
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+  ],
   "files": [
     {
       "path": "components/puffy/glass-extras2.jsx",

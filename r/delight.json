@@ -3,7 +3,9 @@
   "type": "registry:ui",
   "title": "Delight",
   "description": "Confirm, Calendar, Popover, Hover card, Hold to confirm, Swipe to delete, Password strength, Star rating, Undo pill, Toast stack, Notification bell, Number ticker, Floating label, Range slider, Animated form, Edge-lit style",
-  "registryDependencies": [],
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+  ],
   "files": [
     {
       "path": "components/puffy/glass-delight.jsx",
