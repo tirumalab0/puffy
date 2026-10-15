@@ -324,3 +324,40 @@
   [data-glass-theme="puffy"] .gb-spinner { animation: none; }
 }
 [data-glass-theme="puffy"] .gsw { --gsw-on: var(--pf-holo); }
+
+/* ---------- Every other part follows the theme too ----------
+   The newer families (extras, tactile, glance, kit and the AI parts) keep
+   their own colour tokens. These rules route their surfaces, main buttons and
+   quiet buttons through the theme. The doubled attribute lets them win over
+   each family's own dark-mode rules. */
+[data-glass-theme="puffy"] {
+  /* deep liquid for filled buttons, so white text reads */
+  --pf-main: radial-gradient(14% 30% at 16% 24%, rgb(255 255 255 / 0.55), transparent 72%), linear-gradient(115deg, var(--pf-d1), var(--pf-dbase) 48%, var(--pf-d2));
+  --pf-main-lit: inset 0 0 0 1px rgb(255 255 255 / 0.35), inset 0 5px 8px -4px rgb(255 255 255 / 0.55), inset 0 -8px 12px -6px color-mix(in srgb, var(--pf-deep) 65%, transparent), 0 8px 18px -8px color-mix(in srgb, var(--glass-tint) 75%, transparent);
+  --pf-card: linear-gradient(180deg, #ffffff, var(--pf-wash));
+  --pf-card-lit: inset 0 0 0 1px rgb(255 255 255 / 0.8), inset 0 -10px 18px -12px color-mix(in srgb, var(--pf-deep) 30%, transparent), 0 0 0 1px rgb(var(--glass-shadow) / 0.07), 0 18px 36px -22px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+  --pf-quiet: linear-gradient(180deg, #ffffff, color-mix(in srgb, var(--pf-wash) 70%, #fff));
+  --pf-quiet-lit: var(--pf-skin), 0 0 0 1px rgb(var(--glass-shadow) / 0.08), 0 6px 14px -8px color-mix(in srgb, var(--glass-tint) 45%, transparent);
+  --pf-flat: color-mix(in srgb, var(--pf-wash) 55%, #fff);
+}
+:is([data-glass-mode="dark"] [data-glass-theme="puffy"], [data-glass-mode="dark"][data-glass-theme="puffy"]) {
+  --pf-card: linear-gradient(180deg, color-mix(in srgb, var(--glass-tint) 10%, #26262c), color-mix(in srgb, var(--glass-tint) 5%, #1c1c21));
+  --pf-card-lit: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 0 0 1px color-mix(in srgb, var(--glass-tint) 22%, rgb(255 255 255 / 0.06)), 0 18px 36px -20px rgb(0 0 0 / 0.9), 0 0 32px -12px color-mix(in srgb, var(--glass-tint) 30%, transparent);
+  --pf-quiet: linear-gradient(180deg, color-mix(in srgb, var(--glass-tint) 12%, #2c2c33), color-mix(in srgb, var(--glass-tint) 6%, #232328));
+  --pf-quiet-lit: inset 0 1px 0 rgb(255 255 255 / 0.1), 0 0 0 1px color-mix(in srgb, var(--glass-tint) 25%, rgb(255 255 255 / 0.06)), 0 6px 14px -8px rgb(0 0 0 / 0.8);
+  --pf-flat: color-mix(in srgb, var(--glass-tint) 8%, #1f1f24);
+}
+/* family tokens: surfaces take the bubble paper, main colour takes the liquid */
+[data-glass-theme][data-glass-theme="puffy"] :is(.gxw, .gxs-item, .gxm-field, .gxm-list, .gxc-menu, .gxo-panel, .gxt, .gxd, .gxa, .gxp) { --gx-card: var(--pf-flat); --gx-r: 20px; }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gcp, .gft, .gptr, .ghh, .gms, .goa, .gsc, .gmy, .gnf, .gcy, .giv, .gthm) { --x-card: var(--pf-flat); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gkn, .gotp, .gct, .gdz, .grx, .gdk, .gtr, .gad, .grl) { --gt-s: var(--pf-flat); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gmp, .gst, .gct, .gma, .gig, .grs, .gkc) { --gk-s: var(--pf-flat); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gam-br, .gam-fu, .gam-sel, .gam-err, .gam-hist, .gam-men, .gam-art, .gam-diff, .gam-wave, .gam-tr, .gam-vp, .gam-ap) { --am-s: var(--pf-flat); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gx-confirm, .gx-cal, .gx-pop, .gx-hc, .gx-hold, .gx-swipe, .gx-pw, .gx-rate, .gx-undo, .gx-ts, .gx-bell, .gx-tick, .gx-fl, .gx-rs, .gx-ring, .gx-type, .gx-efield) { --x-surface: var(--pf-card); --x-lit: var(--pf-card-lit); }
+[data-glass-theme][data-glass-theme="puffy"] .gn.gn { --n-surf: var(--pf-card); --n-lit: var(--pf-card-lit); --n-main: var(--pf-main); --n-main-lit: var(--pf-main-lit); --n-on: #fff; }
+[data-glass-theme][data-glass-theme="puffy"] :is(.ggl:not([data-fill]), .gxw, .gxs-item, .gxm-field, .gxm-list, .gxc-menu, .gxo-panel, .gxd, .gxa, .gcp, .gft, .gptr, .ghh, .gkc, .gst-item, .gam-err, .gam-hist, .gam-men, .gam-art, .gam-diff, .gam-vp-row, .gam-ap, .gdk-card, .gct-body, .gfb, .gap, .gis-pill, .gss) { background: var(--pf-card); box-shadow: var(--pf-card-lit); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gx-btn-main, .gxb-main, .gxo-btn, .gxa-main, .gam-solid, .gam-men-send, .gam-ap-play, .gam-hist-new, .gkc-send:not([data-stop]), .gn-btn-main, .gn-send, .gn-aw-fab) { color: #fff; background: var(--pf-main); box-shadow: var(--pf-main-lit); text-shadow: 0 1px 2px color-mix(in srgb, var(--pf-deep) 55%, transparent); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gx-btn:not(.gx-btn-main), .gxa-b:not(.gxa-main), .goa-b, .gam-ghost, .gap-btn, .gn-btn:not(.gn-btn-main), .gn-jump, .gn-chip-btn, .gn-ra-play, .gn-htt-btn, .gam-vp-play, .gct-btn, .gdk-btn, .gx-bell-btn, .grx-add, .gn-tools-btn) { background: var(--pf-quiet); box-shadow: var(--pf-quiet-lit); }
+[data-glass-theme][data-glass-theme="puffy"] :is(.gx-btn:not(.gx-btn-main), .gxa-b:not(.gxa-main), .goa-b, .gam-ghost, .gap-btn, .gn-btn:not(.gn-btn-main), .gn-jump, .gn-chip-btn, .gn-ra-play, .gn-htt-btn, .gam-vp-play, .gct-btn, .gdk-btn, .gx-bell-btn, .grx-add, .gn-tools-btn):hover:not(:disabled) { animation: pf-jelly 0.55s cubic-bezier(0.3, 0.7, 0.3, 1); }
+[data-glass-theme][data-glass-theme="puffy"] .gxa-deny { color: #e5484d; }
+@media (prefers-reduced-motion: reduce) { [data-glass-theme][data-glass-theme="puffy"] :is(.gx-btn:not(.gx-btn-main), .gxa-b:not(.gxa-main), .goa-b, .gam-ghost, .gap-btn, .gn-btn:not(.gn-btn-main), .gn-jump, .gn-chip-btn, .gn-ra-play, .gn-htt-btn, .gam-vp-play, .gct-btn, .gdk-btn, .gx-bell-btn, .grx-add, .gn-tools-btn):hover { animation: none; } }
