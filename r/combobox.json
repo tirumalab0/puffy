@@ -1,0 +1,18 @@
+{
+  "name": "combobox",
+  "type": "registry:ui",
+  "title": "Combobox",
+  "description": "Combobox",
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json"
+  ],
+  "files": [
+    {
+      "path": "components/puffy/glass-combobox.jsx",
+      "type": "registry:ui",
+      "target": "components/puffy/glass-combobox.jsx",
+      "content": "\"use client\";\nimport { useEffect, useId, useState } from \"react\";\nimport { usePopover, listKey, GlassList, Chevron } from \"./glass-menu.jsx\";\n\n/**\n * GlassCombobox: type to filter a longer list, then pick one.\n * options   [{ value, label, icon?, hint? }]\n * value, onChange(value)\n * effect    \"flat\" | \"glass\" | \"bubble\"\n */\nexport function GlassCombobox({ label, options, value, onChange, placeholder = \"Search\", effect = \"flat\", emptyText = \"No matches\", hint }) {\n  const id = useId();\n  const { open, setOpen, rootRef } = usePopover();\n  const selected = options.find((o) => o.value === value);\n  const selectedLabel = selected ? selected.label : \"\";\n  const [query, setQuery] = useState(selectedLabel);\n  const [active, setActive] = useState(0);\n\n  // Closing without a pick puts the chosen label back\n  useEffect(() => {\n    if (!open) setQuery(selectedLabel);\n  }, [open, selectedLabel]);\n\n  const filtering = open && query !== selectedLabel;\n  const needle = query.trim().toLowerCase();\n  const shown = filtering ? options.filter((o) => o.label.toLowerCase().includes(needle)) : options;\n\n  const pick = (option) => {\n    if (onChange) onChange(option.value);\n    setQuery(option.label);\n    setOpen(false);\n  };\n  const onKeyDown = (e) => {\n    if (!open) {\n      if (e.key === \"ArrowDown\" || e.key === \"ArrowUp\") {\n        e.preventDefault();\n        setActive(0);\n        setOpen(true);\n      }\n      return;\n    }\n    listKey(e, { items: shown, active, setActive, pick, close: () => setOpen(false) });\n  };\n\n  return (\n    <div className=\"gfield\" ref={rootRef}>\n      {label && <label className=\"gfield-label\" htmlFor={`${id}-input`}>{label}</label>}\n      <div className=\"gp-anchor\">\n        <div className=\"gf\" data-effect={effect} data-open={open ? \"\" : undefined}>\n          <input\n            id={`${id}-input`}\n            className=\"gf-input\"\n            role=\"combobox\"\n            autoComplete=\"off\"\n            aria-autocomplete=\"list\"\n            aria-expanded={open}\n            aria-controls={`${id}-list`}\n            aria-activedescendant={open && shown[active] ? `${id}-list-${active}` : undefined}\n            placeholder={placeholder}\n            value={query}\n            onChange={(e) => {\n              setQuery(e.target.value);\n              setActive(0);\n              setOpen(true);\n            }}\n            onClick={() => {\n              setActive(Math.max(0, shown.indexOf(selected)));\n              setOpen(true);\n            }}\n            onKeyDown={onKeyDown}\n          />\n          <span className=\"gf-chevron\" aria-hidden=\"true\"><Chevron /></span>\n        </div>\n        {open && (\n          <GlassList\n            id={`${id}-list`}\n            effect={effect}\n            items={shown}\n            activeIndex={shown.length ? active : -1}\n            onActiveChange={setActive}\n            onPick={pick}\n            selectedValue={value}\n            empty={emptyText}\n          />\n        )}\n      </div>\n      {hint && <div className=\"gfield-foot\"><span className=\"gfield-hint\">{hint}</span></div>}\n    </div>\n  );\n}\n\nexport default GlassCombobox;\n"
+    }
+  ],
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json"
+}

@@ -1,0 +1,225 @@
+/* Switch, checkbox, radio and slider. */
+.ggroup { display: flex; flex-direction: column; gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.ggroup > legend { padding: 0; margin-bottom: 2px; }
+.gopt { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 20px; color: var(--glass-fg); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.gopt[data-disabled] { opacity: 0.45; cursor: not-allowed; }
+.gopt-text { display: flex; flex-direction: column; min-width: 0; }
+.gopt-hint { font-size: 12.5px; color: rgb(var(--glass-shadow) / 0.6); }
+.gopt input { position: absolute; width: 1px; height: 1px; opacity: 0; margin: 0; }
+
+/* ---------- Checkbox and radio ---------- */
+.gck {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  color: var(--glass-on-tint);
+  background: #fff;
+  box-shadow: inset 0 0 0 1px rgb(var(--glass-shadow) / 0.22), 0 1px 2px rgb(var(--glass-shadow) / 0.06);
+  transition: background 0.16s, box-shadow 0.16s, transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gck[data-round] { border-radius: 50%; }
+/* Press: the box swells into a clear glass bead, then springs back */
+.gck { transition: background 0.16s, box-shadow 0.16s, transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.gck::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.8);
+  background: radial-gradient(120% 90% at 30% 20%, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.15) 55%, rgb(255 255 255 / 0.05));
+  -webkit-backdrop-filter: blur(1px) saturate(1.9) brightness(1.1);
+  backdrop-filter: blur(1px) saturate(1.9) brightness(1.1);
+  box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.9), inset 0 -2px 4px rgb(var(--glass-shadow) / 0.12), 0 4px 10px -2px rgb(var(--glass-shadow) / 0.22);
+  transition: opacity 0.25s, transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.gopt:active .gck { transform: scale(1.18); transition-duration: 0.16s, 0.16s, 0.18s; }
+.gopt:active .gck::after { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) { .gck, .gck::after { transition: none; } .gopt:active .gck { transform: none; } }
+.gopt input:checked + .gck {
+  background: var(--glass-tint);
+  box-shadow: inset 0 0 0 1px rgb(var(--glass-shadow) / 0.12), 0 2px 5px -1px color-mix(in srgb, var(--glass-tint) 55%, transparent);
+}
+.gopt input:focus-visible + .gck { outline: 2px solid var(--glass-focus, var(--glass-tint)); outline-offset: 2px; }
+.gck svg { width: 14px; height: 14px; }
+/* The tick draws itself in */
+.gck path { stroke-dasharray: 20; stroke-dashoffset: 20; transition: stroke-dashoffset 0.22s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gopt input:checked + .gck path { stroke-dashoffset: 0; }
+.gck-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; transform: scale(0); transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gopt input:checked + .gck .gck-dot { transform: scale(1); }
+
+/* ---------- Switch ---------- */
+.gsw { touch-action: pan-y; display: inline-flex; align-items: center; gap: 12px; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; color: var(--glass-fg); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.gsw:disabled { opacity: 0.45; cursor: not-allowed; }
+.gsw-track {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgb(var(--glass-shadow) / 0.16);
+  box-shadow: inset 0 1px 2px rgb(var(--glass-shadow) / 0.12);
+  transition: background 0.22s;
+}
+.gsw-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgb(var(--glass-shadow) / 0.12), 0 3px 6px -1px rgb(var(--glass-shadow) / 0.22);
+  transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.18s;
+}
+.gsw[aria-checked="true"] .gsw-track { background: var(--glass-tint); }
+.gsw[aria-checked="true"] .gsw-thumb { transform: translateX(18px); }
+.gsw:focus-visible { outline: none; }
+.gsw:focus-visible .gsw-track { outline: 2px solid var(--glass-focus, var(--glass-tint)); outline-offset: 2px; }
+
+/* ---------- Slider ---------- */
+.gsl { display: flex; flex-direction: column; gap: 6px; min-width: 0; color: var(--glass-fg); }
+.gsl-head { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; }
+/* A soft pill with step dots; the fill runs to a white thumb that sits inside it */
+.gsl-rail { --gsl-fill: var(--glass-tint); --gsl-t: 32px; --gsl-in: 4px; --gsl-w: calc(100% - var(--gsl-in) * 2 - var(--gsl-t)); position: relative; display: flex; align-items: center; height: 40px; }
+.gsl-track { position: absolute; inset: 0; overflow: hidden; border-radius: 999px; background: var(--gsl-bg, rgb(var(--glass-shadow) / 0.07)); box-shadow: inset 0 1px 2px rgb(var(--glass-shadow) / 0.06); }
+.gsl-fill { position: absolute; left: 0; top: 0; bottom: 0; display: block; width: calc(var(--gsl-in) * 2 + var(--gsl-t) + var(--gsl-w) * var(--gsl-p)); border-radius: inherit; background: linear-gradient(180deg, rgb(255 255 255 / 0.22), transparent 60%), var(--gsl-fill); transition: background-color 0.2s; }
+.gsl-dots { position: absolute; inset: 0; pointer-events: none; }
+.gsl-dots i { position: absolute; top: 50%; left: calc(var(--gsl-in) + var(--gsl-t) / 2 + var(--gsl-w) * var(--k)); width: 4px; height: 4px; margin: -2px 0 0 -2px; border-radius: 50%; background: rgb(var(--glass-shadow) / 0.22); transition: background-color 0.2s, scale 0.3s cubic-bezier(0.3, 1.5, 0.5, 1); }
+.gsl-dots i[data-on] { background: color-mix(in srgb, var(--glass-on-tint, #fff) 60%, transparent); }
+.gsl-rail:hover .gsl-dots i { scale: 1.25; }
+.gsl-head span { color: rgb(var(--glass-shadow) / 0.6); }
+.gsl-thumb {
+  position: absolute;
+  left: calc(var(--gsl-in) + var(--gsl-w) * var(--gsl-p));
+  width: var(--gsl-t);
+  height: var(--gsl-t);
+  border-radius: 999px;
+  pointer-events: none;
+  background: #fff;
+  box-shadow: 0 0 0 0.5px rgb(var(--glass-shadow) / 0.1), 0 2px 4px rgb(var(--glass-shadow) / 0.14), 0 6px 14px -4px rgb(var(--glass-shadow) / 0.3);
+  transition: scale 0.42s cubic-bezier(0.34, 1.45, 0.5, 1), background 0.22s, box-shadow 0.22s;
+}
+.gsl-input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.gsl-rail:has(.gsl-input:focus-visible) .gsl-thumb { outline: 2px solid var(--glass-focus, var(--glass-tint)); outline-offset: 2px; }
+
+/* ---------- Liquid glass ----------
+   Hold a switch or slider thumb and it lifts into a clear glass drop: it
+   grows past the track, the track shows through it bent by the lens, and the
+   rim catches light. Let go and it wobbles back to a solid bead, like iOS. */
+.gsw-thumb, .gsl-thumb {
+  transition:
+    transform 0.5s cubic-bezier(0.34, 1.35, 0.5, 1),
+    width 0.42s cubic-bezier(0.34, 1.5, 0.5, 1),
+    height 0.42s cubic-bezier(0.34, 1.5, 0.5, 1),
+    top 0.42s cubic-bezier(0.34, 1.5, 0.5, 1),
+    left 0.42s cubic-bezier(0.34, 1.5, 0.5, 1),
+    margin 0.42s cubic-bezier(0.34, 1.5, 0.5, 1),
+    background 0.28s, box-shadow 0.28s;
+}
+.gsl-thumb { transition-property: width, height, margin, background, box-shadow; }
+.gsw[data-held] .gsw-thumb,
+.gsl-rail[data-held] .gsl-thumb {
+  z-index: 1;
+  background:
+    radial-gradient(70% 45% at 50% 8%, rgb(255 255 255 / 0.55), transparent 70%),
+    radial-gradient(60% 40% at 50% 100%, rgb(255 255 255 / 0.28), transparent 70%),
+    rgb(255 255 255 / 0.04);
+  -webkit-backdrop-filter: blur(0.5px) saturate(1.8) brightness(1.08);
+  backdrop-filter: blur(0.5px) saturate(1.8) brightness(1.08);
+  box-shadow:
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.95),
+    inset 1px 1.5px 1px rgb(255 255 255 / 0.9),
+    inset -1px -1.5px 2px rgb(255 255 255 / 0.55),
+    inset 0 -4px 8px rgb(var(--glass-shadow) / 0.1),
+    0 0 0 0.5px rgb(var(--glass-shadow) / 0.12),
+    0 10px 22px -8px rgb(var(--glass-shadow) / 0.38);
+}
+/* The lens: the track seen through the drop, enlarged, with its ends
+   rounded off where the glass curves away */
+.g-lens {
+  position: absolute;
+  z-index: -1;
+  inset: 2px;
+  border-radius: inherit;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.g-lens::before {
+  content: "";
+  position: absolute;
+  left: -6%;
+  right: -6%;
+  top: 50%;
+  translate: 0 -50%;
+  border-radius: 999px;
+  filter: saturate(1.25);
+  -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent);
+  mask-image: radial-gradient(closest-side, #000 72%, transparent);
+}
+.gsw-thumb, .gsl-thumb { isolation: isolate; }
+.gsw[data-held] .g-lens, .gsl-rail[data-held] .g-lens { opacity: 1; }
+/* Slider: the fill ends right under the middle of the drop */
+.gsl-thumb .g-lens::before {
+  height: 13px;
+  background: linear-gradient(90deg, var(--gsl-fill) 50%, var(--gsl-bg, rgb(var(--glass-shadow) / 0.2)) 50%);
+}
+/* Switch: the track colour, magnified to fill most of the drop */
+.gsw-thumb .g-lens::before { height: 84%; background: var(--gsw-bg, rgb(var(--glass-shadow) / 0.22)); }
+.gsw[aria-checked="true"] .gsw-thumb .g-lens::before { background: var(--gsw-on, var(--glass-tint)); }
+/* Held: the drop swells past the track. It grows in real size, not with a
+   transform, so the lens stays lined up with what is behind it. */
+.gsw[data-held] .gsw-thumb { width: 36px; height: 30px; top: -2px; left: -5px; }
+.gsl-rail[data-held] .gsl-thumb { width: 46px; height: 44px; margin-left: -7px; }
+/* Let go: a short liquid wobble before it sets */
+.gsw[data-settle] .gsw-thumb, .gsl-rail[data-settle] .gsl-thumb { animation: g-wobble 0.52s cubic-bezier(0.3, 0.7, 0.4, 1); }
+@keyframes g-wobble {
+  0% { scale: 1 1; }
+  30% { scale: 1.1 0.9; }
+  55% { scale: 0.95 1.05; }
+  80% { scale: 1.02 0.99; }
+  100% { scale: 1 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gck, .gck path, .gck-dot, .gsw-thumb, .gsw-track, .gsl-thumb { transition: none; animation: none !important; }
+  .gsw[data-held] .gsw-thumb { width: 22px; height: 22px; top: 2px; left: 2px; }
+  .gsl-rail[data-held] .gsl-thumb { width: var(--gsl-t); height: var(--gsl-t); margin-left: 0; }
+}
+
+/* ---------- Frost: the controls in frosted glass ----------
+   Applies with data-glass-tint="frost", the Mist theme's default. */
+[data-glass-tint="frost"] {
+  --fr-glass: linear-gradient(180deg, #f1f3f7, #cfd6e1 52%, #dfe4ec);
+  --fr-skin: inset 0 1px 0 #fff, inset 0 -1px 0 rgb(255 255 255 / 0.85), inset 0 0 8px rgb(255 255 255 / 0.45), 0 0 0 1px rgb(70 82 104 / 0.22);
+  --fr-well: inset 0 1px 3px rgb(60 72 98 / 0.2), 0 0 0 1px rgb(70 82 104 / 0.22);
+  /* "On" is a deeper frost, so it never reads as off */
+  --fr-on: linear-gradient(180deg, #d6dbe4, #9ea8b8 55%, #b7c0cd);
+  --fr-bead: radial-gradient(60% 45% at 40% 22%, #fff, transparent 72%), linear-gradient(180deg, #ffffff, #e7ebf1);
+  --fr-bead-skin: inset 0 0 0 1px rgb(255 255 255 / 0.95), 0 0 0 0.5px rgb(70 82 104 / 0.28), 0 2px 5px rgb(60 72 98 / 0.28);
+}
+/* Switch: a recessed groove that fills with frosted glass */
+[data-glass-tint="frost"] .gsw-track { background: linear-gradient(180deg, rgb(214 220 230 / 0.7), rgb(238 241 246 / 0.9)); box-shadow: var(--fr-well); }
+[data-glass-tint="frost"] .gsw[aria-checked="true"] .gsw-track { background: var(--fr-on); box-shadow: var(--fr-skin), 0 3px 8px -3px rgb(60 72 98 / 0.35); }
+[data-glass-tint="frost"] .gsw-thumb { background: var(--fr-bead); box-shadow: var(--fr-bead-skin); }
+/* Checkbox and radio */
+[data-glass-tint="frost"] .gck { color: #353d4d; background: linear-gradient(180deg, #f3f5f8, #ffffff); box-shadow: var(--fr-well); }
+[data-glass-tint="frost"] .gopt input:checked + .gck { color: #1f2633; background: var(--fr-on); box-shadow: var(--fr-skin), 0 2px 5px -2px rgb(60 72 98 / 0.35); }
+/* Slider: a glass fill with a sheen on top, and a glass bead to drag */
+[data-glass-tint="frost"] .gsl-track { background: rgb(60 72 98 / 0.08); box-shadow: var(--fr-well); }
+[data-glass-tint="frost"] .gsl-rail { --gsl-fill: #a3adbd; --gsl-bg: #e8ebf0; }
+[data-glass-tint="frost"] .gsl-dots i[data-on] { background: rgb(255 255 255 / 0.75); }
+[data-glass-tint="frost"] .gsw { --gsw-bg: #dfe4ec; --gsw-on: linear-gradient(180deg, #c4cbd7, #8e99ab 55%, #a9b3c2); }
+[data-glass-tint="frost"] .gsl-fill { background: linear-gradient(180deg, rgb(255 255 255 / 0.85), transparent 70%), #a3adbd; }
+[data-glass-tint="frost"] .gsl-thumb { background: var(--fr-bead); box-shadow: var(--fr-bead-skin), 0 6px 12px -4px rgb(60 72 98 / 0.3); }
+/* Progress bars and carousel dots follow */
+[data-glass-tint="frost"] .gpr-track { --gpr-track: rgb(60 72 98 / 0.1); box-shadow: var(--fr-well); }
+[data-glass-tint="frost"] .gpr[data-accent] .gpr-fill { background: var(--fr-glass); box-shadow: var(--fr-skin); }
+[data-glass-tint="frost"] .gdot[aria-current="true"] { background: var(--fr-glass); box-shadow: var(--fr-skin); }

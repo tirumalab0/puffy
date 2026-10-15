@@ -1,0 +1,25 @@
+.gk { display: flex; flex-direction: column; gap: 18px; width: 264px; max-width: 100%; }
+.gk-cells { display: flex; justify-content: center; gap: 10px; }
+.gk-cell {
+  --gf-h: 56px;
+  flex: 0 1 48px;
+  width: auto;
+  padding: 0;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+  border-radius: min(var(--glass-radius), 16px);
+}
+.gk-cell[data-current] {
+  --gf-ring: var(--glass-focus, var(--glass-tint));
+  --gf-halo: color-mix(in srgb, var(--glass-tint) 18%, transparent);
+}
+.gk-digit, .gk-dot { animation: gk-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+.gk-dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+@keyframes gk-pop { from { opacity: 0; transform: scale(0.5); } }
+.gk-keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.gk-key.gb { --gb-h: 56px; --gb-fs: 20px; width: 100%; padding: 0; font-variant-numeric: tabular-nums; }
+.gk-key.gk-small { --gb-fs: 14px; }
+@media (prefers-reduced-motion: reduce) { .gk-digit, .gk-dot { animation: none; } }

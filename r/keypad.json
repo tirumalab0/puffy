@@ -1,0 +1,25 @@
+{
+  "name": "keypad",
+  "type": "registry:ui",
+  "title": "Keypad",
+  "description": "Keypad",
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+  ],
+  "files": [
+    {
+      "path": "components/puffy/glass-keypad.jsx",
+      "type": "registry:ui",
+      "target": "components/puffy/glass-keypad.jsx",
+      "content": "\"use client\";\nimport { useState } from \"react\";\nimport { GlassButton } from \"./glass-button.jsx\";\nimport \"./glass-surface.css\";\nimport \"./glass-keypad.css\";\n\nconst Backspace = () => (\n  <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.75\" strokeLinecap=\"round\" strokeLinejoin=\"round\">\n    <path d=\"M9 6h11v12H9l-5-6zM12 10l4 4M16 10l-4 4\" />\n  </svg>\n);\n\n/**\n * GlassKeypad: a number pad for PINs and one-time codes.\n * length      how many digits, default 4\n * value, onChange(code)   optional; it keeps its own state without them\n * onComplete(code)        called when the last digit goes in\n * mask        show dots instead of digits\n * effect      \"flat\" | \"glass\" | \"bubble\"\n * Digits and Backspace on a keyboard work while focus is inside the pad.\n */\nexport function GlassKeypad({ length = 4, value, onChange, onComplete, mask = false, effect = \"flat\", label = \"Enter code\" }) {\n  const [inner, setInner] = useState(\"\");\n  const code = value !== undefined ? value : inner;\n\n  const update = (next) => {\n    if (value === undefined) setInner(next);\n    if (onChange) onChange(next);\n    if (next.length === length && onComplete) onComplete(next);\n  };\n  const add = (digit) => {\n    if (code.length < length) update(code + digit);\n  };\n  const back = () => update(code.slice(0, -1));\n  const onKeyDown = (e) => {\n    if (/^[0-9]$/.test(e.key)) add(e.key);\n    else if (e.key === \"Backspace\") back();\n  };\n  const key = { variant: \"secondary\", effect, size: \"lg\", className: \"gk-key\" };\n\n  return (\n    <div className=\"gk\" role=\"group\" aria-label={label} onKeyDown={onKeyDown}>\n      <div className=\"gk-cells\" role=\"status\" aria-label={`${code.length} of ${length} digits entered`}>\n        {Array.from({ length }, (_, i) => (\n          <span key={i} className=\"gf gk-cell\" data-effect={effect} data-current={i === code.length ? \"\" : undefined}>\n            {i < code.length && (mask ? <span className=\"gk-dot\" /> : <span className=\"gk-digit\">{code[i]}</span>)}\n          </span>\n        ))}\n      </div>\n      <div className=\"gk-keys\">\n        {[\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"].map((d) => (\n          <GlassButton key={d} {...key} onClick={() => add(d)}>{d}</GlassButton>\n        ))}\n        <GlassButton {...key} variant=\"ghost\" className=\"gk-key gk-small\" onClick={() => update(\"\")}>Clear</GlassButton>\n        <GlassButton {...key} onClick={() => add(\"0\")}>0</GlassButton>\n        <GlassButton {...key} variant=\"ghost\" aria-label=\"Delete last digit\" onClick={back}><Backspace /></GlassButton>\n      </div>\n    </div>\n  );\n}\n\nexport default GlassKeypad;\n"
+    },
+    {
+      "path": "components/puffy/glass-keypad.css",
+      "type": "registry:ui",
+      "target": "components/puffy/glass-keypad.css",
+      "content": ".gk { display: flex; flex-direction: column; gap: 18px; width: 264px; max-width: 100%; }\n.gk-cells { display: flex; justify-content: center; gap: 10px; }\n.gk-cell {\n  --gf-h: 56px;\n  flex: 0 1 48px;\n  width: auto;\n  padding: 0;\n  justify-content: center;\n  font-size: 22px;\n  font-weight: 600;\n  font-variant-numeric: tabular-nums;\n  cursor: default;\n  border-radius: min(var(--glass-radius), 16px);\n}\n.gk-cell[data-current] {\n  --gf-ring: var(--glass-focus, var(--glass-tint));\n  --gf-halo: color-mix(in srgb, var(--glass-tint) 18%, transparent);\n}\n.gk-digit, .gk-dot { animation: gk-pop 0.22s cubic-bezier(0.2, 0.9, 0.3, 1.2); }\n.gk-dot { width: 10px; height: 10px; border-radius: 50%; background: currentColor; }\n@keyframes gk-pop { from { opacity: 0; transform: scale(0.5); } }\n.gk-keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }\n.gk-key.gb { --gb-h: 56px; --gb-fs: 20px; width: 100%; padding: 0; font-variant-numeric: tabular-nums; }\n.gk-key.gk-small { --gb-fs: 14px; }\n@media (prefers-reduced-motion: reduce) { .gk-digit, .gk-dot { animation: none; } }\n"
+    }
+  ],
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json"
+}
