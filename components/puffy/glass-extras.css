@@ -6,18 +6,27 @@
 :root[data-glass-mode="dark"] :is(.gxw, .gxs-item, .gxm-field, .gxm-list, .gxc-menu, .gxo-panel, .gxt, .gxd, .gxa, .gxp) { --gx-card: #1d1d22; --gx-fg: #f3f3f6; --gx-muted: rgb(255 255 255 / 0.58); --gx-faint: rgb(255 255 255 / 0.08); --gx-line: rgb(255 255 255 / 0.12); }
 .gx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* Wheel picker */
-.gxw { position: relative; display: flex; justify-content: center; gap: 4px; width: 100%; max-width: 320px; padding: 8px 10px; border-radius: 22px; color: var(--gx-fg); background: var(--gx-card); box-shadow: 0 0 0 0.5px var(--gx-line), 0 18px 36px -24px rgb(0 0 0 / 0.4); }
-.gxw-band { position: absolute; left: 10px; right: 10px; top: 50%; height: 36px; margin-top: -18px; border-radius: 10px; background: var(--gx-faint); pointer-events: none; }
-.gxw-col { position: relative; flex: 1; min-width: 0; perspective: 600px; }
-.gxw-scroll { height: 180px; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; overscroll-behavior: contain; outline: none; border-radius: 10px;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); }
+/* Wheel picker: seven rows on a drum, the middle one under a raised lens */
+.gxw { --gxw-row: 36px; position: relative; display: flex; justify-content: center; align-items: center; width: 100%; max-width: 280px; padding: 4px 12px; border-radius: 26px; color: var(--gx-fg);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--gx-card) 100%, #fff), color-mix(in srgb, var(--gx-card) 97%, #000));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.8), 0 0 0 0.5px var(--gx-line), 0 1px 2px rgb(0 0 0 / 0.04), 0 24px 44px -28px rgb(0 0 0 / 0.45); }
+:root[data-glass-mode="dark"] .gxw { background: linear-gradient(180deg, #202026, #19191e); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 0 0.5px rgb(255 255 255 / 0.09), 0 24px 44px -24px rgb(0 0 0 / 0.9); }
+.gxw-lens { position: absolute; left: 8px; right: 8px; top: 50%; height: var(--gxw-row); margin-top: calc(var(--gxw-row) / -2); border-radius: 11px; pointer-events: none;
+  background: linear-gradient(180deg, rgb(var(--glass-shadow, 23 23 26) / 0.035), rgb(var(--glass-shadow, 23 23 26) / 0.06));
+  box-shadow: inset 0 0 0 0.5px rgb(var(--glass-shadow, 23 23 26) / 0.08), inset 0 1px 0 rgb(255 255 255 / 0.7); }
+:root[data-glass-mode="dark"] .gxw-lens { background: linear-gradient(180deg, rgb(255 255 255 / 0.085), rgb(255 255 255 / 0.055)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 0 0 0.5px rgb(0 0 0 / 0.4), 0 4px 12px -6px rgb(0 0 0 / 0.6); }
+.gxw-col { position: relative; z-index: 1; flex: 1; min-width: 0; perspective: 700px; }
+.gxw-scroll { height: calc(var(--gxw-row) * 6); overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; overscroll-behavior: contain; outline: none; border-radius: 10px; touch-action: pan-y;
+  -webkit-mask-image: linear-gradient(180deg, transparent 4%, #000 36%, #000 64%, transparent 96%); mask-image: linear-gradient(180deg, transparent 4%, #000 36%, #000 64%, transparent 96%); }
 .gxw-scroll::-webkit-scrollbar { display: none; }
 .gxw-scroll:focus-visible { box-shadow: inset 0 0 0 2px var(--gx-accent); }
-.gxw-pad { height: 72px; }
-.gxw-row { height: 36px; scroll-snap-align: center; perspective: 300px; cursor: pointer; }
-.gxw-item { display: grid; place-items: center; height: 36px; font-size: 19px; font-variant-numeric: tabular-nums; color: var(--gx-muted); transform-origin: 50% 50% -60px; cursor: pointer; user-select: none; transition: color 0.15s; }
+.gxw-pad { height: calc(var(--gxw-row) * 2.5); }
+.gxw-row { height: var(--gxw-row); scroll-snap-align: center; cursor: pointer; }
+.gxw-item { display: flex; align-items: center; justify-content: center; height: 100%; padding: 0 10px; font-size: 20px; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; color: var(--gx-muted); backface-visibility: hidden; will-change: transform; user-select: none; transition: color 0.18s; }
+.gxw-col[data-align="end"] .gxw-item { justify-content: flex-end; }
+.gxw-col[data-align="start"] .gxw-item { justify-content: flex-start; }
 .gxw-item[data-on] { color: var(--gx-fg); font-weight: 600; }
+.gxw-sep { position: relative; z-index: 1; flex: none; margin-top: -2px; font-size: 20px; font-weight: 600; color: var(--gx-fg); pointer-events: none; }
 
 /* Sortable list */
 .gxs { display: grid; gap: 8px; width: 100%; max-width: 380px; margin: 0; padding: 0; list-style: none; }

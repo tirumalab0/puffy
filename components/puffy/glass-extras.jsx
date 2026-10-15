@@ -36,8 +36,9 @@ function useCarryTheme(anchor, on) {
 /* =====================================================================
    Wheel picker: columns that spin like a phone's time picker
    ===================================================================== */
-const ROW = 36;
-function Wheel({ options, value, onChange, label, width }) {
+const ROW = 36, SIDE = 3;   // row height, and rows shown above and below the chosen one
+const STEP = Math.PI / 9, DRUM = ROW / STEP;   // 20° per row on a drum of that radius
+function Wheel({ options, value, onChange, label, width, align = "center" }) {
   const box = useRef(null);
   const i = Math.max(0, options.findIndex((o) => (o.value ?? o) === value));
   const [pos, setPos] = useState(i * ROW);
@@ -55,21 +56,25 @@ function Wheel({ options, value, onChange, label, width }) {
       const o = options[k]; const v = o.value ?? o; if (v !== valRef.current) { from.current = true; onChange && onChange(v); }
     }, 140);
   };
+  const go = (k) => box.current.scrollTo({ top: clamp(k, 0, options.length - 1) * ROW, behavior: reduce() ? "auto" : "smooth" });
   const key = (e) => {
     const d = e.key === "ArrowDown" ? 1 : e.key === "ArrowUp" ? -1 : e.key === "PageDown" ? 5 : e.key === "PageUp" ? -5 : 0;
-    if (!d) return; e.preventDefault();
-    const k = clamp(i + d, 0, options.length - 1); box.current.scrollTo({ top: k * ROW, behavior: reduce() ? "auto" : "smooth" });
+    if (!d) return; e.preventDefault(); go(i + d);
   };
   return (
-    <div className="gxw-col" style={width ? { width } : undefined}>
+    <div className="gxw-col" data-align={align} style={width ? { flex: "none", width } : undefined}>
       <div ref={box} className="gxw-scroll" tabIndex={0} role="spinbutton" aria-label={label} aria-valuetext={String(options[i]?.label ?? options[i])} onScroll={scroll} onKeyDown={key}>
         <div className="gxw-pad" />
         {options.map((o, k) => {
-          const d = (k * ROW - pos) / ROW, a = clamp(d, -3, 3);
+          // each label sits on a drum: it tilts away, shrinks and fades as it leaves the middle
+          // rows sit on a cylinder: 20° apart, pulled in toward the middle as they curve away
+          const d = (k * ROW - pos) / ROW, a = clamp(d, -SIDE - 0.8, SIDE + 0.8), far = Math.abs(a);
+          const th = a * STEP, dy = DRUM * Math.sin(th) - a * ROW;
           return (
-            // the row snaps; only the label inside it tilts, so the snap points never move
-            <div key={k} className="gxw-row" onClick={() => box.current.scrollTo({ top: k * ROW, behavior: reduce() ? "auto" : "smooth" })}>
-              <span className="gxw-item" data-on={Math.abs(d) < 0.5 ? "" : undefined} style={{ transform: `rotateX(${-a * 22}deg)`, opacity: 1 - Math.min(0.85, Math.abs(a) * 0.28) }}>{o.label ?? o}</span>
+            // the row snaps; only the label inside it moves, so the snap points never shift
+            <div key={k} className="gxw-row" onClick={() => go(k)}>
+              <span className="gxw-item" data-on={far < 0.5 ? "" : undefined}
+                style={{ transform: `translateY(${dy.toFixed(2)}px) rotateX(${(-th * 180 / Math.PI).toFixed(2)}deg)`, opacity: Math.max(0, 1 - far * 0.26) }}>{o.label ?? o}</span>
             </div>
           );
         })}
@@ -78,12 +83,12 @@ function Wheel({ options, value, onChange, label, width }) {
     </div>
   );
 }
-/** GlassWheelPicker: columns [{ options: [value | { value, label }], value, onChange, label, width }] */
+/** GlassWheelPicker: columns [{ options: [value | { value, label }], value, onChange, label, width, align }], or { sep: ":" } between them */
 export function GlassWheelPicker({ columns = [], label = "Picker", className = "" }) {
   return (
     <div className={"gxw " + className} role="group" aria-label={label}>
-      <span className="gxw-band" aria-hidden="true" />
-      {columns.map((c, k) => <Wheel key={k} {...c} />)}
+      <span className="gxw-lens" aria-hidden="true" />
+      {columns.map((c, k) => (c.sep != null ? <span key={k} className="gxw-sep" aria-hidden="true">{c.sep}</span> : <Wheel key={k} {...c} />))}
     </div>
   );
 }
