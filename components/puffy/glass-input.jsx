@@ -12,7 +12,7 @@ import "./glass-surface.css";
  * Every other prop goes to the <input>.
  */
 export const GlassInput = forwardRef(function GlassInput(
-  { label, hint, error, iconLeft, suffix, effect = "flat", className = "", id, disabled, ...rest },
+  { label, hint, error, iconLeft, prefix, suffix, action, effect = "flat", className = "", id, disabled, ...rest },
   ref
 ) {
   const auto = useId();
@@ -23,6 +23,7 @@ export const GlassInput = forwardRef(function GlassInput(
       {label && <label className="gfield-label" htmlFor={fieldId}>{label}</label>}
       <div className="gf" data-effect={effect} data-disabled={disabled ? "" : undefined}>
         {iconLeft && <span className="gf-icon" aria-hidden="true">{iconLeft}</span>}
+        {prefix && <span className="gf-prefix">{prefix}</span>}
         <input
           ref={ref}
           id={fieldId}
@@ -33,6 +34,7 @@ export const GlassInput = forwardRef(function GlassInput(
           {...rest}
         />
         {suffix && <span className="gf-suffix">{suffix}</span>}
+        {action && (action.label != null ? <button type="button" className="gf-action" disabled={disabled || action.disabled} onClick={action.onClick}>{action.icon}{action.label}</button> : action)}
       </div>
       {note && (
         <div className="gfield-foot">

@@ -1,6 +1,6 @@
 # Puffy
 
-Soft, tactile React components with three looks — **Quiet**, **Mist** and **Puffy** — plus a full set of AI parts. Copy the files into your project or install them with one command. No dependencies beyond React.
+Soft, tactile React components with three looks — **Quiet**, **Mist** and **Puffy** — plus a full set of AI parts, including meeting notes and action items. Copy the files into your project or install them with one command. No dependencies beyond React.
 
 **[See every component live →](https://claude.ai/artifact/7mxpjcTz6L5BkvmBAgp7Zg)**
 
@@ -78,6 +78,7 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 | `ai-next` | Answer cards, Code block, Edit and resend, Jump to latest, Read aloud, Memory, Attachments, Modes and tools, Stop and steer, Slash commands, Background tasks, Live browser, Helpers, Checkpoints, Check the answer, Compare answers, Limits and plans, Hold to talk, Camera mode, Live captions, Image edit, Floating assistant, Live preview, Autonomy, Action receipts, Budget and time, Shimmer text, Share a chat, Handoff |
 | `ai-ux` | Voice orb, Ghost text, Rewrite, Agent plan, Agent island, Insight, Magic fill, Variations, Streaming text, Feedback |
 | `app` | Sidebar, Breadcrumbs, Avatar, Stat card, Charts, Data table |
+| `basics` | Button group, Toggle, Toggle group, Navigation menu, Video player, Carousel, Spinner, Keyboard keys |
 | `button` | Button with solid, glass and bubble finishes |
 | `card` | Card, Progress |
 | `charts` | Block bars, Radial rings, Radar, Flow, Brush |
@@ -96,6 +97,7 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 | `icon` | Icons |
 | `input` | Input, Text area, Input copy |
 | `keypad` | Keypad |
+| `meet` | AI meetings: Recording bar, Meeting prep, Meeting notes, Action items, Talk time, Key moments |
 | `menu` | The menu used by Select, Combobox and Dropdown |
 | `motion` | Rolling number, Word reveal, Art |
 | `overlay` | Command menu, Drawer, Toast, Empty, Skeleton, Date range, Stepper |

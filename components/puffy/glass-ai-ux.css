@@ -259,3 +259,6 @@
   :is(.gap-x, .gmf-undo) { position: relative; }
   :is(.gap-x, .gmf-undo)::after { content: ""; position: absolute; inset: -9px; }
 }
+
+.gis-pill[data-static] { cursor: default; }
+.gis-pill[data-static]:active { transform: none; scale: 1; }

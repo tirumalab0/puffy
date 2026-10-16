@@ -218,15 +218,18 @@ export function GlassAgentPlan({ title = "Plan", steps = [], running = false, on
  * ------------------------------------------------------------------------- */
 export function GlassAgentIsland({ state = "idle", label = "", progress, open = false, onOpenChange, children }) {
   const p = progress == null ? null : Math.max(0, Math.min(1, progress));
+  const canOpen = !!(onOpenChange && children);
+  const PillTag = canOpen ? "button" : "div";
   return (
     <div className="gis" data-state={state} data-open={open ? "" : undefined}>
-      <button type="button" className="gis-pill" aria-expanded={open} onClick={() => onOpenChange && onOpenChange(!open)}>
+      {/* a status only, unless there is something to open */}
+      <PillTag {...(canOpen ? { type: "button", "aria-expanded": open, onClick: () => onOpenChange(!open) } : { role: "status" })} className="gis-pill" data-static={canOpen ? undefined : ""}>
         <span className="gis-icon" aria-hidden="true">
           {state === "done" ? <Svg d={CHECK} size={14} w={2.6} /> : state === "needs" ? <b>!</b> : state === "idle" ? <Svg d={SPARK} size={14} w={1.8} /> : <span className="gis-wave"><i /><i /><i /></span>}
         </span>
         <span className="gis-label" key={label} aria-live="polite">{label}</span>
         {p != null && state === "working" && <span className="gis-ring" style={{ "--p": p }} aria-label={`${Math.round(p * 100)}% done`} />}
-      </button>
+      </PillTag>
       <div className="gis-panel" hidden={!open}>{open && children}</div>
     </div>
   );

@@ -133,6 +133,27 @@
       ]
     },
     {
+      "name": "basics",
+      "type": "registry:ui",
+      "title": "Basics",
+      "description": "Button group, Toggle, Toggle group, Navigation menu, Video player, Carousel, Spinner, Keyboard keys",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-basics.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-basics.jsx"
+        },
+        {
+          "path": "components/puffy/glass-basics.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-basics.css"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -495,6 +516,28 @@
       ]
     },
     {
+      "name": "meet",
+      "type": "registry:ui",
+      "title": "Meet",
+      "description": "AI meetings: Recording bar, Meeting prep, Meeting notes, Action items, Talk time, Key moments",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/app.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-meet.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-meet.jsx"
+        },
+        {
+          "path": "components/puffy/glass-meet.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-meet.css"
+        }
+      ]
+    },
+    {
       "name": "menu",
       "type": "registry:ui",
       "title": "Menu",
@@ -696,6 +739,7 @@
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/ai-next.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/ai-ux.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/app.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/basics.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/card.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/charts.json",
@@ -714,6 +758,7 @@
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/icon.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/input.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/keypad.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/meet.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
         "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/overlay.json",
