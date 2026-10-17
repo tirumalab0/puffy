@@ -60,6 +60,10 @@
 .gmx-rec-people { display: flex; }
 .gmx-rec-acts { display: flex; gap: 6px; margin-left: 2px; }
 @media (max-width: 520px) { .gmx-rec-people, .gmx-rec-wave { display: none; } .gmx-rec { gap: 10px; padding-left: 14px; } }
+.gmx-rec[data-compact] { gap: 10px; padding-left: 14px; }
+.gmx-rec[data-compact] :is(.gmx-rec-people, .gmx-rec-wave) { display: none; }
+.gmx-rec-text { overflow: hidden; }
+.gmx-rec-text b { overflow: hidden; text-overflow: ellipsis; }
 
 /* ---------- Meeting prep ---------- */
 .gmx-prep-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
@@ -150,7 +154,7 @@
 .gmx-talk-strip i:first-child { border-radius: 99px 4px 4px 99px; } .gmx-talk-strip i:last-child { border-radius: 4px 99px 99px 4px; }
 .gmx-talk-strip i[data-dim], .gmx-talk-list li[data-dim] { opacity: 0.35; }
 .gmx-talk-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.gmx-talk-list li { display: grid; grid-template-columns: 28px minmax(96px, 1.2fr) minmax(50px, 1fr) 40px 46px; align-items: center; gap: 10px; padding: 5px 0; transition: opacity 0.2s; animation: gmx-in 0.4s var(--m-out) backwards; animation-delay: calc(var(--i) * 60ms); }
+.gmx-talk-list li { display: grid; grid-template-columns: 28px minmax(72px, 1.2fr) minmax(24px, 1fr) 40px 46px; align-items: center; gap: 10px; padding: 5px 0; transition: opacity 0.2s; animation: gmx-in 0.4s var(--m-out) backwards; animation-delay: calc(var(--i) * 60ms); }
 .gmx-talk-list .gav { --s: 28px; }
 .gmx-talk-name { overflow: hidden; font-size: 13.5px; text-overflow: ellipsis; white-space: nowrap; }
 .gmx-talk-bar { height: 6px; border-radius: 6px; background: var(--m-soft); }

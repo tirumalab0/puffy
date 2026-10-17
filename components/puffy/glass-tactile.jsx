@@ -138,7 +138,7 @@ export function GlassOtp({ length = 6, value = "", onChange, onComplete, status,
       <label htmlFor={id} className="gotp-sr">{label}</label>
       <input ref={ref} id={id} className="gotp-input" value={value} onChange={change} onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
         inputMode={numeric ? "numeric" : "text"} autoComplete="one-time-code" maxLength={length} spellCheck={false} aria-invalid={status === "error" || undefined} />
-      <div className="gotp-row" aria-hidden="true">
+      <div className="gotp-row" aria-hidden="true" data-group={length > 3 && length % 3 === 0 ? "" : undefined}>
         {Array.from({ length }, (_, i) => (
           <span key={i} className="gotp-box" style={{ "--i": i }} data-filled={chars[i] ? "" : undefined} data-active={focus && i === at && !status ? "" : undefined}>
             {chars[i] ? <b key={chars[i] + i}>{chars[i]}</b> : null}

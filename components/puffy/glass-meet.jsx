@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { GlassAvatar, GlassAvatarGroup } from "./glass-app.jsx";
 import "./glass-meet.css";
 
@@ -33,8 +33,26 @@ export function GlassRecordingBar({ title = "Meeting", people = [], paused = fal
   useEffect(() => { if (elapsed != null || paused) return; const id = setInterval(() => setOwn((s) => s + 1), 1000); return () => clearInterval(id); }, [paused, elapsed]);
   const secs = elapsed != null ? elapsed : own;
   const bars = useMemo(() => Array.from({ length: 5 }, (_, k) => k), []);
+  // In a narrow space the level bars and faces step aside so the title and time never overlap
+  const ref = useRef(null);
+  const full = useRef(0);
+  const [compact, setCompact] = useState(false);
+  useLayoutEffect(() => {
+    const el = ref.current; const box = el && el.parentElement;
+    if (!el || !box || typeof ResizeObserver === "undefined") return;
+    const check = () => {
+      // measure the bar at its full natural width, then put it back
+      const had = el.hasAttribute("data-compact"); if (had) el.removeAttribute("data-compact");
+      const w = el.style.width, mw = el.style.maxWidth; el.style.width = "max-content"; el.style.maxWidth = "none";
+      full.current = el.offsetWidth; el.style.width = w; el.style.maxWidth = mw; if (had) el.setAttribute("data-compact", "");
+      const room = box.clientWidth - parseFloat(getComputedStyle(box).paddingLeft || 0) - parseFloat(getComputedStyle(box).paddingRight || 0);
+      setCompact(full.current > room + 1);
+    };
+    const ro = new ResizeObserver(check); ro.observe(box); check();
+    return () => ro.disconnect();
+  }, [people.length]);
   return (
-    <div className={"gmx gmx-rec " + className} data-paused={paused ? "" : undefined} role="group" aria-label={`Recording ${title}`}>
+    <div ref={ref} className={"gmx gmx-rec " + className} data-paused={paused ? "" : undefined} data-compact={compact ? "" : undefined} role="group" aria-label={`Recording ${title}`}>
       <span className="gmx-rec-dot" aria-hidden="true" />
       <span className="gmx-rec-text"><b>{paused ? "Paused" : "Recording"}</b><em>{title}</em></span>
       <span className="gmx-rec-time" aria-live="off">{mmss(secs)}</span>
