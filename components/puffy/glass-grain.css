@@ -1,0 +1,21 @@
+/* Grainient: a moving grainy colour field. The CSS below is the still
+   fallback; the canvas paints over it when WebGL is there. */
+.ggr {
+  --ggr-noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 120px;
+  border-radius: var(--ggr-radius, 0);
+  background:
+    radial-gradient(70% 60% at 20% 20%, var(--ggr-2), transparent 70%),
+    radial-gradient(60% 70% at 85% 80%, var(--ggr-1), transparent 70%),
+    linear-gradient(135deg, var(--ggr-0), var(--ggr-1) 45%, var(--ggr-2) 75%, var(--ggr-3));
+}
+.ggr::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: var(--ggr-noise); background-size: 200px; mix-blend-mode: overlay; opacity: 0.5; }
+.ggr[data-preset="horizon"], .ggr[data-preset="ribbon"], .ggr[data-preset="streaks"] { background: radial-gradient(90% 60% at 50% 110%, var(--ggr-2), var(--ggr-1) 45%, var(--ggr-0) 75%); }
+.ggr[data-preset="ember"] { background: linear-gradient(110deg, var(--ggr-0) 30%, var(--ggr-1) 55%, var(--ggr-2) 80%, var(--ggr-3)); }
+.ggr-canvas { position: absolute; inset: 0; z-index: 0; display: block; width: 100%; height: 100%; transition: opacity 0.6s; }
+.ggr-canvas[data-off] { opacity: 0; }
+.ggr:has(.ggr-canvas:not([data-off]))::after { opacity: 0; }
+.ggr-body { position: relative; z-index: 1; }

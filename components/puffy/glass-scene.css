@@ -1,0 +1,54 @@
+/* Liquid glass scene. glass-scene.jsx draws the picture and the glass on a
+   canvas; these rules stack the layers and, once the canvas is live
+   ([data-glass-live]), make glass components see-through so the drawn glass
+   shows. Without WebGL nothing changes: the picture is a normal image and
+   components keep their CSS glass. */
+.glass-scene { position: relative; overflow: hidden; isolation: isolate; }
+.glass-scene[data-glass-on="dark"] { color: #fff; }
+.glass-scene > .glass-content { position: absolute; inset: 0; z-index: 0; }
+.glass-scene > .glass-content > :is(img, video) { display: block; width: 100%; height: 100%; object-fit: cover; }
+.glass-scene > .glass-canvas { z-index: 1; }
+.glass-scene > :where(:not(.glass-canvas, .glass-content)) { position: relative; z-index: 2; }
+
+.glass-backdrop { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; pointer-events: none; }
+.glass-backdrop > video, .glass-backdrop > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.glass-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+[data-glass-live] > .glass-canvas,
+[data-glass-live] > .glass-backdrop > .glass-canvas { opacity: 1; }
+[data-glass-live] > .glass-backdrop > :is(img, video) { visibility: hidden; }
+
+/* A glass surface of your own */
+.glass-surface { box-shadow: 0 14px 34px -14px rgb(0 0 0 / 0.5); }
+.glass-scene:not([data-glass-live]) .glass-surface {
+  background: rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
+  backdrop-filter: blur(16px) saturate(1.6);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.4), inset 0 0 0 0.5px rgb(255 255 255 / 0.25), 0 14px 34px -14px rgb(0 0 0 / 0.5);
+}
+.glass-scene[data-glass-on="light"]:not([data-glass-live]) .glass-surface { background: rgb(255 255 255 / 0.5); }
+
+/* Live: Puffy glass components hand their fill and blur over to the canvas.
+   Menus keep a smoked tint, because the glass sees only the picture, not
+   whatever page content sits under an open menu. */
+[data-glass-live] .gb:not([data-variant="ghost"]):is([data-effect="glass"], [data-effect="bubble"]) {
+  --gb-fill: transparent !important; --gb-backdrop: none !important;
+  /* The canvas draws the rim, so the CSS edge lines step aside */
+  --gb-ring: transparent !important; --gb-inset: inset 0 0 0 0 transparent !important;
+  --gb-rim-hi: transparent !important; --gb-rim-lo: transparent !important;
+  --gb-drop: rgb(0 0 0 / 0.28) !important;
+}
+[data-glass-live] .gf:is([data-effect="glass"], [data-effect="bubble"]) { --gf-fill: transparent !important; --gf-backdrop: none !important; --gf-inset: inset 0 0 0 0 transparent !important; --gf-rim-hi: transparent !important; --gf-rim-lo: transparent !important; }
+[data-glass-live] .gf:is([data-effect="glass"], [data-effect="bubble"]):not(:focus-within):not([data-open]) { --gf-ring: transparent !important; }
+[data-glass-live] .gc:is([data-effect="glass"], [data-effect="bubble"]) { --gc-fill: transparent !important; --gc-backdrop: none !important; --gc-ring: transparent !important; --gc-rim-hi: transparent !important; --gc-rim-lo: transparent !important; }
+[data-glass-live] .gp:is([data-effect="glass"], [data-effect="bubble"]) { --gp-fill: linear-gradient(180deg, rgb(52 54 68 / 0.82), rgb(34 36 46 / 0.86)) !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+
+/* Over a bright picture, menus are milky glass with dark text instead of smoked */
+[data-glass-live][data-glass-on="light"] .gp:is([data-effect="glass"], [data-effect="bubble"]) {
+  --gp-fill: linear-gradient(180deg, rgb(255 255 255 / 0.78), rgb(255 255 255 / 0.66)) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(1.6) !important;
+  backdrop-filter: blur(22px) saturate(1.6) !important;
+  --glass-fg: #14161b;
+  --glass-shadow: 16 20 30;
+  color: #14161b;
+}

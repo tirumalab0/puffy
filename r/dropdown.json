@@ -1,0 +1,26 @@
+{
+  "name": "dropdown",
+  "type": "registry:ui",
+  "title": "Dropdown",
+  "description": "Dropdown",
+  "registryDependencies": [
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+    "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+  ],
+  "files": [
+    {
+      "path": "components/puffy/glass-dropdown.jsx",
+      "type": "registry:ui",
+      "target": "components/puffy/glass-dropdown.jsx",
+      "content": "\"use client\";\nimport { useId, useState } from \"react\";\nimport { GlassButton } from \"./glass-button.jsx\";\nimport { usePopover, moveIndex, listKey, GlassList, Chevron } from \"./glass-menu.jsx\";\n\n/**\n * GlassDropdown: a button that opens a menu of actions.\n * label     text on the button\n * items     [{ value, label, icon?, hint?, danger?, disabled?, onSelect? } | { separator: true }]\n * onSelect(value)\n * effect    \"flat\" | \"glass\" | \"bubble\"\n * variant, size, iconLeft go to the button; align is \"start\" or \"end\"\n */\nexport function GlassDropdown({ label, items, onSelect, effect = \"flat\", variant = \"secondary\", size = \"md\", align = \"start\", iconLeft }) {\n  const id = useId();\n  const { open, setOpen, rootRef } = usePopover();\n  const [active, setActive] = useState(-1);\n\n  const openMenu = (index) => {\n    setActive(index);\n    setOpen(true);\n  };\n  const pick = (item) => {\n    setOpen(false);\n    if (item.onSelect) item.onSelect();\n    if (onSelect) onSelect(item.value);\n  };\n  const onKeyDown = (e) => {\n    if (!open) {\n      if (e.key === \"ArrowDown\" || e.key === \"ArrowUp\") {\n        e.preventDefault();\n        openMenu(e.key === \"ArrowDown\" ? moveIndex(items, -1, 1) : moveIndex(items, 0, -1));\n      }\n      return;\n    }\n    listKey(e, { items, active, setActive, pick, close: () => setOpen(false) });\n  };\n\n  return (\n    <div className=\"gp-anchor\" data-inline=\"\" ref={rootRef}>\n      <GlassButton\n        variant={variant}\n        effect={effect}\n        size={size}\n        iconLeft={iconLeft}\n        iconRight={<Chevron />}\n        aria-haspopup=\"menu\"\n        aria-expanded={open}\n        aria-controls={open ? `${id}-menu` : undefined}\n        aria-activedescendant={open && active >= 0 ? `${id}-menu-${active}` : undefined}\n        onClick={() => (open ? setOpen(false) : openMenu(-1))}\n        onKeyDown={onKeyDown}\n      >\n        {label}\n      </GlassButton>\n      {open && (\n        <GlassList\n          id={`${id}-menu`}\n          role=\"menu\"\n          effect={effect}\n          align={align}\n          items={items}\n          activeIndex={active}\n          onActiveChange={setActive}\n          onPick={pick}\n        />\n      )}\n    </div>\n  );\n}\n\nexport default GlassDropdown;\n"
+    },
+    {
+      "path": "components/puffy/glass-dropdown.d.ts",
+      "type": "registry:ui",
+      "target": "components/puffy/glass-dropdown.d.ts",
+      "content": "import * as React from \"react\";\n\nexport interface GlassDropdownProps {\n  label?: string;\n  items?: any;\n  onSelect?: (...args: any[]) => void;\n  effect?: string;\n  variant?: string;\n  size?: string;\n  align?: string;\n  iconLeft?: React.ReactNode;\n  children?: React.ReactNode;\n  className?: string;\n  [key: string]: any;\n}\nexport declare function GlassDropdown(props: GlassDropdownProps): React.JSX.Element | null;\n\ndeclare const _default: any;\nexport default _default;\n"
+    }
+  ],
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json"
+}

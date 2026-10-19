@@ -1,0 +1,23 @@
+/* Fluffy Puffy: the canvas fills its box; brushing should never scroll the page */
+.gfur { position: relative; display: inline-block; flex: none; line-height: 0; touch-action: none; cursor: grab; -webkit-tap-highlight-color: transparent; }
+.gfur:active { cursor: grabbing; }
+.gfur canvas { width: 100%; height: 100%; }
+
+/* The glow: a soft light behind the body that breathes with it and
+   brightens while you press. --gfur-g (0 to 1) sets how strong it is. */
+.gfur canvas, .gfur > img { position: relative; }
+.gfur-aura { position: absolute; inset: -24%; z-index: 0; pointer-events: none; border-radius: 50%;
+  background: radial-gradient(closest-side, var(--gfur-glow) 0%, var(--gfur-glow) 30%, color-mix(in srgb, var(--gfur-glow) 60%, transparent) 46%, color-mix(in srgb, var(--gfur-glow) 22%, transparent) 66%, transparent 100%);
+  opacity: calc(var(--gfur-g, 0.7) * 1.15); filter: blur(14px); transform: scale(0.92);
+  transition: opacity 0.4s, transform 0.5s cubic-bezier(0.3, 1.4, 0.5, 1);
+  animation: gfur-glow 3.93s ease-in-out infinite; }
+.gfur[data-press] .gfur-aura { opacity: min(1, calc(var(--gfur-g, 0.7) * 1.45)); transform: scale(1.04); animation-play-state: paused; }
+@keyframes gfur-glow { 50% { transform: scale(0.99); opacity: min(1, calc(var(--gfur-g, 0.7) * 1.35)); } }
+@media (prefers-reduced-motion: reduce) { .gfur-aura { animation: none; transition: none; } }
+
+/* "Hi!": a small speech bubble that pops up while Puffy waves */
+.gfur-hi { position: absolute; z-index: 2; right: 4%; top: 6%; padding: 5px 11px 6px; border-radius: 14px 14px 14px 4px; font: 600 15px/1.1 system-ui, -apple-system, "Inter", sans-serif; letter-spacing: -0.01em; color: #1d1838; background: #fff; box-shadow: 0 0 0 0.5px rgb(0 0 0 / 0.08), 0 8px 20px -8px rgb(40 20 90 / 0.45);
+  pointer-events: none; white-space: nowrap; opacity: 0; transform: translate(0, 8px) scale(0.6); transform-origin: 0 100%; transition: opacity 0.2s, transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.gfur-hi[data-on] { opacity: 1; transform: none; }
+.gfur-hi:empty { padding: 0; }
+@media (prefers-reduced-motion: reduce) { .gfur-hi { transition: opacity 0.2s; transform: none; } }

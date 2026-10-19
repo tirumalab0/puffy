@@ -1,0 +1,275 @@
+/* Badge, banner, accordion, tabs, table, tooltip, dots, thinking, dialog. */
+
+/* ---------- Badge ---------- */
+.gbd {
+  --gbd-c: rgb(var(--glass-shadow) / 0.72);
+  --gbd-bg: rgb(var(--glass-shadow) / 0.07);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--gbd-c);
+  background: var(--gbd-bg);
+}
+.gbd[data-tone="accent"] { --gbd-c: color-mix(in srgb, var(--glass-tint) 72%, #000); --gbd-bg: color-mix(in srgb, var(--glass-tint) 16%, transparent); }
+.gbd[data-tone="success"] { --gbd-c: #0b6b45; --gbd-bg: #e3f5ec; }
+.gbd[data-tone="warning"] { --gbd-c: #8a5200; --gbd-bg: #fdf0d6; }
+.gbd[data-tone="danger"] { --gbd-c: #b3202d; --gbd-bg: #fde8ea; }
+.gbd-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+/* ---------- Banner ---------- */
+.gbn {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  color: var(--glass-fg);
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(var(--glass-shadow) / 0.09), 0 8px 20px -14px rgb(var(--glass-shadow) / 0.3);
+}
+.gbn-mark { flex: none; width: 8px; height: 8px; margin-top: 6px; border-radius: 50%; background: var(--glass-tint); }
+.gbn[data-tone="success"] .gbn-mark { background: #17a065; }
+.gbn[data-tone="warning"] .gbn-mark { background: #e09a16; }
+.gbn[data-tone="danger"] .gbn-mark { background: var(--glass-danger); }
+.gbn-body { flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.gbn-title { font-weight: 600; }
+.gbn-text { color: rgb(var(--glass-shadow) / 0.7); }
+.gbn-side { display: flex; align-items: center; gap: 6px; flex: none; margin-left: auto; }
+.gbn-x { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; color: rgb(var(--glass-shadow) / 0.55); background: none; cursor: pointer; }
+.gbn-x:hover { background: rgb(var(--glass-shadow) / 0.08); }
+.gbn-x svg { width: 14px; height: 14px; }
+
+/* ---------- Accordion ---------- */
+.gac { display: flex; flex-direction: column; color: var(--glass-fg); }
+.gac-item + .gac-item { border-top: 1px solid rgb(var(--glass-shadow) / 0.1); }
+.gac-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; padding: 14px 2px; border: 0; background: none; font: inherit; font-size: 15px; font-weight: 500; text-align: left; color: inherit; cursor: pointer; }
+.gac-head svg { flex: none; width: 16px; height: 16px; opacity: 0.55; transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gac-head[aria-expanded="true"] svg { transform: rotate(180deg); }
+/* Height animates through grid rows, so content of any length opens smoothly */
+.gac-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gac-panel[data-open] { grid-template-rows: 1fr; }
+.gac-inner { overflow: hidden; min-height: 0; }
+.gac-inner > div { padding: 0 2px 16px; font-size: 14px; line-height: 1.55; color: rgb(var(--glass-shadow) / 0.72); opacity: 0; transition: opacity 0.2s; }
+.gac-panel[data-open] .gac-inner > div { opacity: 1; transition-delay: 0.08s; }
+
+/* ---------- Tabs ---------- */
+.gtabs { position: relative; display: inline-flex; align-self: flex-start; max-width: 100%; padding: 3px; border-radius: min(var(--glass-radius), 14px); background: rgb(var(--glass-shadow) / 0.07); overflow-x: auto; scrollbar-width: none; }
+.gtabs[data-variant="subtle"] { padding: 0; background: none; gap: 2px; }
+.gtabs::-webkit-scrollbar { display: none; }
+.gtabs[data-fade="end"] { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 36px), transparent); }
+.gtabs[data-fade="start"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 36px); mask-image: linear-gradient(90deg, transparent, #000 36px); }
+.gtabs[data-fade="both"] { -webkit-mask-image: linear-gradient(90deg, transparent, #000 36px, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(90deg, transparent, #000 36px, #000 calc(100% - 36px), transparent); }
+.gtab { position: relative; z-index: 1; flex: none; white-space: nowrap; padding: 6px 14px; border: 0; border-radius: inherit; background: none; font: inherit; font-size: 14px; font-weight: 500; color: rgb(var(--glass-shadow) / 0.6); cursor: pointer; transition: color 0.18s; }
+.gtab[aria-selected="true"] { color: var(--glass-fg); }
+/* One pill slides to the chosen tab */
+.gtabs-pill {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 0;
+  border-radius: min(calc(var(--glass-radius) - 3px), 11px);
+  background: #fff;
+  box-shadow: 0 0 0 0.5px rgb(var(--glass-shadow) / 0.06), 0 1px 3px rgb(var(--glass-shadow) / 0.14);
+  transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.2, 1), width 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gtabs[data-variant="subtle"] .gtabs-pill { top: 0; bottom: 0; background: rgb(var(--glass-shadow) / 0.07); box-shadow: none; }
+
+/* ---------- Table ---------- */
+.gtb { position: relative; overflow-x: auto; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px rgb(var(--glass-shadow) / 0.09); color: var(--glass-fg); }
+.gtb table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.gtb th { padding: 10px 16px; font-size: 12px; font-weight: 500; text-align: left; white-space: nowrap; color: rgb(var(--glass-shadow) / 0.58); background: rgb(var(--glass-shadow) / 0.03); border-bottom: 1px solid rgb(var(--glass-shadow) / 0.09); }
+.gtb td { padding: 12px 16px; border-bottom: 1px solid rgb(var(--glass-shadow) / 0.07); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gtb tr:last-child td { border-bottom: 0; }
+.gtb tbody tr { transition: background 0.12s; }
+.gtb tbody tr:hover { background: rgb(var(--glass-shadow) / 0.03); }
+.gtb [data-align="end"] { text-align: right; }
+
+.sr-only { position: absolute; top: 0; left: 0; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---------- Tooltip ---------- */
+.gtt { position: relative; display: inline-flex; }
+.gtt-tip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 40;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #fff;
+  background: rgb(28 28 32 / 0.92);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px) scale(0.96);
+  transform-origin: bottom center;
+  transition: opacity 0.14s, transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.gtt:hover .gtt-tip,
+.gtt:focus-within .gtt-tip { opacity: 1; transform: translate(-50%, 0) scale(1); transition-delay: 0.25s; }
+
+/* ---------- Carousel dots ---------- */
+.gdots { display: inline-flex; align-items: center; gap: 6px; }
+.gdot { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px; background: rgb(var(--glass-shadow) / 0.22); cursor: pointer; transition: width 0.26s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s; }
+.gdot[aria-current="true"] { width: 22px; background: var(--glass-focus, var(--glass-tint)); }
+
+/* ---------- Thinking ---------- */
+.gth { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
+.gth { --gth-c: var(--glass-focus, var(--glass-tint, #6b5cff)); }
+[data-glass-tint="frost"] .gth, [data-glass-tint="ink"] .gth { --gth-c: #7b6cff; }
+/* A ring of the theme colour chasing itself round a soft glowing core */
+.gth-orb { position: relative; flex: none; width: 18px; height: 18px; }
+.gth-orb::before { content: ""; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0 20%, color-mix(in srgb, var(--gth-c) 30%, transparent) 45%, var(--gth-c) 85%, transparent 86%); -webkit-mask: radial-gradient(closest-side, transparent 66%, #000 70%); mask: radial-gradient(closest-side, transparent 66%, #000 70%); animation: gth-spin 0.9s linear infinite; }
+.gth-orb i { position: absolute; inset: 5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--gth-c) 70%); box-shadow: 0 0 10px 1px color-mix(in srgb, var(--gth-c) 70%, transparent); animation: gth-breathe 1.8s ease-in-out infinite; }
+@keyframes gth-spin { to { transform: rotate(360deg); } }
+@keyframes gth-breathe { 50% { transform: scale(0.6); opacity: 0.7; } }
+/* A band of light sweeps across the word */
+.gth-label {
+  color: transparent;
+  background: linear-gradient(90deg, rgb(var(--glass-shadow) / 0.5) 30%, var(--gth-c) 46%, color-mix(in srgb, var(--gth-c) 40%, #fff) 50%, var(--gth-c) 54%, rgb(var(--glass-shadow) / 0.5) 70%) 0 0 / 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gth-sweep 2.2s linear infinite;
+}
+@keyframes gth-sweep { from { background-position: 100% 0; } to { background-position: -66% 0; } }
+
+/* ---------- Dialog ---------- */
+.gdl {
+  width: min(420px, calc(100vw - 32px));
+  padding: 24px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--glass-fg);
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(16 20 30 / 0.06), 0 30px 60px -20px rgb(16 20 30 / 0.4);
+}
+.gdl[open] { animation: gdl-in 0.24s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.gdl::backdrop { background: rgb(20 22 30 / 0.28); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); animation: gdl-fade 0.2s; }
+@keyframes gdl-in { from { opacity: 0; transform: translateY(8px) scale(0.97); } }
+@keyframes gdl-fade { from { opacity: 0; } }
+.gdl-title { margin: 0 0 6px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
+.gdl-text { margin: 0; font-size: 14px; line-height: 1.5; color: rgb(var(--glass-shadow) / 0.7); }
+.gdl-body { margin-top: 16px; }
+.gdl-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+
+/* ---------- Glass and bubble finishes ----------
+   Badges, tabs and tooltips can be see-through glass, or glass with a
+   gloss on top (bubble). The Mist theme's Frost look uses glass by default. */
+.gbd[data-effect="glass"],
+.gbd[data-effect="bubble"] {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.1) 70%),
+    color-mix(in srgb, var(--gbd-bg) 70%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.7);
+  backdrop-filter: blur(10px) saturate(1.7);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.8),
+    0 0 0 0.5px rgb(var(--glass-shadow) / 0.12),
+    0 2px 6px -2px rgb(var(--glass-shadow) / 0.18);
+}
+.gbd[data-effect="bubble"] {
+  height: 24px;
+  padding: 0 10px;
+  box-shadow:
+    inset 0 6px 6px -4px rgb(255 255 255 / 0.95),
+    inset 0 -4px 6px -3px rgb(var(--glass-shadow) / 0.14),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.9),
+    0 0 0 0.5px rgb(var(--glass-shadow) / 0.12),
+    0 4px 10px -4px rgb(var(--glass-shadow) / 0.25);
+}
+
+.gtabs[data-effect="glass"]:not([data-variant="subtle"]),
+.gtabs[data-effect="bubble"]:not([data-variant="subtle"]) {
+  background: rgb(255 255 255 / 0.32);
+  -webkit-backdrop-filter: blur(16px) saturate(1.7);
+  backdrop-filter: blur(16px) saturate(1.7);
+  box-shadow: inset 0 1px 2px rgb(var(--glass-shadow) / 0.08), inset 0 0 0 0.5px rgb(255 255 255 / 0.7), 0 0 0 0.5px rgb(var(--glass-shadow) / 0.1);
+}
+.gtabs[data-effect="glass"] .gtabs-pill,
+.gtabs[data-effect="bubble"] .gtabs-pill {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.5));
+  -webkit-backdrop-filter: blur(8px) saturate(1.6);
+  backdrop-filter: blur(8px) saturate(1.6);
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 0.5px rgb(255 255 255 / 0.95), 0 0 0 0.5px rgb(var(--glass-shadow) / 0.1), 0 3px 8px -2px rgb(var(--glass-shadow) / 0.22);
+}
+.gtabs[data-effect="bubble"] .gtabs-pill {
+  box-shadow: inset 0 8px 8px -6px #fff, inset 0 -5px 8px -4px rgb(var(--glass-shadow) / 0.16), inset 0 0 0 0.5px #fff, 0 0 0 0.5px rgb(var(--glass-shadow) / 0.1), 0 4px 10px -3px rgb(var(--glass-shadow) / 0.26);
+}
+
+.gtt-tip[data-effect="glass"],
+.gtt-tip[data-effect="bubble"],
+[data-glass-tint="frost"] .gtt-tip {
+  padding: 6px 11px;
+  border-radius: min(var(--glass-radius), 12px);
+  color: var(--glass-fg);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.86), rgb(242 245 249 / 0.72));
+  -webkit-backdrop-filter: blur(18px) saturate(1.8);
+  backdrop-filter: blur(18px) saturate(1.8);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.95),
+    0 0 0 0.5px rgb(var(--glass-shadow) / 0.16),
+    0 10px 22px -8px rgb(var(--glass-shadow) / 0.35);
+}
+.gtt-tip[data-effect="bubble"] {
+  border-radius: 999px;
+  box-shadow:
+    inset 0 7px 7px -5px #fff,
+    inset 0 -5px 8px -5px rgb(var(--glass-shadow) / 0.16),
+    inset 0 0 0 0.5px #fff,
+    0 0 0 0.5px rgb(var(--glass-shadow) / 0.16),
+    0 10px 22px -8px rgb(var(--glass-shadow) / 0.35);
+}
+
+/* ---------- Frost (the Mist theme default) ---------- */
+[data-glass-tint="frost"] .gbd[data-tone="neutral"] { --gbd-c: #4a5363; --gbd-bg: #e4e8ee; }
+[data-glass-tint="frost"] .gbd[data-tone="accent"] { --gbd-c: #353d4d; --gbd-bg: #d3d9e3; }
+
+[data-glass-tint="frost"] .gbd[data-effect="flat"] {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.75), rgb(255 255 255 / 0) 65%), var(--gbd-bg);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgb(255 255 255 / 0.6), 0 0 0 0.5px color-mix(in srgb, var(--gbd-c) 28%, transparent);
+}
+/* Tabs: a recessed frosted groove, and a glass bead that slides along it */
+[data-glass-tint="frost"] .gtabs:not([data-variant="subtle"]) {
+  background: linear-gradient(180deg, rgb(214 220 230 / 0.6), rgb(238 241 246 / 0.9));
+  box-shadow: inset 0 1px 3px rgb(60 72 98 / 0.16), 0 0 0 0.5px rgb(70 82 104 / 0.2);
+}
+[data-glass-tint="frost"] .gtabs-pill {
+  background: radial-gradient(60% 50% at 50% 0%, #fff, transparent 75%), linear-gradient(180deg, #ffffff, #e7ebf1);
+  box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.95), inset 0 -1px 0 rgb(255 255 255 / 0.8), 0 0 0 0.5px rgb(70 82 104 / 0.24), 0 2px 6px -1px rgb(60 72 98 / 0.28);
+}
+[data-glass-tint="frost"] .gtabs[data-effect="glass"]:not([data-variant="subtle"]),
+[data-glass-tint="frost"] .gtabs[data-effect="bubble"]:not([data-variant="subtle"]) {
+  background: linear-gradient(180deg, rgb(214 220 230 / 0.32), rgb(238 241 246 / 0.42));
+}
+[data-glass-tint="frost"] .gtabs[data-effect="glass"] .gtabs-pill,
+[data-glass-tint="frost"] .gtabs[data-effect="bubble"] .gtabs-pill {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(231 235 241 / 0.5));
+}
+[data-glass-tint="frost"] .gtab[aria-selected="true"] { color: #262d3a; }
+[data-glass-tint="frost"] .gtabs[data-variant="subtle"] .gtabs-pill {
+  background: linear-gradient(180deg, #f6f8fb, #e3e8ef 55%, #ebeff4);
+  box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgb(255 255 255 / 0.8), 0 0 0 0.5px rgb(70 82 104 / 0.22), 0 2px 5px -2px rgb(60 72 98 / 0.25);
+}
+[data-glass-tint="frost"] .gtabs[data-variant="subtle"][data-effect="glass"] .gtabs-pill,
+[data-glass-tint="frost"] .gtabs[data-variant="subtle"][data-effect="bubble"] .gtabs-pill {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(231 235 241 / 0.5));
+}
+
+.gac-head:focus-visible, .gtab:focus-visible, .gdot:focus-visible, .gbn-x:focus-visible { outline: 2px solid var(--glass-focus, var(--glass-tint)); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gac-panel, .gac-head svg, .gtabs-pill, .gdot, .gtt-tip { transition: none; }
+  .gth-orb::before, .gth-orb i, .gth-label, .gdl[open], .gdl::backdrop { animation: none; }
+  .gth-label { color: inherit; background: none; }
+}

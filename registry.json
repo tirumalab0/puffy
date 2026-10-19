@@ -1,0 +1,811 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "puffy",
+  "homepage": "https://github.com/tirumalab0/puffy",
+  "items": [
+    {
+      "name": "app",
+      "type": "registry:ui",
+      "title": "App",
+      "description": "Sidebar, Breadcrumbs, Avatar, Stat card, Charts, Data table",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-app.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-app.jsx"
+        },
+        {
+          "path": "components/puffy/glass-app.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-app.css"
+        },
+        {
+          "path": "components/puffy/glass-app.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-app.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "basics",
+      "type": "registry:ui",
+      "title": "Basics",
+      "description": "Button group, Toggle, Toggle group, Navigation menu, Video player, Carousel, Spinner, Keyboard keys",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-basics.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-basics.jsx"
+        },
+        {
+          "path": "components/puffy/glass-basics.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-basics.css"
+        },
+        {
+          "path": "components/puffy/glass-basics.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-basics.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "blocks",
+      "type": "registry:ui",
+      "title": "Blocks",
+      "description": "Blocks: Date picker, Kanban board, Filters, Pricing table, Workspace switcher",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/app.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/delight.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-blocks.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-blocks.jsx"
+        },
+        {
+          "path": "components/puffy/glass-blocks.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-blocks.css"
+        },
+        {
+          "path": "components/puffy/glass-blocks.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-blocks.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Button with solid, glass and bubble finishes",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-button.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-button.jsx"
+        },
+        {
+          "path": "components/puffy/glass-button.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-button.css"
+        },
+        {
+          "path": "components/puffy/glass-lens.js",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-lens.js"
+        },
+        {
+          "path": "components/puffy/glass-button.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-button.d.ts"
+        },
+        {
+          "path": "components/puffy/glass-lens.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-lens.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Card, Progress",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-card.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-card.jsx"
+        },
+        {
+          "path": "components/puffy/glass-card.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-card.css"
+        },
+        {
+          "path": "components/puffy/glass-card.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-card.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "charts",
+      "type": "registry:ui",
+      "title": "Charts",
+      "description": "Block bars, Radial rings, Radar, Flow, Brush",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-charts.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-charts.jsx"
+        },
+        {
+          "path": "components/puffy/glass-charts.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-charts.css"
+        },
+        {
+          "path": "components/puffy/glass-charts.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-charts.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Combobox",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-combobox.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-combobox.jsx"
+        },
+        {
+          "path": "components/puffy/glass-combobox.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-combobox.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "controls",
+      "type": "registry:ui",
+      "title": "Controls",
+      "description": "Checkbox, Radio, Switch, Slider",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-controls.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-controls.jsx"
+        },
+        {
+          "path": "components/puffy/glass-controls.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-controls.css"
+        },
+        {
+          "path": "components/puffy/glass-controls.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-controls.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "dark",
+      "type": "registry:ui",
+      "title": "Dark",
+      "description": "Dark mode, load after the theme. Follows class=\"dark\" on <html>",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/puffy/glass-dark.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-dark.css"
+        }
+      ]
+    },
+    {
+      "name": "data",
+      "type": "registry:ui",
+      "title": "Data",
+      "description": "Stat strip, Meter, Square grid, Forecast bar, Timeline, Tag list",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-data.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-data.jsx"
+        },
+        {
+          "path": "components/puffy/glass-data.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-data.css"
+        },
+        {
+          "path": "components/puffy/glass-data.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-data.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "delight",
+      "type": "registry:ui",
+      "title": "Delight",
+      "description": "Confirm, Calendar, Popover, Hover card, Hold to confirm, Swipe to delete, Password strength, Star rating, Undo pill, Toast stack, Notification bell, Number ticker, Floating label, Range slider, Animated form, Edge-lit style",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-delight.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-delight.jsx"
+        },
+        {
+          "path": "components/puffy/glass-delight.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-delight.css"
+        },
+        {
+          "path": "components/puffy/glass-delight.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-delight.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "display",
+      "type": "registry:ui",
+      "title": "Display",
+      "description": "Tabs, Accordion, Table, Dialog, Badge, Banner, Tooltip, Carousel dots, Thinking",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-display.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-display.jsx"
+        },
+        {
+          "path": "components/puffy/glass-display.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-display.css"
+        },
+        {
+          "path": "components/puffy/glass-display.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-display.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "dropdown",
+      "type": "registry:ui",
+      "title": "Dropdown",
+      "description": "Dropdown",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-dropdown.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-dropdown.jsx"
+        },
+        {
+          "path": "components/puffy/glass-dropdown.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-dropdown.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "extras",
+      "type": "registry:ui",
+      "title": "Extras",
+      "description": "Wheel picker, Sortable list, Multi select, Context menu, Morphing modal, Expandable tabs, Bloom menu, File diff, Tool approval, Thinking phrases",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-extras.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras.jsx"
+        },
+        {
+          "path": "components/puffy/glass-extras.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras.css"
+        },
+        {
+          "path": "components/puffy/glass-extras.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "extras2",
+      "type": "registry:ui",
+      "title": "Extras2",
+      "description": "Colour picker, Image viewer, File tree, Marquee, Tilt card, Pull to refresh, Cylinder carousel, Theme toggle, Hover highlight, Morphing search, Overflow actions, Card folder, Availability, Masonry, Wallet card, Not found",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-extras2.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras2.jsx"
+        },
+        {
+          "path": "components/puffy/glass-extras2.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras2.css"
+        },
+        {
+          "path": "components/puffy/glass-extras2.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-extras2.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "fur",
+      "type": "registry:ui",
+      "title": "Fur",
+      "description": "Fluffy Puffy",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-fur.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-fur.jsx"
+        },
+        {
+          "path": "components/puffy/glass-fur.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-fur.css"
+        },
+        {
+          "path": "components/puffy/glass-fur.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-fur.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "glance",
+      "type": "registry:ui",
+      "title": "Glance",
+      "description": "Glance card, Weather, Temperature, Flight, Sleep, Checklist, Movers, Paycheck, Range today",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-glance.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-glance.jsx"
+        },
+        {
+          "path": "components/puffy/glass-glance.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-glance.css"
+        },
+        {
+          "path": "components/puffy/glass-glance.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-glance.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "grain",
+      "type": "registry:ui",
+      "title": "Grain",
+      "description": "Grain backgrounds",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-grain.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-grain.jsx"
+        },
+        {
+          "path": "components/puffy/glass-grain.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-grain.css"
+        },
+        {
+          "path": "components/puffy/glass-grain.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-grain.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "registry:ui",
+      "title": "Icon",
+      "description": "Icons",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-icon.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-icon.jsx"
+        },
+        {
+          "path": "components/puffy/glass-icon.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-icon.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Input, Text area, Input copy",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-input.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-input.jsx"
+        },
+        {
+          "path": "components/puffy/glass-input.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-input.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "keypad",
+      "type": "registry:ui",
+      "title": "Keypad",
+      "description": "Keypad",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-keypad.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-keypad.jsx"
+        },
+        {
+          "path": "components/puffy/glass-keypad.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-keypad.css"
+        },
+        {
+          "path": "components/puffy/glass-keypad.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-keypad.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "The menu used by Select, Combobox and Dropdown",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-menu.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-menu.jsx"
+        },
+        {
+          "path": "components/puffy/glass-menu.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-menu.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "motion",
+      "type": "registry:ui",
+      "title": "Motion",
+      "description": "Rolling number, Word reveal, Art",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-motion.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-motion.jsx"
+        },
+        {
+          "path": "components/puffy/glass-motion.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-motion.css"
+        },
+        {
+          "path": "components/puffy/glass-motion.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-motion.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "overlay",
+      "type": "registry:ui",
+      "title": "Overlay",
+      "description": "Command menu, Drawer, Toast, Empty, Skeleton, Date range, Stepper",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/app.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-overlay.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-overlay.jsx"
+        },
+        {
+          "path": "components/puffy/glass-overlay.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-overlay.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "scene",
+      "type": "registry:ui",
+      "title": "Scene",
+      "description": "Picture backdrop for glass finishes",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-scene.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-scene.jsx"
+        },
+        {
+          "path": "components/puffy/glass-scene.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-scene.css"
+        },
+        {
+          "path": "components/puffy/glass-scene.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-scene.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Select",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-select.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-select.jsx"
+        },
+        {
+          "path": "components/puffy/glass-select.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-select.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "sound",
+      "type": "registry:ui",
+      "title": "Sound",
+      "description": "Optional sounds for every part",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/puffy/glass-sound.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-sound.jsx"
+        },
+        {
+          "path": "components/puffy/glass-sound.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-sound.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "surface",
+      "type": "registry:ui",
+      "title": "Surface",
+      "description": "Shared surface styles used by most parts",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/puffy/glass-surface.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-surface.css"
+        }
+      ]
+    },
+    {
+      "name": "tactile",
+      "type": "registry:ui",
+      "title": "Tactile",
+      "description": "Knob, Arc dial, Ruler picker, Code input, Counter, Drop zone, Reactions, Card deck, Morphing tray",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-tactile.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-tactile.jsx"
+        },
+        {
+          "path": "components/puffy/glass-tactile.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-tactile.css"
+        },
+        {
+          "path": "components/puffy/glass-tactile.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-tactile.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "theme-puffy",
+      "type": "registry:ui",
+      "title": "Theme Puffy",
+      "description": "Puffy theme",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/puffy/glass-theme-puffy.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-theme-puffy.css"
+        }
+      ]
+    },
+    {
+      "name": "theme-quiet",
+      "type": "registry:ui",
+      "title": "Theme Quiet",
+      "description": "Quiet theme",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "components/puffy/glass-theme-quiet.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-theme-quiet.css"
+        }
+      ]
+    },
+    {
+      "name": "widget",
+      "type": "registry:ui",
+      "title": "Widget",
+      "description": "Widget card, Line chart, Breakdown, Heatmap",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json"
+      ],
+      "files": [
+        {
+          "path": "components/puffy/glass-widget.jsx",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-widget.jsx"
+        },
+        {
+          "path": "components/puffy/glass-widget.css",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-widget.css"
+        },
+        {
+          "path": "components/puffy/glass-widget.d.ts",
+          "type": "registry:ui",
+          "target": "components/puffy/glass-widget.d.ts"
+        }
+      ]
+    },
+    {
+      "name": "all",
+      "type": "registry:ui",
+      "title": "Everything",
+      "description": "Every Puffy part, both themes and dark mode",
+      "registryDependencies": [
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/app.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/basics.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/blocks.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/button.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/card.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/charts.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/combobox.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/controls.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/dark.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/data.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/delight.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/display.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/dropdown.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/extras.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/extras2.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/fur.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/glance.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/grain.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/icon.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/input.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/keypad.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/menu.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/motion.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/overlay.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/scene.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/select.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/sound.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/surface.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/tactile.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/theme-puffy.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/theme-quiet.json",
+        "https://raw.githubusercontent.com/tirumalab0/puffy/main/r/widget.json"
+      ],
+      "files": []
+    }
+  ]
+}
