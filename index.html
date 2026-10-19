@@ -6498,6 +6498,9 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .pro-soon p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
 .pro-soon b { display: block; color: var(--fg); font-weight: 600; }
 .sc-tabs .tag-pro { height: 16px; padding: 0 6px; font-size: 9.5px; }
+.nav-pro { height: 36px; padding: 0 4px 0 14px; font-size: 13.5px; gap: 8px; }
+.nav-pro > span { height: 28px; padding: 0 9px; }
+@media (max-width: 860px) { .nav-pro { display: none; } }
 .nav-sheet a.nav-sheet-pro { --i: 8; align-self: flex-start; margin-top: 14px; padding: 0 6px 0 18px; height: 44px; font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .tag-glow, .nav-cta::before, .hero-pill::before { animation: none; } }
 @media (min-width: 761px) { .nav-sheet, .nav-scrim { display: none; } }
@@ -46652,21 +46655,9 @@ npx shadcn@latest add ${REG}all.json`,
     }, /* @__PURE__ */ __h(GhMark, {
       size: 17
     })), /* @__PURE__ */ __h("a", {
-      className: "nav-cta",
+      className: "pro-buy nav-pro",
       href: "#pro"
-    }, "Get Pro", /* @__PURE__ */ __h("svg", {
-      viewBox: "0 0 24 24",
-      width: "14",
-      height: "14",
-      fill: "none",
-      stroke: "currentColor",
-      strokeWidth: "2",
-      strokeLinecap: "round",
-      strokeLinejoin: "round",
-      "aria-hidden": "true"
-    }, /* @__PURE__ */ __h("path", {
-      d: "M7 17L17 7M9 7h8v8"
-    })))), /* @__PURE__ */ __h("button", {
+    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE))), /* @__PURE__ */ __h("button", {
       type: "button",
       className: "nav-burger",
       "aria-expanded": menu,
