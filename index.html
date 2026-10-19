@@ -6500,7 +6500,20 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .sc-tabs .tag-pro { height: 16px; padding: 0 6px; font-size: 9.5px; }
 .nav-pro { height: 36px; padding: 0 4px 0 14px; font-size: 13.5px; gap: 8px; }
 .nav-pro > span { height: 28px; padding: 0 9px; }
-@media (max-width: 860px) { .nav-pro { display: none; } }
+/* Puffy peeks up from behind the Get Pro button and waves: once after load, then on hover */
+.nav-pro-wrap { position: relative; display: inline-flex; }
+.nav-pro-wrap .nav-pro { position: relative; z-index: 1; }
+.peek { position: absolute; z-index: 0; right: 2px; top: 50%; width: 26px; margin-top: -14px; transform: translateX(0); transform-origin: 20% 90%; pointer-events: none; }
+.peek .puffy-mark { display: block; }
+.peek-hand { position: absolute; right: -1px; top: 3px; width: 9px; height: 9px; border-radius: 50%; background: #e9e2ff; box-shadow: inset 0 -1.5px 0 rgb(117 86 232 / 0.25); transform-origin: 20% 100%; opacity: 0; }
+[data-peek] .peek { animation: puffy-peek 2.6s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
+[data-peek] .peek-hand { animation: puffy-wave 2.6s ease-in-out both; }
+@keyframes puffy-peek { 0% { transform: translateX(0) rotate(0); } 16%, 80% { transform: translateX(24px) rotate(14deg); } 100% { transform: translateX(0) rotate(0); } }
+@keyframes puffy-wave { 0%, 18% { opacity: 0; transform: translate(-4px, 4px) rotate(0); } 26% { opacity: 1; transform: translate(2px, -4px) rotate(30deg); } 36% { transform: translate(2px, -4px) rotate(-15deg); } 46% { transform: translate(2px, -4px) rotate(30deg); } 56% { transform: translate(2px, -4px) rotate(-15deg); } 66% { opacity: 1; transform: translate(2px, -4px) rotate(15deg); } 76%, 100% { opacity: 0; transform: translate(-4px, 4px) rotate(0); } }
+@keyframes puffy-peek-near { 0% { transform: translateX(0) rotate(0); } 16%, 80% { transform: translateX(12px) rotate(18deg); } 100% { transform: translateX(0) rotate(0); } }
+@media (max-width: 1040px) { [data-peek] .peek { animation-name: puffy-peek-near; } }
+@media (prefers-reduced-motion: reduce) { [data-peek] .peek, [data-peek] .peek-hand { animation: none; } }
+@media (max-width: 860px) { .nav-pro-wrap { display: none; } }
 .nav-sheet a.nav-sheet-pro { --i: 8; align-self: flex-start; margin-top: 14px; padding: 0 6px 0 18px; height: 44px; font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .tag-glow, .nav-cta::before, .hero-pill::before { animation: none; } }
 @media (min-width: 761px) { .nav-sheet, .nav-scrim { display: none; } }
@@ -46173,6 +46186,36 @@ Reply with the whole updated JSON in the same shape.` }] : MK_BRIEF(w);
       text: `npx shadcn@latest add ${regs.map((r) => "../puffy-pro/r/" + r + ".json").join(" ")}`
     })));
   }
+  function NavPro() {
+    const [peek, setPeek] = import_react35.useState(0);
+    const wave = () => setPeek((n) => n ? n : Date.now());
+    import_react35.useEffect(() => {
+      const t = setTimeout(wave, 1400);
+      return () => clearTimeout(t);
+    }, []);
+    import_react35.useEffect(() => {
+      if (!peek)
+        return;
+      const t = setTimeout(() => setPeek(0), 2700);
+      return () => clearTimeout(t);
+    }, [peek]);
+    return /* @__PURE__ */ __h("span", {
+      className: "nav-pro-wrap",
+      "data-peek": peek ? "" : undefined,
+      onMouseEnter: wave,
+      onFocus: wave
+    }, /* @__PURE__ */ __h("span", {
+      className: "peek",
+      "aria-hidden": "true"
+    }, /* @__PURE__ */ __h("i", {
+      className: "peek-hand"
+    }), /* @__PURE__ */ __h(PuffyMark, {
+      size: 24
+    })), /* @__PURE__ */ __h("a", {
+      className: "pro-buy nav-pro",
+      href: "#pro"
+    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE)));
+  }
   function OnThisPage({ root, page }) {
     const [items, setItems] = import_react35.useState([]);
     const [here, setHere] = import_react35.useState(null);
@@ -46654,10 +46697,7 @@ npx shadcn@latest add ${REG}all.json`,
       title: "Puffy on GitHub"
     }, /* @__PURE__ */ __h(GhMark, {
       size: 17
-    })), /* @__PURE__ */ __h("a", {
-      className: "pro-buy nav-pro",
-      href: "#pro"
-    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE))), /* @__PURE__ */ __h("button", {
+    })), /* @__PURE__ */ __h(NavPro, null)), /* @__PURE__ */ __h("button", {
       type: "button",
       className: "nav-burger",
       "aria-expanded": menu,
