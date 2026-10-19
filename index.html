@@ -6493,6 +6493,11 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .pro-note-t p { margin: 0; flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
 .pro-note-t p b { color: var(--fg); margin: 0 6px 0 8px; }
 .pro-note .inst-files { margin: 4px 0 0; }
+.pro-soon { display: grid; gap: 8px; margin-top: 6px; padding: 14px 16px; border-radius: 16px; border: 1.5px dashed var(--line); max-width: 46ch; }
+.pro-soon-tag { justify-self: start; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; color: var(--fg); background: rgb(var(--glass-shadow, 0 0 0) / 0.06); }
+.pro-soon p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
+.pro-soon b { display: block; color: var(--fg); font-weight: 600; }
+.sc-tabs .tag-pro { height: 16px; padding: 0 6px; font-size: 9.5px; }
 .nav-sheet a.nav-sheet-pro { --i: 8; align-self: flex-start; margin-top: 14px; padding: 0 6px 0 18px; height: 44px; font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .tag-glow, .nav-cta::before, .hero-pill::before { animation: none; } }
 @media (min-width: 761px) { .nav-sheet, .nav-scrim { display: none; } }
@@ -28868,7 +28873,9 @@ void main(){
       "aria-selected": tab === v,
       tabIndex: tab === v ? 0 : -1,
       onClick: () => setTab(v)
-    }, l))), /* @__PURE__ */ __h("div", {
+    }, l, (v === "ai" || v === "meet") && /* @__PURE__ */ __h("span", {
+      className: "tag-pro"
+    }, "Pro")))), /* @__PURE__ */ __h("div", {
       className: "sc-tools"
     }, /* @__PURE__ */ __h("div", {
       className: "sc-sw",
@@ -28968,7 +28975,8 @@ void main(){
     }, items.slice(0, 4).map(([, n]) => n).join(", "), items.length > 4 ? "…" : ""))));
   }
   var PRO_POINTS = [
-    [PRO_COUNT + " AI parts", "Chat, composer, agents, voice, images and meetings"],
+    [PRO_COUNT + " AI parts", "Chat, composer, agents, voice and images"],
+    ["Meeting parts", "Recording bar, meeting notes, action items, talk time and key moments"],
     ["Every theme", "Quiet, Mist and Puffy, light and dark, in your colour"],
     ["One command", "Install with the shadcn CLI. TypeScript types included"],
     ["Free updates", "New Pro parts land in your private GitHub repo"],
@@ -29009,7 +29017,11 @@ void main(){
       key: b
     }, /* @__PURE__ */ __h(Icon, {
       name: "check"
-    }), /* @__PURE__ */ __h("span", null, /* @__PURE__ */ __h("b", null, b), t))))), /* @__PURE__ */ __h("div", {
+    }), /* @__PURE__ */ __h("span", null, /* @__PURE__ */ __h("b", null, b), t)))), /* @__PURE__ */ __h("div", {
+      className: "pro-soon"
+    }, /* @__PURE__ */ __h("span", {
+      className: "pro-soon-tag"
+    }, "Coming soon"), /* @__PURE__ */ __h("p", null, /* @__PURE__ */ __h("b", null, "Figma files"), "Web screens, landing page sections and mobile app screens, made from Puffy parts. Included with Pro at no extra cost."))), /* @__PURE__ */ __h("div", {
       className: "pro-price"
     }, /* @__PURE__ */ __h("p", {
       className: "pro-amt"
