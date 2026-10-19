@@ -46285,10 +46285,10 @@ Reply with the whole updated JSON in the same shape.` }] : MK_BRIEF(w);
     c.height = H * dpr;
     const g = c.getContext("2d");
     g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const size = Math.max(14, Math.round(Math.min(W, H) / 30)), cols = Math.ceil(W / size), rows = Math.ceil(H / size);
+    const size = W < 700 ? 5 : 6, cols = Math.ceil(W / size), rows = Math.ceil(H / size);
     const order = Array.from({ length: cols * rows }, (_, i) => i % cols / cols * 0.55 + Math.floor(i / cols) / rows * 0.25 + Math.random() * 0.2);
     const ink = getComputedStyle(document.body).color;
-    const D = 480, grow = 0.14;
+    const D = 620, grow = 0.1;
     const frame = (p, out) => {
       g.clearRect(0, 0, W, H);
       g.fillStyle = ink;
