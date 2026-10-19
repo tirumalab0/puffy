@@ -6317,6 +6317,7 @@ button.gstp-btn { cursor: pointer; }
 
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.47; letter-spacing: -0.01em; padding-inline: 22px; padding-block: 0 120px; -webkit-font-smoothing: antialiased; }
+html, body { margin: 0; }
 h1, h2, h3, p, ul, ol { margin: 0; }
 h1, h2, h3 { text-wrap: balance; font-weight: 600; }
 /* Big headings in a medium weight, set a touch less tight */
@@ -6516,7 +6517,7 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 @keyframes puffy-peek { 0% { transform: translateX(0) rotate(0); } 16%, 80% { transform: translateX(24px) rotate(14deg); } 100% { transform: translateX(0) rotate(0); } }
 @keyframes puffy-wave { 0%, 18% { opacity: 0; transform: translate(-4px, 4px) rotate(0); } 26% { opacity: 1; transform: translate(2px, -4px) rotate(30deg); } 36% { transform: translate(2px, -4px) rotate(-15deg); } 46% { transform: translate(2px, -4px) rotate(30deg); } 56% { transform: translate(2px, -4px) rotate(-15deg); } 66% { opacity: 1; transform: translate(2px, -4px) rotate(15deg); } 76%, 100% { opacity: 0; transform: translate(-4px, 4px) rotate(0); } }
 @keyframes puffy-peek-near { 0% { transform: translateX(0) rotate(0); } 16%, 80% { transform: translateX(12px) rotate(18deg); } 100% { transform: translateX(0) rotate(0); } }
-@media (max-width: 1040px) { [data-peek] .peek { animation-name: puffy-peek-near; } }
+@media (max-width: 1180px) { [data-peek] .peek { animation-name: puffy-peek-near; } }
 @media (prefers-reduced-motion: reduce) { [data-peek] .peek, [data-peek] .peek-hand { animation: none; } }
 @media (max-width: 860px) { .nav-pro-wrap { display: none; } }
 /* Launch offer bar above the header */
