@@ -6460,7 +6460,8 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .hero-pill svg { flex: none; transition: transform 0.25s; }
 .hero-pill:hover svg { transform: translateX(2px); }
 @media (max-width: 520px) { .hero-pill-m { display: none; } }
-.tag-pro { --metal: linear-gradient(180deg, #fdfdfe 0%, #dcdde2 40%, #bdbfc7 52%, #e6e7eb 72%, #a3a6af 100%); --sheen: linear-gradient(105deg, transparent 32%, rgb(255 255 255 / 0.9) 46%, rgb(255 255 255 / 0.2) 52%, transparent 62%); display: inline-flex; align-items: center; height: 18px; margin-left: 6px; padding: 0 7px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.03em; color: #18181b; background: var(--sheen) 150% 0 / 260% 100% no-repeat, var(--metal); box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.25), inset 0 1px 0 rgb(255 255 255 / 0.9), 0 1px 2px rgb(0 0 0 / 0.14); animation: chrome-sheen 5s ease-in-out infinite; vertical-align: 1px; }
+.tag-pro { display: inline-flex; align-items: center; height: 18px; margin-left: 6px; padding: 0 7px; border-radius: 999px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: #0a0a0b; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); vertical-align: 1px; }
+:is([data-glass-mode="dark"], .dark) .tag-pro { color: #0a0a0b; background: #f4f4f5; box-shadow: none; }
 .hero-pill .tag-pro, .pro-eyebrow .tag-pro, .pro-note .tag-pro { margin-left: 0; }
 .hero-pill .tag-pro { height: 24px; padding: 0 10px; font-size: 12px; }
 /* Puffy Pro: home section, buy buttons and the note on AI pages */
@@ -6479,33 +6480,37 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .pro-amt { margin: 0; display: flex; align-items: baseline; gap: 10px; }
 .pro-amt b { font-size: clamp(2.6rem, 6vw, 3.4rem); font-weight: 700; letter-spacing: -0.05em; line-height: 1; color: var(--fg); }
 .pro-amt s { color: var(--muted); font-weight: 500; text-decoration-thickness: 1.5px; }
-.pro-buy s { color: rgb(24 24 27 / 0.62); font-weight: 500; font-size: 12px; text-decoration-thickness: 1.5px; }
 .pro-amt s { font-size: 1.25rem; }
 .pro-once, .pro-fine { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
 .pro-fine a { color: var(--fg); }
 @media (max-width: 760px) { .pro-sec { grid-template-columns: 1fr; border-radius: 22px; } }
-.pro-buy { --metal: linear-gradient(180deg, #fdfdfe 0%, #dcdde2 40%, #bdbfc7 52%, #e6e7eb 72%, #a3a6af 100%); --sheen: linear-gradient(105deg, transparent 32%, rgb(255 255 255 / 0.9) 46%, rgb(255 255 255 / 0.2) 52%, transparent 62%); position: relative; display: inline-flex; align-items: center; gap: 10px; flex: none; height: 40px; padding: 0 6px 0 16px; border-radius: 999px; font-size: 14px; font-weight: 600; color: #18181b; text-decoration: none; text-shadow: 0 1px 0 rgb(255 255 255 / 0.6);
-  background: var(--sheen) 150% 0 / 260% 100% no-repeat, var(--metal); animation: chrome-sheen 5s ease-in-out infinite;
-  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2), inset 0 1px 0 rgb(255 255 255 / 0.95), inset 0 -2px 4px rgb(0 0 0 / 0.1), 0 6px 14px -8px rgb(0 0 0 / 0.5); transition: transform 0.2s; }
-/* chrome: brushed silver with a light band that sweeps across every few seconds */
-@keyframes chrome-sheen { 0%, 40% { background-position: 150% 0, 0 0; } 80%, 100% { background-position: -60% 0, 0 0; } }
-@media (prefers-reduced-motion: reduce) { .pro-buy, .tag-pro { animation: none; } }
-.pro-buy:hover { transform: translateY(-1px); }
-.pro-buy:focus-visible { outline: 2px solid #5b6cf0; outline-offset: 2px; }
-.pro-buy > span { display: inline-flex; gap: 6px; height: 28px; align-items: center; padding: 0 10px; border-radius: 999px; background: rgb(0 0 0 / 0.07); box-shadow: inset 0 1px 1px rgb(0 0 0 / 0.1), 0 1px 0 rgb(255 255 255 / 0.6); }
-.pro-buy s { color: rgb(255 255 255 / 0.8); font-size: 12px; }
 .pro-note { display: grid; gap: 10px; padding: 16px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--line); background: rgb(var(--glass-shadow, 0 0 0) / 0.025); }
 .pro-note-t { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .pro-note-t p { margin: 0; flex: 1 1 260px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
 .pro-note-t p b { color: var(--fg); margin: 0 6px 0 8px; }
 .pro-note .inst-files { margin: 4px 0 0; }
+/* Buy button: black pill, a light that runs round its edge, and flickering dots on hover */
+@property --pro-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.pro-buy { position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; flex: none; height: 40px; padding: 0 5px 0 16px; border-radius: 999px; font-size: 14px; color: #fff; text-decoration: none; background: #0a0a0b; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12), 0 6px 16px -8px rgb(0 0 0 / 0.6); transition: transform 0.2s, box-shadow 0.3s; }
+.pro-buy::before { content: ""; position: absolute; inset: 0; z-index: 1; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--pro-a), transparent 0 68%, rgb(255 255 255 / 0.2) 80%, #fff 90%, transparent 97%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; animation: pro-orbit 3.6s linear infinite; pointer-events: none; }
+@keyframes pro-orbit { to { --pro-a: 360deg; } }
+.pro-dots { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; border-radius: inherit; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+.pro-buy:hover .pro-dots, .pro-buy:focus-visible .pro-dots { opacity: 1; }
+.pro-buy:hover { transform: translateY(-1px); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.4), 0 0 24px -6px rgb(255 255 255 / 0.45), 0 6px 16px -8px rgb(0 0 0 / 0.6); }
+.pro-buy:focus-visible { outline: 2px solid #5b6cf0; outline-offset: 2px; }
+.pro-buy-t { font-weight: 600; }
+.pro-buy-t, .pro-chip { position: relative; text-shadow: 0 0 6px #000, 0 0 2px #000; }
+.pro-chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px; border-radius: 999px; font-weight: 600; background: rgb(255 255 255 / 0.1); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1); }
+.pro-chip s { color: rgb(255 255 255 / 0.62); font-weight: 500; font-size: 12px; text-decoration-thickness: 1.5px; }
+.pro-wide { width: 100%; height: 44px; justify-content: center; padding: 0 16px; }
+.nav-pro { height: 36px; padding: 0 4px 0 14px; font-size: 13.5px; gap: 8px; }
+.nav-pro .pro-chip { height: 28px; padding: 0 9px; }
+@media (prefers-reduced-motion: reduce) { .pro-buy::before { animation: none; background: none; } }
 .pro-soon { display: grid; gap: 8px; margin-top: 6px; padding: 14px 16px; border-radius: 16px; border: 1.5px dashed var(--line); max-width: 46ch; }
 .pro-soon-tag { justify-self: start; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; color: var(--fg); background: rgb(var(--glass-shadow, 0 0 0) / 0.06); }
 .pro-soon p { margin: 0; font-size: 14px; line-height: 1.45; color: var(--muted); }
 .pro-soon b { display: block; color: var(--fg); font-weight: 600; }
 .sc-tabs .tag-pro { height: 16px; padding: 0 6px; font-size: 9.5px; }
-.nav-pro { height: 36px; padding: 0 4px 0 14px; font-size: 13.5px; gap: 8px; }
-.nav-pro > span { height: 28px; padding: 0 9px; }
 /* Puffy peeks up from behind the Get Pro button and waves: once after load, then on hover */
 .nav-pro-wrap { position: relative; display: inline-flex; }
 .nav-pro-wrap .nav-pro { position: relative; z-index: 1; }
@@ -6532,7 +6537,7 @@ a:focus-visible, .more:focus-visible, .seg-btn:focus-visible, .swatch:focus-visi
 .offer-x:hover { color: #fff; background: rgb(255 255 255 / 0.08); }
 .offer-bar .puffy-mark { flex: none; }
 @media (max-width: 560px) { .offer-bar { justify-content: flex-start; padding: 6px 44px 6px 16px; font-size: 12.5px; text-align: left; } .offer-long { display: none; } }
-.nav-sheet a.nav-sheet-pro { --i: 8; align-self: flex-start; margin-top: 14px; padding: 0 6px 0 18px; height: 44px; font-size: 15px; font-weight: 600; letter-spacing: 0; line-height: 1; color: #18181b; }
+.nav-sheet a.nav-sheet-pro { --i: 8; align-self: flex-start; margin-top: 14px; padding: 0 5px 0 18px; height: 44px; font-size: 15px; letter-spacing: 0; line-height: 1; color: #fff; }
 @media (prefers-reduced-motion: reduce) { .tag-glow, .nav-cta::before, .hero-pill::before { animation: none; } }
 @media (min-width: 761px) { .nav-sheet, .nav-scrim { display: none; } }
 
@@ -29023,7 +29028,8 @@ void main(){
           setTimeout(() => {
             const el = document.getElementById("pro");
             if (el)
-              el.scrollIntoView({ behavior: "smooth", block: "start" });
+              el.scrollIntoView({ behavior: window.__proJump ? "auto" : "smooth", block: "start" });
+            window.__proJump = false;
           }, 60);
       };
       go();
@@ -29061,13 +29067,11 @@ void main(){
       className: "pro-amt"
     }, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), /* @__PURE__ */ __h("b", null, PRO_PRICE)), /* @__PURE__ */ __h("p", {
       className: "pro-once"
-    }, PRO_LAUNCH ? "One payment. Launch price for the first 15 buyers, until 25 October." : "One payment, yours to keep."), /* @__PURE__ */ __h("a", {
-      className: "gb",
-      "data-variant": "primary",
-      "data-effect": "flat",
+    }, PRO_LAUNCH ? "One payment. Launch price for the first 15 buyers, until 25 October." : "One payment, yours to keep."), /* @__PURE__ */ __h(ProButton, {
       href: PRO_URL,
-      target: "_blank",
-      rel: "noopener noreferrer"
+      external: true,
+      className: "pro-wide",
+      price: false
     }, "Get Puffy Pro"), /* @__PURE__ */ __h("a", {
       className: "gb",
       "data-variant": "secondary",
@@ -46192,18 +46196,143 @@ Reply with the whole updated JSON in the same shape.` }] : MK_BRIEF(w);
       className: "pro-note-t"
     }, /* @__PURE__ */ __h("p", null, /* @__PURE__ */ __h("span", {
       className: "tag-pro"
-    }, "Pro"), /* @__PURE__ */ __h("b", null, "Part of Puffy Pro."), " One payment gets every AI part and its updates, in a private GitHub repo."), /* @__PURE__ */ __h("a", {
-      className: "pro-buy",
+    }, "Pro"), /* @__PURE__ */ __h("b", null, "Part of Puffy Pro."), " One payment gets every AI part and its updates, in a private GitHub repo."), /* @__PURE__ */ __h(ProButton, {
       href: PRO_URL,
-      target: "_blank",
-      rel: "noopener noreferrer"
-    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE))), /* @__PURE__ */ __h("p", {
+      external: true
+    }, "Get Pro")), /* @__PURE__ */ __h("p", {
       className: "inst-files"
     }, "Already bought? Clone the repo next to your project, then run:"), /* @__PURE__ */ __h(CopyBlock, {
       lang: "Terminal",
       text: `npx shadcn@latest add ${regs.map((r) => "../puffy-pro/r/" + r + ".json").join(" ")}`
     })));
   }
+  function ProButton({ href, external, className = "", onClick, price = true, children }) {
+    const ref = import_react35.useRef(null), cv = import_react35.useRef(null), raf = import_react35.useRef(0), on = import_react35.useRef(false);
+    const start = () => {
+      on.current = true;
+      if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)
+        return;
+      const el = ref.current, c = cv.current;
+      if (!el || !c)
+        return;
+      const dpr = Math.min(2, window.devicePixelRatio || 1), { offsetWidth: w, offsetHeight: h } = el;
+      c.width = w * dpr;
+      c.height = h * dpr;
+      const g = c.getContext("2d");
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const S = 4, cols = Math.ceil(w / S), rows = Math.ceil(h / S);
+      const seed = Array.from({ length: cols * rows }, () => Math.random());
+      const t0 = performance.now();
+      const draw = (t) => {
+        const k = (t - t0) / 1000;
+        g.clearRect(0, 0, w, h);
+        const sweep = k * 0.55 % 1.5 - 0.25;
+        for (let y = 0;y < rows; y++)
+          for (let x = 0;x < cols; x++) {
+            const i = y * cols + x, fx = x / cols;
+            const hot = Math.exp(-Math.pow((fx - sweep) * 3.4, 2));
+            const a = (0.3 + 0.8 * hot + 0.3 * (1 - fx)) * (0.5 + 0.5 * Math.sin(k * 7 + seed[i] * 50)) * (0.35 + 0.65 * seed[i]);
+            if (a < 0.14)
+              continue;
+            g.fillStyle = "rgba(255,255,255," + Math.min(0.9, a).toFixed(2) + ")";
+            g.fillRect(x * S + 1, y * S + 1, 2, 2);
+          }
+        raf.current = requestAnimationFrame(draw);
+      };
+      cancelAnimationFrame(raf.current);
+      raf.current = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      on.current = false;
+      setTimeout(() => {
+        if (!on.current)
+          cancelAnimationFrame(raf.current);
+      }, 350);
+    };
+    import_react35.useEffect(() => () => cancelAnimationFrame(raf.current), []);
+    return /* @__PURE__ */ __h("a", {
+      ref,
+      className: "pro-buy " + className,
+      href,
+      onClick,
+      target: external ? "_blank" : undefined,
+      rel: external ? "noopener noreferrer" : undefined,
+      onMouseEnter: start,
+      onMouseLeave: stop,
+      onFocus: start,
+      onBlur: stop
+    }, /* @__PURE__ */ __h("canvas", {
+      ref: cv,
+      className: "pro-dots",
+      "aria-hidden": "true"
+    }), /* @__PURE__ */ __h("b", {
+      className: "pro-buy-t"
+    }, children), price && /* @__PURE__ */ __h("span", {
+      className: "pro-chip"
+    }, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE));
+  }
+  function pixelWipe(mid) {
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      mid();
+      return;
+    }
+    const c = document.createElement("canvas");
+    c.setAttribute("aria-hidden", "true");
+    Object.assign(c.style, { position: "fixed", inset: "0", width: "100vw", height: "100vh", zIndex: "9999", pointerEvents: "auto" });
+    document.body.appendChild(c);
+    const dpr = Math.min(2, window.devicePixelRatio || 1), W = innerWidth, H = innerHeight;
+    c.width = W * dpr;
+    c.height = H * dpr;
+    const g = c.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const size = Math.max(14, Math.round(Math.min(W, H) / 30)), cols = Math.ceil(W / size), rows = Math.ceil(H / size);
+    const order = Array.from({ length: cols * rows }, (_, i) => i % cols / cols * 0.55 + Math.floor(i / cols) / rows * 0.25 + Math.random() * 0.2);
+    const ink = getComputedStyle(document.body).color;
+    const D = 480, grow = 0.14;
+    const frame = (p, out) => {
+      g.clearRect(0, 0, W, H);
+      g.fillStyle = ink;
+      for (let i = 0;i < order.length; i++) {
+        let s = Math.min(1, Math.max(0, (p - order[i]) / grow));
+        if (out)
+          s = 1 - s;
+        if (s <= 0)
+          continue;
+        const x = i % cols * size, y = Math.floor(i / cols) * size, d = size * s;
+        g.fillRect(x + (size - d) / 2, y + (size - d) / 2, d + 0.5, d + 0.5);
+      }
+    };
+    const run = (out, done) => {
+      const t0 = performance.now();
+      const step = (t) => {
+        const p = (t - t0) / D * 1.15;
+        frame(p, out);
+        if (p < 1.15)
+          requestAnimationFrame(step);
+        else
+          done();
+      };
+      requestAnimationFrame(step);
+    };
+    run(false, () => {
+      mid();
+      setTimeout(() => run(true, () => c.remove()), 280);
+    });
+  }
+  var toPro = (e) => {
+    if (e)
+      e.preventDefault();
+    pixelWipe(() => {
+      window.__proJump = true;
+      if (location.hash === "#pro") {
+        const el = document.getElementById("pro");
+        if (el)
+          el.scrollIntoView({ block: "start" });
+        window.__proJump = false;
+      } else
+        location.hash = "pro";
+    });
+  };
   function NavPro() {
     const [peek, setPeek] = import_react35.useState(0);
     const wave = () => setPeek((n) => n ? n : Date.now());
@@ -46229,10 +46358,11 @@ Reply with the whole updated JSON in the same shape.` }] : MK_BRIEF(w);
       className: "peek-hand"
     }), /* @__PURE__ */ __h(PuffyMark, {
       size: 24
-    })), /* @__PURE__ */ __h("a", {
-      className: "pro-buy nav-pro",
-      href: "#pro"
-    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE)));
+    })), /* @__PURE__ */ __h(ProButton, {
+      href: "#pro",
+      className: "nav-pro",
+      onClick: toPro
+    }, "Get Pro"));
   }
   var OFFER_CODE = "Puffypro";
   function OfferBar() {
@@ -46792,11 +46922,14 @@ npx shadcn@latest add ${REG}all.json`,
       "aria-current": r.view === view ? "page" : undefined
     }, text, id === "ai" && /* @__PURE__ */ __h("span", {
       className: "tag-pro"
-    }, "Pro")))), /* @__PURE__ */ __h("a", {
-      className: "pro-buy nav-sheet-pro",
+    }, "Pro")))), /* @__PURE__ */ __h(ProButton, {
       href: "#pro",
-      onClick: () => setMenu(false)
-    }, "Get Pro", /* @__PURE__ */ __h("span", null, PRO_LATER && /* @__PURE__ */ __h("s", null, PRO_LATER), PRO_PRICE)), /* @__PURE__ */ __h("p", {
+      className: "nav-sheet-pro",
+      onClick: (e) => {
+        setMenu(false);
+        toPro(e);
+      }
+    }, "Get Pro"), /* @__PURE__ */ __h("p", {
       className: "nav-sheet-foot"
     }, "Free React components in three themes. AI parts in Pro."))), menu && /* @__PURE__ */ __h("div", {
       className: "nav-scrim",
