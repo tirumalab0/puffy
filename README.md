@@ -1,6 +1,6 @@
 # Puffy
 
-Soft, tactile React components with three looks — **Quiet**, **Mist** and **Puffy** — Copy the files into your project or install them with one command. No dependencies beyond React.
+Soft, tactile React components with two looks, **Quiet** and **Puffy**. Copy the files into your project or install them with one command. No dependencies beyond React.
 
 **[See every component live →](https://puffyui.com)**
 
@@ -62,7 +62,7 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 }
 ```
 
-**Which parts the themes restyle:** buttons, fields (input, text area, select, combobox, checkbox, radio, switch, slider, calendar, keypad, counter), menus (dropdown, command menu, context menu, bloom menu, overflow actions), cards, tabs, accordion, dialogs, drawers, popovers, bottom sheet, sidebar, stepper, stat card, date range, banner, progress, empty states. Charts, glance cards, pictures and the rest keep their own look in every theme; all of them take your colour and dark mode.
+**Which parts the themes restyle:** buttons, fields (input, text area, select, combobox, checkbox, radio, switch, slider, counter), menus (dropdown, command menu), cards, tabs, accordion, dialogs, drawers, popovers, bottom sheet, stepper, date range, banner, progress, empty states. Every part takes your colour and dark mode.
 
 **Dark mode:** load `glass-dark.css` after the theme. It turns on when `<html>` has `class="dark"` (the class next-themes and shadcn/ui already set) or `data-glass-mode="dark"`, so it follows your app's dark mode with no extra setup.
 
@@ -72,37 +72,24 @@ The attribute can go on any wrapper instead of `<html>`, so one page can mix loo
 
 | Install name | What's inside |
 | --- | --- |
-| `app` | Sidebar, Breadcrumbs, Avatar, Stat card, Charts, Data table |
 | `basics` | Button group, Toggle, Toggle group, Navigation menu, Video player, Carousel, Spinner, Keyboard keys |
 | `button` | Button with solid, glass and bubble finishes |
 | `card` | Card, Progress |
-| `charts` | Block bars, Radial rings, Radar, Flow, Brush |
 | `combobox` | Combobox |
 | `controls` | Checkbox, Radio, Switch, Slider |
 | `dark` | Dark mode, load after the theme |
-| `data` | Stat strip, Meter, Square grid, Forecast bar, Timeline, Tag list |
-| `delight` | Confirm, Calendar, Popover, Hover card, Hold to confirm, Swipe to delete, Password strength, Star rating, Undo pill, Toast stack, Notification bell, Number ticker, Floating label, Range slider, Animated form, Edge-lit style |
 | `display` | Tabs, Accordion, Table, Dialog, Badge, Banner, Tooltip, Carousel dots, Thinking |
 | `dropdown` | Dropdown |
-| `extras` | Wheel picker, Sortable list, Multi select, Context menu, Morphing modal, Expandable tabs, Bloom menu, File diff, Tool approval, Thinking phrases |
-| `extras2` | Colour picker, Image viewer, File tree, Marquee, Tilt card, Pull to refresh, Cylinder carousel, Theme toggle, Hover highlight, Morphing search, Overflow actions, Card folder, Availability, Masonry, Wallet card, Not found |
-| `fur` | Fluffy Puffy |
-| `glance` | Glance card, Weather, Temperature, Flight, Sleep, Checklist, Movers, Paycheck, Range today |
-| `grain` | Grain backgrounds |
 | `icon` | Icons |
 | `input` | Input, Text area, Input copy |
-| `keypad` | Keypad |
 | `menu` | The menu used by Select, Combobox and Dropdown |
-| `motion` | Rolling number, Word reveal, Art |
 | `overlay` | Command menu, Drawer, Toast, Empty, Skeleton, Date range, Stepper |
 | `scene` | Picture backdrop for glass finishes |
 | `select` | Select |
 | `sound` | Optional sounds for every part |
 | `surface` | Shared surface styles used by most parts |
-| `tactile` | Knob, Arc dial, Ruler picker, Code input, Counter, Drop zone, Reactions, Card deck, Morphing tray |
 | `theme-puffy` | Puffy theme |
 | `theme-quiet` | Quiet theme |
-| `widget` | Widget card, Line chart, Breakdown, Heatmap |
 
 ## Works with
 
@@ -114,7 +101,7 @@ MIT — free for personal and commercial work. See [LICENSE](LICENSE).
 
 ## Puffy Pro
 
-The AI parts (chat, composer, agents, voice, images and meetings) are in **Puffy Pro**: one payment, free updates, delivered as a private GitHub repo. See them live and get Pro at **[puffyui.com](https://puffyui.com/#pro)**.
+The AI parts, the SaaS dashboard kit, app parts (sidebar, avatars, stats, tables), charts, calendar, motion and 3D, blocks, glance cards, tactile controls and more are in **Puffy Pro**: one payment, free updates, delivered as a private GitHub repo. See them live and get Pro at **[puffyui.com](https://puffyui.com/#pro)**.
 
 ## Contact
 
