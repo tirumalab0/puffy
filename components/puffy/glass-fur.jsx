@@ -163,7 +163,9 @@ export function GlassFurMascot({ color = "#cdbfff", size = 240, layers, length =
   useEffect(() => { const c = hex(color); if (c) st.current.col = c; }, [color]);
   useEffect(() => {
     const el = cv.current; if (!el) return;
-    const gl = el.getContext("webgl", { antialias: true, alpha: true, premultipliedAlpha: false });
+    // The blend leaves colour already multiplied by alpha, so the canvas must say so; otherwise the browser
+    // darkens every see-through hair tip a second time and the edge turns grey and gritty.
+    const gl = el.getContext("webgl", { antialias: true, alpha: true, premultipliedAlpha: true });
     if (!gl) { setOk(false); return; }
     const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; };
     let pr;

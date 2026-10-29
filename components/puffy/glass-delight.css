@@ -21,7 +21,7 @@
 }
 [data-glass-tint="frost"] :is(.gx-confirm, .gx-cal, .gx-pop, .gx-hc, .gx-hold, .gx-swipe, .gx-pw, .gx-rate, .gx-undo, .gx-ts, .gx-bell, .gx-tick, .gx-fl, .gx-rs, .gx-ring, .gx-edge, .gx-efield, .gx-ebtn, .gx-etoast, .gx-ealert) { --x-c: var(--frost-accent, #4b5565); --x-on: var(--frost-on, #fff); }
 @keyframes gx-pop { from { opacity: 0; transform: translateY(6px) scale(0.97); } }
-.gx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 16px; border: 0; border-radius: min(var(--glass-radius, 12px), 12px); font: inherit; font-size: 14px; font-weight: 500; color: var(--glass-fg); background: var(--x-surface); box-shadow: var(--x-lit); cursor: pointer; transition: transform 0.25s var(--x-spring), opacity 0.2s; }
+.gx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 38px; padding: 0 16px; border: 0; border-radius: var(--glass-radius, 12px); font: inherit; font-size: 14px; font-weight: 500; color: var(--glass-fg); background: var(--x-surface); box-shadow: var(--x-lit); cursor: pointer; transition: transform 0.25s var(--x-spring), opacity 0.2s; }
 .gx-btn:active:not(:disabled) { transform: scale(0.96); }
 .gx-btn:disabled { opacity: 0.4; cursor: default; }
 .gx-btn-main { color: var(--x-on); background: linear-gradient(180deg, color-mix(in srgb, var(--x-c) 82%, #fff), var(--x-c)); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), 0 0 0 1px color-mix(in srgb, var(--x-c) 80%, #000), 0 8px 18px -8px color-mix(in srgb, var(--x-c) 70%, transparent); }
